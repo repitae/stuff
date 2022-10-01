@@ -1,0 +1,66 @@
+## ubuntu
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y autoclean
+sudo apt -y autoremove
+sudo apt -y dist-upgrade
+
+apt install --no-install-recommends --no-install-suggests dialog mc nano update-manager-core vim
+sudo apt-get install update-manager-core
+sudo nano /etc/update-manager/release-upgrades
+sudo do-release-upgrade -d
+
+## zabbix
+#wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3+ubuntu22.04_all.deb
+#dpkg -i zabbix-release_6.0-3+ubuntu22.04_all.deb
+wget https://repo.zabbix.com/zabbix/6.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.2-1%2Bubuntu22.04_all.deb
+dpkg -i zabbix-release_6.2-1+ubuntu22.04_all.deb
+apt update
+
+apt update
+apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2 php-mysql php-gd php-bcmath php-net-socket mysql-server
+mysql
+create database zabbix character set utf8mb4 collate utf8mb4_bin; 
+#grant all privileges on zabbix.* to zabbix@'localhost' identified by 'zabbix';
+create user 'zabbix'@'localhost' identified by 'zabbix';
+grant all on zabbix.* to 'zabbix'@'localhost';
+flush privileges; 
+exit
+
+
+# mysql -uroot -p
+password
+mysql> create database zabbix character set utf8mb4 collate utf8mb4_bin;
+mysql> create user zabbix@localhost identified by 'zabbix';
+mysql> grant all privileges on zabbix.* to zabbix@localhost;
+mysql> set global log_bin_trust_function_creators = 1;
+mysql> quit;
+
+zcat /usr/share/doc/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix
+vi /etc/zabbix/zabbix_server.conf
+systemctl restart zabbix-server
+systemctl enable zabbix-server
+
+vi /etc/zabbix/zabbix_agent2.conf
+systemctl restart zabbix-agent2
+vi /etc/php/8.1/fpm/pool.d/www.conf
+# add to the end
+php_value[max_execution_time] = 300
+php_value[memory_limit] = 128M
+php_value[post_max_size] = 16M
+php_value[upload_max_filesize] = 2M
+php_value[max_input_time] = 300
+php_value[max_input_vars] = 10000
+php_value[always_populate_raw_post_data] = -1
+php_value[date.timezone] = Europe/Moscow
+
+vi /etc/apache2/conf-enabled/zabbix.conf
+Allow from all
+
+systemctl restart apache2 php8.1-fpm
+
+
+##
+sudo useradd -r -d /var/lib/zabbix -s /sbin/nologin -M zabbix
+mkdir -m u=rwx,g=rwx,o= -p /var/lib/zabbix
+chown zabbix:zabbix /var/lib/zabbix

@@ -1,0 +1,48 @@
+sudo aptitude reinstall '~i'
+aptitude search '?and( ?automatic(?reverse-recommends(?installed)), ?not(?automatic(?reverse-depends(?installed))) )' 
+aptitude search '?and( ?automatic(?reverse-recommends(?installed)), ?not(?automatic(?reverse-depends(?installed))) )' | awk '{ print $3 }'
+aptitude search '?and( ?automatic(?reverse-recommends(?installed)), ?not(?automatic(?reverse-depends(?installed))) )' | awk '{ print $3 }' | xargs dpkg -P
+apt list --installed | cut --delimiter=/ --fields=1 | xargs apt reinstall -y
+
+
+##!/bin/bash
+
+while true; do
+  /usr/bin/drill www.ru @192.0.2.1 > /dev/null;
+  if [[ $? != 0 ]]; then
+          echo "withdraw route 192.0.2.1 next-hop 192.168.1.96\n"
+  else
+          echo "announce route 192.0.2.1 next-hop 192.168.1.96\n"
+  fi
+done
+
+process announce-routes {
+  run /app/exabgp/etc/dns-check.sh;
+  encoder text;
+}
+
+neighbor 192.168.1.94 {
+    local-address 192.168.1.96;
+    local-as 65500;
+    peer-as 65500; 
+
+    api {
+        processes [ announce-routes ];
+   }
+
+}
+
+
+/etc/default/snmpd:
+SNMPDOPTS=’-Lsd -Lf /dev/null -u snmp -g snmp -I -smux -p /var/run/snmpd.pid’
+Для решение проблемы строку надо привести к такому виду:
+SNMPDOPTS=’-LS6d -Lf /dev/null -u snmp -g snmp -I -smux -p /var/run/snmpd.pid’
+
+
+If you want to stop these messages, you can change the log level in /etc/sysconfig/net-snmp. The available log levels are documented in snmpcmd(1).
+In /etc/sysconfig/net-snmp you can set the log level down wards to 'i' (LOG_INFO):
+modify:
+SNMPD_LOGLEVEL="d"
+to
+SNMPD_LOGLEVEL="i"
+and restart snmpd.
