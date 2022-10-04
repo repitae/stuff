@@ -108,18 +108,21 @@ ConditionPathExists=/app/exabgp/etc/exabgp.conf
 User=exabgp
 Group=exabgp
 Environment=exabgp_daemon_daemonize=false
-PermissionsStartOnly=true						 
-ExecStartPre=-mkdir /app/exabgp/run
-ExecStartPre=-mkfifo /app/exabgp/run/exabgp.in
-ExecStartPre=-mkfifo /app/exabgp/run/exabgp.out
-ExecStartPre=-chown exabgp.exabgp /app/exabgp/run/exabgp.in
-ExecStartPre=-chown exabgp.exabgp /app/exabgp/run/exabgp.out
-ExecStopPost=-/bin/rm -f /app/exabgp/run/exabgp.{in,out}
-ExecStart=/app/exabgp/sbin/exabgp /etc/exabgp/exabgp.conf
-ExecReload=/bin/kill -USR1 $MAINPID
+PermissionsStartOnly=true
+ExecStartPre=-mkdir -p /app/exabgp/run/
+ExecStartPre=-mkfifo -m 600 /app/exabgp/run/exabgp.in
+ExecStartPre=-mkfifo -m 600 /app/exabgp/run/exabgp.out
+ExecStartPre=-chown exabgp:exabgp /app/exabgp/run/exabgp.in
+ExecStartPre=-chown exabgp:exabgp /app/exabgp/run/exabgp.out
+ExecStartPre=/app/exabgp/sbin/exabgp --validate /app/exabgp/etc/exabgp.conf
+ExecStart=/app/exabgp/sbin/exabgp /app/exabgp/etc/exabgp.conf
+ExecStopPost=-rm -f /app/exabgp/run/exabgp.in
+ExecStopPost=-rm -f /app/exabgp/run/exabgp.out
+ExecReload=kill -USR1 $MAINPID
 Restart=always
-CapabilityBoundingSet=CAP_NET_ADMIN
-AmbientCapabilities=CAP_NET_ADMIN
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_NET_ADMIN
+AmbientCapabilities=CAP_NET_BIND_SERVICE CAP_NET_ADMIN
+RestrictAddressFamilies=AF_INET AF_UNIX
 
 [Install]
 WantedBy=multi-user.target
