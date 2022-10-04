@@ -86,10 +86,11 @@ echo "net.ipv4.conf.all.arp_filter=1" | sudo tee -a /etc/sysctl.conf
 ## ctl
 ```sh
 systemctl list-units --all --type=mount
-systemctl list-units --type=service --state=failed
+systemctl list-units --type=service
 ```
 
 ```sh
+systemctl list-unit-files --state=failed
 systemctl list-unit-files --type=service
 systemctl list-unit-files --type=service --state=enabled
 systemctl list-unit-files --type=service --state=enabled,disabled
