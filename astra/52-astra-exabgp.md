@@ -52,26 +52,13 @@ ETH0ADDR=`ip -4 -o addr show eth0 | awk '{print $4}' | cut -d/ -f 1`
 sudo cat << EOF >> /app/exabgp/etc/exabgp.conf
 # https://github.com/Exa-Networks/exabgp/tree/master/etc/exabgp
 neighbor 192.168.1.94 {
-  #description "";
-  router-id 192.168.1.96;
   local-address 192.168.1.96;
   local-as 65500;
   peer-as 65500;
-  hold-time 180;
-  rate-limit disable;
-  manual-eor false;
-  passive false;
-  group-updates true;
-  auto-flush true;
-  adj-rib-in true;
-  adj-rib-out true;
-  #md5-base64 auto;
-  #md5-ip "192.168.1.96";
-
   capability {
     asn4 enable;
     route-refresh enable;
-    graceful-restart 30;
+    graceful-restart 5;
     nexthop enable;
     add-path send/receive;
     multi-session enable;
@@ -90,8 +77,7 @@ EOF
 ```
 
 ```sh
-# env exabgp.tcp.bind=192.168.1.94 exabgp.tcp.port=179 ./sbin/exabgp -d /app/exabgp/etc/exabgp.conf
-# env exabgp.tcp.bind=192.168.1.96 exabgp.tcp.port=179 ./sbin/exabgp -d /app/exabgp/etc/exabgp.conf
+# env exabgp.tcp.bind=0.0.0.0 exabgp.tcp.port=179 ./sbin/exabgp -d /app/exabgp/etc/exabgp.conf
 ```
 
 ```sh
@@ -162,6 +148,8 @@ sudo journalctl -ru exabgp
 ```
 
 ```sh
-cd /app/exabgp/bin/
-./exabgpcli show neighbor summary
+cd /app/exabgp/
+./bin/exabgpcli show neighbor summary
+./bin/exabgpcli show neighbor extensive
+./bin/exabgpcli show neighbor configuration
 ```
