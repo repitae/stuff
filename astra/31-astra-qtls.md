@@ -6,6 +6,7 @@ cd /$APP/$SRC/
 wget https://github.com/quictls/openssl/archive/refs/heads/openssl-3.0.5+quic.zip
 unzip ./openssl-3.0.5+quic.zip
 cd ./openssl-openssl-3.0.5-quic/
+
 make clean
 ./Configure --prefix=/app/quictls --openssldir=ssl enable-ktls --api=1.1.0 no-deprecated no-legacy
 [[ $? -eq 0 ]] && make -j $(nproc)
