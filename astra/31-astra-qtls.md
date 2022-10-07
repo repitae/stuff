@@ -11,10 +11,10 @@ cd ./openssl-openssl-3.0.5-quic/
 [[ $? -eq 0 ]] && make -j $(nproc)
 [[ $? -eq 0 ]] && make test
 [[ $? -eq 0 ]] && make install
-/$APP/$QTLS/bin/openssl version -a
 
 echo /app/quictls/lib64 | tee -a /etc/ld.so.conf.d/quictls.conf && ldconfig
 ldconfig -p | grep quictls
+/$APP/$QTLS/bin/openssl version -a
 
 useradd -M -U -r -s `which nologin` -d /$APP/$QTLS $QTLS
 chown -R $QTLS:$QTLS /$APP/$QTLS
