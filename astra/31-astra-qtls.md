@@ -7,8 +7,7 @@ wget https://github.com/quictls/openssl/archive/refs/heads/openssl-3.0.5+quic.zi
 unzip ./openssl-3.0.5+quic.zip
 cd ./openssl-openssl-3.0.5-quic/
 make clean
-#./Configure --prefix=/app/quictls --openssldir=ssl enable-ktls --api=1.1.0 no-deprecated # broke haproxy build
-./Configure --prefix=/app/quictls --openssldir=ssl
+./Configure --prefix=/app/quictls --openssldir=ssl enable-ktls --api=1.1.0 no-deprecated
 [[ $? -eq 0 ]] && make -j $(nproc)
 [[ $? -eq 0 ]] && make test && make install_sw
 
