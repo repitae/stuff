@@ -37,9 +37,24 @@ export HFAT="ARCH=64 CPU=generic TARGET=linux-glibc \
     USE_THREAD_DUMP=1 \
     USE_TPROXY=1 \
     SSL_LIB=/app/quictls/lib64/ \
-    SSL_INC=/app/quictls/include/ "
+    SSL_INC=/app/quictls/include/ " # fat build
 
-export HOPT="ARCH=64 CPU=generic TARGET=linux-glibc \
+export NQTLS="ARCH=64 CPU=generic TARGET=linux-glibc \
+    USE_ENGINE=1 \
+    USE_GETADDRINFO=1 \
+    USE_LIBCRYPT=1 \
+    USE_LIBCRYPT_CRYPT_H=1 \
+    USE_LUA=1 \
+    USE_NS=1 \
+    USE_OPENSSL=1 \
+    USE_PCRE=1 \
+    USE_PCRE_JIT=1 \
+    USE_STATIC_PCRE=1 \
+    USE_SYSTEMD=1 \
+    USE_TFO=1 \
+    USE_THREAD=1 \ " openssl buils
+
+export QCTLS="ARCH=64 CPU=generic TARGET=linux-glibc \
     USE_ENGINE=1 \
     USE_GETADDRINFO=1 \
     USE_LIBCRYPT=1 \
@@ -55,7 +70,8 @@ export HOPT="ARCH=64 CPU=generic TARGET=linux-glibc \
     USE_TFO=1 \
     USE_THREAD=1 \
     SSL_LIB=/app/quictls/lib64/ \
-    SSL_INC=/app/quictls/include/ "
+    SSL_INC=/app/quictls/include/ " quictls build
+
 
 cd /$APP/$SRC/
 HAVER=$(curl -S https://www.haproxy.org/download/2.6/src/releases.json | grep latest_release | cut -d '"' -f 4) && echo $HAVER
@@ -66,7 +82,7 @@ tar xvf ./haproxy-$HAVER.tar.gz && cd ./haproxy-$HAVER/
 # make help TARGET=linux-glibc
 
 make clean
-make -j $(nproc) $HOPT
+make -j $(nproc) $QCTLS
 [[ $? -eq 0 ]] && make install PREFIX=/$APP/$HAPRO
 /$APP/$HAPRO/sbin/haproxy -vv
 
