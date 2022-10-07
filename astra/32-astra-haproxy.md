@@ -6,6 +6,7 @@ export HMIN="TARGET=linux-glibc \
     USE_OPENSSL=1 \
     USE_LUA=1 \
     USE_PCRE=1 \
+    USE_PCRE_JIT=1 \
     USE_SYSTEMD=1" # minimal build
 
 export HFAT="ARCH=64 CPU=generic TARGET=linux-glibc \
@@ -25,7 +26,7 @@ export HFAT="ARCH=64 CPU=generic TARGET=linux-glibc \
     USE_OPENSSL=1 \
     USE_PCRE=1 \
     USE_PRCTL=1 \
-    USE_PCRE_JIT \
+    USE_PCRE_JIT=1 \
     USE_QUIC=1 \
     USE_RT=1 \
     USE_SLZ=1 \
@@ -47,7 +48,7 @@ export HOPT="ARCH=64 CPU=generic TARGET=linux-glibc \
     USE_NS=1 \
     USE_OPENSSL=1 \
     USE_PCRE=1 \
-    USE_PCRE_JIT \
+    USE_PCRE_JIT=1 \
     USE_QUIC=1 \
     USE_STATIC_PCRE=1 \
     USE_SYSTEMD=1 \
