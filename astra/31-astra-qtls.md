@@ -7,13 +7,13 @@ wget https://github.com/quictls/openssl/archive/refs/heads/openssl-3.0.5+quic.zi
 unzip ./openssl-3.0.5+quic.zip
 cd ./openssl-openssl-3.0.5-quic/
 make clean
-# ./Configure --prefix=/app/quictls --openssldir=ssl enable-ktls no-deprecated
+# ./Configure --prefix=/app/quictls --openssldir=ssl enable-ktls no-deprecated # broke haproxy build
 ./Configure --prefix=/app/quictls --openssldir=ssl
 [[ $? -eq 0 ]] && make -j $(nproc)
-[[ $? -eq 0 ]] && make test && make install
+[[ $? -eq 0 ]] && make test && make install_sw
 
-echo /app/quictls/lib64 | tee -a /etc/ld.so.conf.d/quictls.conf && ldconfig
-ldconfig -p | grep quictls
+echo /app/quictls/lib64 | tee -a /etc/ld.so.conf.d/quictls.conf
+ldconfig && ldconfig -p | grep quictls
 /$APP/$QTLS/bin/openssl version -a
 
 useradd -M -U -r -s `which nologin` -d /$APP/$QTLS $QTLS
