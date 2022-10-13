@@ -28,14 +28,19 @@ setuid=pdns
 guardian=yes
 daemon=yes
 master=yes
-launch=bind
 
 config-dir=/app/pdns/etc
-
-bind-config=named.conf
-bind-check-interval=600
-
 version-string=none
+launch=bind,remote
+
+remote-connection-string=pipe:command=/app/polaris/bin/polaris-pdns,timeout=2000
+#distributor-threads=3
+negquery-cache-ttl=60
+query-cache-ttl=20
+cache-ttl=20
+
+bind-config=/app/pdns/etc/named.conf
+bind-check-interval=600
 
 local-port=5353
 local-address=0.0.0.0
