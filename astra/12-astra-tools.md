@@ -2,7 +2,7 @@
 ```sh
 sudo apt install -y autoconf automake bison build-essential flex libtool ragel
 sudo apt install -y python3-pip python3-setuptools python3-venv
-sudo apt install -y curl ldnsutils lua5.3 mc netcat ntp socat snmpd unzip wget
+sudo apt install -y curl ldnsutils lua5.3 mc netcat socat snmpd unzip wget
 sudo apt install -y devscripts dialog dpkg-dev gawk git gnupg2 pkg-config
 ```
 

@@ -37,6 +37,32 @@ chown -R $POLAR:$POLAR /$APP/$POLAR
 ```
 
 ```sh
+cat << EOF >> /$APP/$POLAR/etc/polaris-lb.yaml
+pools:
+    www-example:
+        monitor: http
+        monitor_params:
+            use_ssl: true
+            hostname: www.example.com
+            url_path: /healthcheck?check_all=true
+        lb_method: twrr
+        fallback: any
+        members:
+        - ip: 127.0.0.1
+          name: www1-dc1
+          weight: 1
+        - ip: 127.0.2.1
+          name: www2-dc2
+          weight: 1
+
+globalnames:
+    www.example.com:
+        pool: www-example
+        ttl: 1
+EOF
+```
+
+```sh
 cd /app/polaris/bin/
 ./polaris-memcache-control 127.0.0.1 get-generic-state
 ./polaris-memcache-control 127.0.0.1 get-ppdns-state
