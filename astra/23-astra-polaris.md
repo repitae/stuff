@@ -37,6 +37,13 @@ chown -R $POLAR:$POLAR /$APP/$POLAR
 ```
 
 ```sh
+sed -i -e 's/yaml.load/yaml.safe_load/' ./polaris_pdns/__init__.py
+sed -i -e 's/yaml.load/yaml.safe_load/' ./polaris_health/guardian/__init__.py
+sed -i -e 's/yaml.load/yaml.safe_load/' ./build/lib/polaris_pdns/__init__.py
+sed -i -e 's/yaml.load/yaml.safe_load/' ./build/lib/polaris_health/guardian/__init__.py
+```
+
+```sh
 cat << EOF >> /$APP/$POLAR/etc/polaris-lb.yaml
 pools:
     www-example:
@@ -48,10 +55,10 @@ pools:
         lb_method: twrr
         fallback: any
         members:
-        - ip: 127.0.0.1
+        - ip: 192.0.21
           name: www1-dc1
           weight: 1
-        - ip: 127.0.2.1
+        - ip: 192.0.2.2
           name: www2-dc2
           weight: 1
 
@@ -60,6 +67,11 @@ globalnames:
         pool: www-example
         ttl: 1
 EOF
+```
+
+```sh
+cat << EOF >> /$APP/$POLAR/etc/polaris-lb.yaml
+
 ```
 
 ```sh
