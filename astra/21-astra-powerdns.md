@@ -9,8 +9,6 @@ cd /$APP/$SRC
 wget https://downloads.powerdns.com/releases/pdns-4.6.3.tar.bz2
 tar xvf ./pdns-4.6.3.tar.bz2 && cd ./pdns-4.6.3/
 
-apt install libboost-program-options-dev
-
 autoreconf -vi
 ./configure $PFAT
 [[ $? -eq 0 ]] && make -j $(nproc)
