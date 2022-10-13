@@ -2,16 +2,16 @@
 ```sh
 export APP=app ; export SRC=src ; export PDNS=pdns
 
-export PMIN='--prefix=/$APP/$PDNS --with-modules="" --disable-lua-records'
-export PFAT='--prefix=/$APP/$PDNS --with-modules='bind' --with-dynmodules='pipe' \
-    --enable-tools --enable-ixfrdist --enable-systemd'
+export PMIN="--prefix=/$APP/$PDNS --with-modules='' --disable-lua-records"
+export PFAT="--prefix=/$APP/$PDNS --with-modules='bind' --with-dynmodules='pipe remote' --enable-tools --enable-ixfrdist --enable-systemd"
 
 cd /$APP/$SRC
 wget https://downloads.powerdns.com/releases/pdns-4.6.3.tar.bz2
 tar xvf ./pdns-4.6.3.tar.bz2 && cd ./pdns-4.6.3/
 
+apt install libboost-program-options-dev
+
 autoreconf -vi
-# ./configure $PMIN
 ./configure $PFAT
 [[ $? -eq 0 ]] && make -j $(nproc)
 [[ $? -eq 0 ]] && make install

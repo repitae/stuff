@@ -8,7 +8,7 @@ sudo apt install -y devscripts dialog dpkg-dev gawk git gnupg2 pkg-config
 
 ## libs
 ```sh
-sudo apt install -y libboost-all-dev
+#sudo apt install -y libboost-all-dev
 sudo apt install -y libcurl4 libcurl4-openssl-dev
 sudo apt install -y libevent-dev
 sudo apt install -y liblua5.3-dev
