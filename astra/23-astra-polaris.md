@@ -47,19 +47,17 @@ sed -i -e 's/yaml.load/yaml.safe_load/' ./build/lib/polaris_health/guardian/__in
 cat << EOF >> /$APP/$POLAR/etc/polaris-lb.yaml
 pools:
     www-example:
-        monitor: http
+        monitor: tcp
         monitor_params:
-            use_ssl: true
-            hostname: www.example.com
-            url_path: /healthcheck?check_all=true
+            port: 22
         lb_method: twrr
         fallback: any
         members:
-        - ip: 192.0.21
-          name: www1-dc1
+        - ip: 192.0.2.1
+          name: www-dc1
           weight: 1
         - ip: 192.0.2.2
-          name: www2-dc2
+          name: www-dc2
           weight: 1
 
 globalnames:
