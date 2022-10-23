@@ -43,8 +43,8 @@ mv compressedvirtioa.qcow2 virtioa.qcow2
 ## Linux:
 ```sh
 cd /opt/unetlab/addons/qemu/
+tar xvfz ~/linux-CCIE-EI-Host-VM.tar.gz
 tar xzvf ~/linux-ubuntu-22.04-server.tar.gz
 tar xzvf ~/linux-metasploitable-2.0.0.tar.gz
-tar xzvf ~/freebsd-13.tar.gz
 /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
 ````
