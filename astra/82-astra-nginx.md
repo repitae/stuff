@@ -8,20 +8,36 @@ sudo apt install -y nginx-light
 cat <<EOF > /var/www/html/index.html
 <html>
 <head>
-<title>$(hostname)</title>
+<title>Hostname: $(hostname)</title>
 </head>
 <body>
 <div align="center">
 <h1>$(hostname)</h1>
+<hr />
+<h2>
+<?php
+echo $_SERVER['PHP_SELF'];
+echo $_SERVER['SERVER_NAME'];
+echo $_SERVER['HTTP_HOST'];
+echo $_SERVER['HTTP_REFERER'];
+echo $_SERVER['HTTP_USER_AGENT'];
+echo $_SERVER['SCRIPT_NAME'];
+?>
+</h2>
 <br />
-<h1><?php echo "SERVER_ADDR: $_SERVER['SERVER_ADDR']"; ?></h1>
-<h1><?php echo "REMOTE_ADDR: $_SERVER['REMOTE_ADDR']"; ?></h1>
-<br />
-<h1>
+<h2>
 <script type="text/javascript">
-document.write("SERVER_ADDR: ", location.host);
+var host = location.host;
+document.write("SERVER_ADDR: ", host);
 </script>
-</h1>
+</h2>
+<hr />
+<h5>
+<script type="text/javascript">
+const now = new Date();
+document.write(now);
+</script>
+</h5>
 <br />
 </div>
 </body>
