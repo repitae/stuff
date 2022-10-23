@@ -34,14 +34,3 @@ cd /opt/unetlab/addons/qemu/linux-debian-11.4.0/
 eve-sparsify  --compress virtioa.qcow2 compressedvirtioa.qcow2
 mv compressedvirtioa.qcow2 virtioa.qcow2
 ```
-
-## Linux:
-```sh
-cd /opt/unetlab/addons/qemu/
-tar xzvf ~/linux-ubuntu-22.04-server.tar.gz
-tar xzvf ~/linux-metasploitable-2.0.0.tar.gz
-tar xzvf ~/freebsd-13.tar.gz
-/opt/unetlab/wrappers/unl_wrapper -a fixpermissions
-````
-
-
