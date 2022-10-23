@@ -1,3 +1,8 @@
+## Update
+```sh
+sudo chmod -x /etc/update-motd.d/91-release-upgrade
+```
+
 ## Create:
 ```sh
 mkdir /opt/unetlab/addons/qemu/linux-debian-11.4.0/
@@ -43,5 +48,3 @@ tar xzvf ~/linux-metasploitable-2.0.0.tar.gz
 tar xzvf ~/freebsd-13.tar.gz
 /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
 ````
-
-
