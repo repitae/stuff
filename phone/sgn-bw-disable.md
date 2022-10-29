@@ -6,7 +6,7 @@ pm list packages -u
 pm list packages | grep 'samsung' 
 pm list packages | grep 'miui' 
 pm disable-user --user 0 
-pm enable 
+pm enable  --user 0 
 pm uninstall -k --user 0 
 pm install-existing 
 exit
