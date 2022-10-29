@@ -1,3 +1,16 @@
+```sh
+adb shell pm list packages -s
+adb shell pm list packages -d
+adb shell pm list packages -u
+adb shell pm list packages | grep 'samsung'
+adb shell pm list packages | grep 'miui'
+adb shell pm disable-user --user 0 
+adb shell pm enable 
+adb shell pm uninstall -k --user 0 
+adb shell pm install-existing 
+```
+
+```sh
 # adb shell pm disable-user --user 0 com.android.bips # Android Print Service
 adb shell pm disable-user --user 0 com.android.bookmarkprovider # Android Bookmark Provider
 adb shell pm disable-user --user 0 com.android.cellbroadcastreceiver # Android Cell Broadcast Receiver
@@ -39,3 +52,4 @@ adb shell pm disable-user --user 0 com.xiaomi.midrop # Mi ShareMe
 # adb shell pm disable-user --user 0 com.xiaomi.mipicks # Mi GetApps
 adb shell pm disable-user --user 0 com.xiaomi.payment # Mi Payment 
 adb shell pm disable-user --user 0 com.xiaomi.xmsfkeeper # MI Service Framework Keeper
+```
