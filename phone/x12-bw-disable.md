@@ -3,7 +3,7 @@ adb shell
 pm list packages -s
 pm list packages -d
 pm list packages -u
-list packages | grep 'samsung'
+pm list packages | grep 'samsung'
 pm list packages | grep 'miui'
 pm disable-user --user 0 
 pm enable 
