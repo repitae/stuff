@@ -14,6 +14,7 @@ exit
 
 ```sh
 adb shell
+
 # pm enable com.android.bips # Android Print Service
 pm enable com.android.bookmarkprovider # Android Bookmark Provider
 pm enable com.android.cellbroadcastreceiver # Android Cell Broadcast Receiver
@@ -56,5 +57,6 @@ pm enable com.xiaomi.midrop # Mi ShareMe
 # pm enable com.xiaomi.mipicks # Mi GetApps
 pm enable com.xiaomi.payment # Mi Payment 
 pm enable com.xiaomi.xmsfkeeper # MI Service Framework Keeper
+
 exit
 ```

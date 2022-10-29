@@ -14,6 +14,7 @@ exit
 
 ```sh
 adb shell
+
 # pm disable-user --user 0 com.android.bips # Android Print Service
 pm disable-user --user 0 com.android.bookmarkprovider # Android Bookmark Provider
 pm disable-user --user 0 com.android.cellbroadcastreceiver # Android Cell Broadcast Receiver
@@ -56,5 +57,6 @@ pm disable-user --user 0 com.xiaomi.midrop # Mi ShareMe
 # pm disable-user --user 0 com.xiaomi.mipicks # Mi GetApps
 pm disable-user --user 0 com.xiaomi.payment # Mi Payment 
 pm disable-user --user 0 com.xiaomi.xmsfkeeper # MI Service Framework Keeper
+
 exit
 ```
