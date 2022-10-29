@@ -14,6 +14,7 @@ exit
 
 ```sh
 adb shell
+
 # Android Bloatware on Samsung
 pm enable com.android.bips # Default Printing Service
 pm enable com.android.bookmarkprovider # Bookmark Provider
@@ -186,5 +187,6 @@ pm enable com.facebook.appmanager
 pm enable com.facebook.katana
 pm enable com.facebook.services
 pm enable com.facebook.system
+
 exit
 ```
