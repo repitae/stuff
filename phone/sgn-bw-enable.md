@@ -12,126 +12,126 @@ adb shell pm install-existing
 
 ```sh
 # Android Bloatware on Samsung
-pm enable com.android.bips # Default Printing Service
-pm enable com.android.bookmarkprovider # Bookmark Provider
-pm enable com.android.browser # Web Browser IllegalArgumentException
-pm enable com.android.calendar # Calendar app IllegalArgumentException
-pm enable com.android.cellbroadcastreceiver # Cell broadcasting
-pm enable com.android.cellbroadcastreceiver.overlay.common
-pm enable com.android.chrome # Chrome Browser
-pm enable com.android.deskclock # Stock Clock app
-pm enable com.android.dreams.basic # Screensaver app
-pm enable com.android.dreams.phototable # Screensaver app
-pm enable com.android.egg # Android Easter Egg
-pm enable com.android.emergency # SOS Calling
-pm enable com.android.hotwordenrollment.okgoogle # OK Google
-pm enable com.android.mms # MMS app
-pm enable com.android.mms.service # MMS
-pm enable com.android.providers.partnerbookmarks # Bookmarks Provider
-pm enable com.android.statementservice # Checks APK files
-pm enable com.android.stk # SIM Tool-kit
-pm enable com.android.vpndialogs # VPN Dialog
-pm enable com.android.wallpaper.livepicker # Live wallpaper
-pm enable com.android.wallpaperbackup # Wallpaper backup feature
-pm enable com.android.wallpapercropper # Wallpaper cropping feature
-pm enable com.sec.android.app.chromecustomizations
+adb shell pm enable com.android.bips # Default Printing Service
+adb shell pm enable com.android.bookmarkprovider # Bookmark Provider
+adb shell pm enable com.android.browser # Web Browser IllegalArgumentException
+adb shell pm enable com.android.calendar # Calendar app IllegalArgumentException
+adb shell pm enable com.android.cellbroadcastreceiver # Cell broadcasting
+adb shell pm enable com.android.cellbroadcastreceiver.overlay.common
+adb shell pm enable com.android.chrome # Chrome Browser
+adb shell pm enable com.android.deskclock # Stock Clock app
+adb shell pm enable com.android.dreams.basic # Screensaver app
+adb shell pm enable com.android.dreams.phototable # Screensaver app
+adb shell pm enable com.android.egg # Android Easter Egg
+adb shell pm enable com.android.emergency # SOS Calling
+adb shell pm enable com.android.hotwordenrollment.okgoogle # OK Google
+adb shell pm enable com.android.mms # MMS app
+adb shell pm enable com.android.mms.service # MMS
+adb shell pm enable com.android.providers.partnerbookmarks # Bookmarks Provider
+adb shell pm enable com.android.statementservice # Checks APK files
+adb shell pm enable com.android.stk # SIM Tool-kit
+adb shell pm enable com.android.vpndialogs # VPN Dialog
+adb shell pm enable com.android.wallpaper.livepicker # Live wallpaper
+adb shell pm enable com.android.wallpaperbackup # Wallpaper backup feature
+adb shell pm enable com.android.wallpapercropper # Wallpaper cropping feature
+adb shell pm enable com.sec.android.app.chromecustomizations
 
 # Google Bloatware on Samsung
-pm enable com.google.android.apps.docs # Google Docs
-pm enable com.google.android.apps.maps # Google Maps
-pm enable com.google.android.apps.photos # Google Photos
-pm enable com.google.android.apps.tachyon # Google Duo
-pm enable com.google.android.apps.wellbeing # Digital Wellbeing
-pm enable com.google.android.feedback # Feedback app
-pm enable com.google.android.gm # Gmail
-pm enable com.google.android.googlequicksearchbox # Google Quick Search
-pm enable com.google.android.inputmethod.latin # Gboard
-pm enable com.google.android.marvin.talkback # Talkback feature
-pm enable com.google.android.printservice.recommendation # Mobile Printing
-pm enable com.google.android.syncadapters.calendar # Calendar Sync
-pm enable com.google.android.tts # Text-to-speech
-pm enable com.google.android.videos # Google Play Movies & TV
-pm enable com.google.android.youtube # Youtube
-pm enable com.google.ar.lens # AR Lens
+adb shell pm enable com.google.android.apps.docs # Google Docs
+adb shell pm enable com.google.android.apps.maps # Google Maps
+adb shell pm enable com.google.android.apps.photos # Google Photos
+adb shell pm enable com.google.android.apps.tachyon # Google Duo
+adb shell pm enable com.google.android.apps.wellbeing # Digital Wellbeing
+adb shell pm enable com.google.android.feedback # Feedback app
+adb shell pm enable com.google.android.gm # Gmail
+adb shell pm enable com.google.android.googlequicksearchbox # Google Quick Search
+adb shell pm enable com.google.android.inputmethod.latin # Gboard
+adb shell pm enable com.google.android.marvin.talkback # Talkback feature
+adb shell pm enable com.google.android.printservice.recommendation # Mobile Printing
+adb shell pm enable com.google.android.syncadapters.calendar # Calendar Sync
+adb shell pm enable com.google.android.tts # Text-to-speech
+adb shell pm enable com.google.android.videos # Google Play Movies & TV
+adb shell pm enable com.google.android.youtube # Youtube
+adb shell pm enable com.google.ar.lens # AR Lens
 
 # General Bloatware on Samsung
-pm enable com.mobeam.barcodeService # Barcode scanner
-pm enable com.samsung.android.app.aodservice # Always on Display
-pm enable com.samsung.android.app.dressroom # Samsung Wallpapers
-pm enable com.samsung.android.app.social # Whats New
-pm enable com.samsung.android.app.watchmanagerstub # Galaxy Watch
-pm enable com.samsung.android.ardrawing # AR Doodle
-pm enable com.samsung.android.beaconmanager # User tracking app (sensitive)
-pm enable com.samsung.android.da.daagent # Dual Messenger
-pm enable com.samsung.android.drivelink.stub # Samsung Car Mode
-pm enable com.samsung.android.email.provider # Samsung Email
-pm enable com.samsung.android.mateagent # Galaxy Friends
-pm enable com.samsung.android.messaging # Message app
-pm enable com.samsung.android.net.wifi.wifiguider # WiFi Tips
-pm enable com.samsung.android.oneconnect # Smart Things
-pm enable com.samsung.android.scloud # Samsung Cloud
-pm enable com.samsung.android.sdk.handwriting # Galaxy Note series bloat
-pm enable com.samsung.android.sdk.professionalaudio.utility.jammonitor
-pm enable com.samsung.android.service.aircommand # Air command (Note series bloat)
-pm enable com.samsung.android.service.livedrawing # Live Message (Note series bloat)
-pm enable com.samsung.android.svoiceime # Samsung Voice Input
-pm enable com.samsung.android.universalswitch # Mobile Universal Switch
-pm enable com.samsung.android.visioncloudagent # VisionCloudAgent
-pm enable com.samsung.android.voc # Samsung Members
-pm enable com.samsung.android.wellbeing # Digital wellbeing
-pm enable com.samsung.android.widgetapp.yahooedge.finance # Finance widget
-pm enable com.samsung.android.widgetapp.yahooedge.sport # Sports widget
-pm enable com.samsung.app.highlightplayer # Samsung Story Video Editor
-pm enable com.samsung.ecomm.global # Samsung Shop
-pm enable com.samsung.hidden.china # China Hidden Menu (Chinese Spyware)
-pm enable com.samsung.safetyinformation # Saftey Information
-pm enable com.samsung.SMT # Samsung Speech-to-Text
-pm enable com.samsung.storyservice # Samsung StoryService (Tracks device activity)
-pm enable com.sec.android.app.dexonpc # Samsung Dex
-pm enable com.sec.android.app.popupcalculator # Samsung Calculator
-pm enable com.sec.android.app.sbrowser # Samsung Internet
-pm enable com.sec.android.app.voicenote # Voice Recorder
-pm enable com.sec.android.daemonapp # Samsung Weather
-pm enable com.sec.android.easyMover.Agent # Samsung Smart Switch
-pm enable com.sec.android.easyonehand # One hand mode
-pm enable com.sec.android.splitsound # Samsung Split Sound Service
-pm enable com.sec.android.widgetapp.samsungapps # Homescreen widget
-pm enable com.wsomacp # Samsung Email
-pm enable flipboard.boxer.app # Flipboard app
+adb shell pm enable com.mobeam.barcodeService # Barcode scanner
+adb shell pm enable com.samsung.android.app.aodservice # Always on Display
+adb shell pm enable com.samsung.android.app.dressroom # Samsung Wallpapers
+adb shell pm enable com.samsung.android.app.social # Whats New
+adb shell pm enable com.samsung.android.app.watchmanagerstub # Galaxy Watch
+adb shell pm enable com.samsung.android.ardrawing # AR Doodle
+adb shell pm enable com.samsung.android.beaconmanager # User tracking app (sensitive)
+adb shell pm enable com.samsung.android.da.daagent # Dual Messenger
+adb shell pm enable com.samsung.android.drivelink.stub # Samsung Car Mode
+adb shell pm enable com.samsung.android.email.provider # Samsung Email
+adb shell pm enable com.samsung.android.mateagent # Galaxy Friends
+adb shell pm enable com.samsung.android.messaging # Message app
+adb shell pm enable com.samsung.android.net.wifi.wifiguider # WiFi Tips
+adb shell pm enable com.samsung.android.oneconnect # Smart Things
+adb shell pm enable com.samsung.android.scloud # Samsung Cloud
+adb shell pm enable com.samsung.android.sdk.handwriting # Galaxy Note series bloat
+adb shell pm enable com.samsung.android.sdk.professionalaudio.utility.jammonitor
+adb shell pm enable com.samsung.android.service.aircommand # Air command (Note series bloat)
+adb shell pm enable com.samsung.android.service.livedrawing # Live Message (Note series bloat)
+adb shell pm enable com.samsung.android.svoiceime # Samsung Voice Input
+adb shell pm enable com.samsung.android.universalswitch # Mobile Universal Switch
+adb shell pm enable com.samsung.android.visioncloudagent # VisionCloudAgent
+adb shell pm enable com.samsung.android.voc # Samsung Members
+adb shell pm enable com.samsung.android.wellbeing # Digital wellbeing
+adb shell pm enable com.samsung.android.widgetapp.yahooedge.finance # Finance widget
+adb shell pm enable com.samsung.android.widgetapp.yahooedge.sport # Sports widget
+adb shell pm enable com.samsung.app.highlightplayer # Samsung Story Video Editor
+adb shell pm enable com.samsung.ecomm.global # Samsung Shop
+adb shell pm enable com.samsung.hidden.china # China Hidden Menu (Chinese Spyware)
+adb shell pm enable com.samsung.safetyinformation # Saftey Information
+adb shell pm enable com.samsung.SMT # Samsung Speech-to-Text
+adb shell pm enable com.samsung.storyservice # Samsung StoryService (Tracks device activity)
+adb shell pm enable com.sec.android.app.dexonpc # Samsung Dex
+adb shell pm enable com.sec.android.app.popupcalculator # Samsung Calculator
+adb shell pm enable com.sec.android.app.sbrowser # Samsung Internet
+adb shell pm enable com.sec.android.app.voicenote # Voice Recorder
+adb shell pm enable com.sec.android.daemonapp # Samsung Weather
+adb shell pm enable com.sec.android.easyMover.Agent # Samsung Smart Switch
+adb shell pm enable com.sec.android.easyonehand # One hand mode
+adb shell pm enable com.sec.android.splitsound # Samsung Split Sound Service
+adb shell pm enable com.sec.android.widgetapp.samsungapps # Homescreen widget
+adb shell pm enable com.wsomacp # Samsung Email
+adb shell pm enable flipboard.boxer.app # Flipboard app
 
 # Samsung Bixby
-pm uninstall -k --user 0 com.samsung.android.app.routines # Bixby Routines
-pm uninstall -k --user 0 com.samsung.android.app.spage # Bixby homepage launcher
-pm uninstall -k --user 0 com.samsung.android.bixby.agent # Bixby Voice
-pm uninstall -k --user 0 com.samsung.android.bixby.agent.dummy # Bixby debug app
-pm uninstall -k --user 0 com.samsung.android.bixby.service # Bixby features
-pm uninstall -k --user 0 com.samsung.android.bixby.wakeup
-pm uninstall -k --user 0 com.samsung.android.bixbyvision.framework # Bixby Vision
-pm uninstall -k --user 0 com.samsung.android.visionintelligence # Bixby Vision
+adb shell pm enable com.samsung.android.app.routines # Bixby Routines
+adb shell pm enable com.samsung.android.app.spage # Bixby homepage launcher
+adb shell pm enable com.samsung.android.bixby.agent # Bixby Voice
+adb shell pm enable com.samsung.android.bixby.agent.dummy # Bixby debug app
+adb shell pm enable com.samsung.android.bixby.service # Bixby features
+adb shell pm enable com.samsung.android.bixby.wakeup
+adb shell pm enable com.samsung.android.bixbyvision.framework # Bixby Vision
+adb shell pm enable com.samsung.android.visionintelligence # Bixby Vision
 
 # ANT Service
-pm enable com.dsi.ant.plugins.antplus
-pm enable com.dsi.ant.sample.acquirechannels
-pm enable com.dsi.ant.service.socket
+adb shell pm enable com.dsi.ant.plugins.antplus
+adb shell pm enable com.dsi.ant.sample.acquirechannels
+adb shell pm enable com.dsi.ant.service.socket
 
 # Samsung PayPass
-pm enable com.samsung.android.authfw # Samsung Authentication
-pm enable com.samsung.android.samsungpass # Samsung Pass
-pm enable com.samsung.android.samsungpassautofill # Samsung Auto fill
-pm enable com.samsung.android.spay # Samsung Pay (sensitive)
-pm enable com.samsung.android.spayfw # Samsung Pay Framework (sensitive)
+adb shell pm enable com.samsung.android.authfw # Samsung Authentication
+adb shell pm enable com.samsung.android.samsungpass # Samsung Pass
+adb shell pm enable com.samsung.android.samsungpassautofill # Samsung Auto fill
+adb shell pm enable com.samsung.android.spay # Samsung Pay (sensitive)
+adb shell pm enable com.samsung.android.spayfw # Samsung Pay Framework (sensitive)
 
 # Samsung AREmoji
-pm enable com.samsung.android.aremoji # AR Emoji
-pm enable com.samsung.android.emojiupdater # Emoji updater
-pm enable com.sec.android.mimage.avatarstickers # Stickers for AR Emoji app
+adb shell pm enable com.samsung.android.aremoji # AR Emoji
+adb shell pm enable com.samsung.android.emojiupdater # Emoji updater
+adb shell pm enable com.sec.android.mimage.avatarstickers # Stickers for AR Emoji app
 
 # Samsung StickerCenter
-pm enable com.samsung.android.app.camera.sticker.facear.preload
-pm enable com.samsung.android.app.camera.sticker.facearexpression.preload
-pm enable com.samsung.android.app.camera.sticker.facearframe.preload
-pm enable com.samsung.android.app.camera.sticker.stamp.preload
-pm enable com.samsung.android.stickercenter
+adb shell pm enable com.samsung.android.app.camera.sticker.facear.preload
+adb shell pm enable com.samsung.android.app.camera.sticker.facearexpression.preload
+adb shell pm enable com.samsung.android.app.camera.sticker.facearframe.preload
+adb shell pm enable com.samsung.android.app.camera.sticker.stamp.preload
+adb shell pm enable com.samsung.android.stickercenter
 pm enable com.samsung.android.stickerplugin
 
 # Samsung Game
