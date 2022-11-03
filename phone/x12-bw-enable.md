@@ -29,6 +29,7 @@ pm enable --user 0 com.android.wallpaper.livepicker # Android Wallpaper Picker
 pm enable --user 0 com.facebook.appmanager # Facebook App Manager
 pm enable --user 0 com.facebook.services # Facebook Services
 pm enable --user 0 com.facebook.system # Facebook App Installer
+pm enable --user 0 com.google.android.apps.googleassistant # Google Assistant
 pm enable --user 0 com.google.android.apps.photos # Google Photo
 pm enable --user 0 com.google.android.apps.wellbeing # Google Wellbeing
 pm enable --user 0 com.google.android.cellbroadcastreceiver # Google Cell Broadcast Receiver
