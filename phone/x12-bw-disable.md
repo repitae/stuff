@@ -29,9 +29,10 @@ pm disable-user --user 0 com.android.wallpaper.livepicker # Android Wallpaper Pi
 pm disable-user --user 0 com.facebook.appmanager # Facebook App Manager
 pm disable-user --user 0 com.facebook.services # Facebook Services
 pm disable-user --user 0 com.facebook.system # Facebook App Installer
+pm disable-user --user 0 com.google.android.apps.googleassistant # Google Assistant
 pm disable-user --user 0 com.google.android.apps.photos # Google Photo
 pm disable-user --user 0 com.google.android.apps.wellbeing # Google Wellbeing
-pm disable-user --user 0 com.google.android.cellbroadcastreceiver # Google Cell Broadcast Receiver
+pm disable-user --user 0 com.google.android.cellbroadcastreceiver # Google Broadcast Receiver
 pm disable-user --user 0 com.google.android.feedback # Google Feedback
 pm disable-user --user 0 com.google.android.googlequicksearchbox # Google Quick Searchbox
 pm disable-user --user 0 com.google.android.marvin.talkback # Google Talkback
