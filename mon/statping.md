@@ -120,3 +120,18 @@ tar -zcvpf $BKP/statping-$DT.tar.gz $SRC
 find $BKP/* -mtime +90 -exec rm {} \;
 EOF
 ```
+
+```
+# ufw
+sudo cat << EOF >> /etc/ufw/applications.d/openssh-server-222
+[OpenSSH-2222]
+title=Secure shell server, an rshd replacement
+description=OpenSSH 2222
+ports=2222/tcp
+EOF
+ufw app list
+ufw allow OpenSSH-2222
+ufw enable
+ufw reload
+sudo ufw status verbose
+```
