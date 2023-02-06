@@ -1,0 +1,12 @@
+
+mkdir -p /app/src && cd /app/src/
+wget https://www.dns-oarc.net/files/dnsperf/dnsperf-2.10.0.tar.gz
+tar zxvf ./dnsperf-*.tar.gz && cd ./dnsperf-2.10.0
+apt install -y build-essential pkg-config
+apt install -y libldns-dev libssl-dev libck-dev libnghttp2-dev
+./configure --help
+./configure --prefix=/app/dnsperf
+make -j`nproc`
+make install
+cd /app/dnsperf/bin
+./dnsperf -f inet -m udp -s 192.168.1.94 -p 5353 -d ns -l 10
