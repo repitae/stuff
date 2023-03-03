@@ -1,5 +1,5 @@
 
-HOST=217.14.62.12
+HOST=$1
 RFQDN=example.com
 
 #echo -n "OWASP Top 10 A01:2021 – Broken Access Control :  "
