@@ -53,13 +53,13 @@ AmbientCapabilities="CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW"
 [Install]
 WantedBy=multi-user.target
 EOF
+```
+
+## bird
+```sh
 sudo systemctl daemon-reload
 sudo systemctl enable bird
 sudo systemctl start bird
 sudo systemctl status bird
 sudo systemctl list-units --failed
-```
-
-## bird
-```sh
 ```
