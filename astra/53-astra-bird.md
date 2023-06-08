@@ -60,7 +60,7 @@ EOF
 ## bird (check)
 ```sh
 sudo -u bird /bin/bash
-/app/bird/sbin/bird -p || err_code=$?
+/app/bird/sbin/bird -p || echo "err_code=$?"
 exit
 ```
 
