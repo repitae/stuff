@@ -60,7 +60,7 @@ EOF
 ## bird (check)
 ```sh
 sudo -u bird /bin/bash
-/app/bird/sbin/bird -f -u bird -g oiss -c /app/bird/etc/bird.conf
+/app/bird/sbin/bird -p || echo "bad"
 exit
 ```
 
