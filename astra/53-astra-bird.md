@@ -1,5 +1,6 @@
 ## bird (sys)
 ```sh
+sudo apt --purge remove `dpkg -l | grep 5.15.0-33 | awk '{ print $2 }'`
 systemctl stop parsecfs.mount && systemctl disable parsecfs.mount 
 systemctl stop parsec.service && systemctl disable parsec.service
 apt --purge remove auditd parsec-aud parsec-base parsec-cap parsec-mac 
@@ -17,14 +18,15 @@ sudo chown -R bird:oiss /app/bird/
 
 ## bird (pkg)
 ```sh
-sudo apt install -y build-essential
-sudo apt install -y bison flex wget
-sudo apt install -y libncurses-dev libreadline-dev
+sudo apt install -y build-essential \
+bison flex wget libncurses-dev libreadline-dev
 cd /app/bird/
-wget https://bird.network.cz/download/bird-2.13.tar.gz
-tar -xvzf ./bird-2.13.tar.gz 
+sudo wget https://bird.network.cz/download/bird-2.13.tar.gz
+sudo tar -xvzf ./bird-2.13.tar.gz 
 cd bird-2.13
-./configure --prefix=/app/bird --with-protocols="bfd bgp kernel pipe static"
+./configure --prefix=/app/bird --with-protocols="bfd bgp pipe static"
+make
+sudo make install
 sudo cp /app/bird/etc/bird.conf /app/bird/etc/bird.conf.bak
 cat /app/bird/etc/bird.conf | grep -v ^# | grep -v ^$ | sudo tee /app/bird/etc/bird.conf
 ```
@@ -44,7 +46,7 @@ Restart=on-failure
 RestartSec=3s
 WorkingDirectory=/app/bird
 ExecStartPre=/app/bird/sbin/bird -p
-ExecStart=/app/bird/sbin/bird -u bird -g oiss -c /app/bird/etc/bird.conf
+ExecStart=/app/bird/sbin/bird -f -u bird -g oiss -c /app/bird/etc/bird.conf
 ExecStartPost=
 ExecReload=/app/bird/sbin/birdc configure
 ExecStop=/app/bird/sbin/birdc down
@@ -55,7 +57,14 @@ WantedBy=multi-user.target
 EOF
 ```
 
-## bird
+## bird (check)
+```sh
+sudo -u bird /bin/bash
+/app/bird/sbin/bird -f -u bird -g oiss -c /app/bird/etc/bird.conf
+exit
+```
+
+## bird (start)
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable bird
