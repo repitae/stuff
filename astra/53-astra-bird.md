@@ -41,13 +41,15 @@ After=network.target
 Type=forking
 User=bird
 Group=oiss
-RestartSec=10
+RestartSec=10s
 Restart=on-failure
 Environment="USR=bird"
 Environment="GRP=oiss"
 Environment="CFG=/app/bird/etc/bird.conf"
 AmbientCapabilities="CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW"
-WorkingDirectory=/app/bird
+#WorkingDirectory=/app/bird
+ExecSearchPath=/app/bird/sbin
+RootDirectory=app/bird
 ExecStartPre=/app/bird/sbin/bird -p
 ExecStart=+/app/bird/sbin/bird -u $USR -g $GRP -c $CFG
 ExecStartPost=/app/bird/sbin/birdc show status
