@@ -39,8 +39,8 @@ After=network.target
 
 [Service]
 Type=forking
-#User=bird
-#Group=oiss
+User=bird
+Group=oiss
 RestartSec=3s
 Restart=on-failure
 Environment="USR=bird"
@@ -49,7 +49,7 @@ Environment="CFG=/app/bird/etc/bird.conf"
 AmbientCapabilities="CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW"
 WorkingDirectory=/app/bird/tmp
 ExecStartPre=/app/bird/sbin/bird -p
-ExecStart=/app/bird/sbin/bird -u $USR -g $GRP -c $CFG
+ExecStart=+/app/bird/sbin/bird -u $USR -g $GRP -c $CFG
 ExecStartPost=/app/bird/sbin/birdc show status
 ExecReload=/app/bird/sbin/birdc configure soft
 ExecStop=/app/bird/sbin/birdc down
@@ -57,6 +57,7 @@ ExecStop=/app/bird/sbin/birdc down
 [Install]
 WantedBy=multi-user.target
 EOF
+sudo chmod 644 /etc/systemd/system/bird.sevice
 ```
 
 ## bird (check)
