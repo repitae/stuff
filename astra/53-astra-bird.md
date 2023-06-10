@@ -38,19 +38,21 @@ Description=BIRD routing daemon
 After=network.target
 
 [Service]
-Type=simple
-#Type=notify
+Type=forking
 #User=bird
 #Group=oiss
-Restart=on-failure
 RestartSec=3s
-WorkingDirectory=/app/bird
-ExecStartPre=/app/bird/sbin/bird -p
-ExecStart=/app/bird/sbin/bird -f -u bird -g oiss -c /app/bird/etc/bird.conf
-ExecStartPost=
-ExecReload=/app/bird/sbin/birdc configure
-ExecStop=/app/bird/sbin/birdc down
+Restart=on-failure
+Environment="USR=bird"
+Environment="GRP=oiss"
+Environment="CFG=/app/bird/etc/bird.conf"
 AmbientCapabilities="CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW"
+WorkingDirectory=/app/bird/tmp
+ExecStartPre=/app/bird/sbin/bird -p
+ExecStart=/app/bird/sbin/bird -u $USR -g $GRP -c $CFG
+ExecStartPost=/app/bird/sbin/birdc show status
+ExecReload=/app/bird/sbin/birdc configure soft
+ExecStop=/app/bird/sbin/birdc down
 
 [Install]
 WantedBy=multi-user.target
