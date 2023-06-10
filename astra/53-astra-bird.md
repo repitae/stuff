@@ -74,4 +74,5 @@ sudo systemctl enable bird
 sudo systemctl start bird
 sudo systemctl status bird
 sudo systemctl list-units --failed
+sudo journalctl --flush --rotate --vacuum-time=1s
 ```
