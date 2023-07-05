@@ -3,10 +3,10 @@
 export APP=app ; export SRC=src ; export DNSDIST=dnsdist
 cd /$APP/$SRC
 
-wget https://downloads.powerdns.com/releases/dnsdist-1.7.2.tar.bz2
-tar xvf ./dnsdist-1.7.2.tar.bz2
-cd ./dnsdist-1.7.2/
-# apt install -y libcap-ng-dev libedit-dev libfstrm-dev libnghttp2-dev libsodium-dev libsnmp-dev
+wget https://downloads.powerdns.com/releases/dnsdist-1.8.0.tar.bz2
+tar xvf ./dnsdist-1.8.0.tar.bz2 && cd ./dnsdist-1.8.0/
+# sudo apt install -y libcap-ng-dev libedit-dev libfstrm-dev libnghttp2-dev libsodium-dev libsnmp-dev
+# sudo apt install -y libboost-program-options-dev
 
 autoreconf -vi
 # ./configure --prefix=/$APP/$DNSDIST --enable-unit-tests --enable-systemd --enable-dnstap --with-ebpf --with-libcap --with-lua --with-net-snmp --with-nghttp2
