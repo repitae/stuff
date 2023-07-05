@@ -16,8 +16,8 @@ autoreconf -vi
 [[ $? -eq 0 ]] && make -j $(nproc)
 [[ $? -eq 0 ]] && make install
 
-[[ -n $(id -u "$PDNS" 2>/dev/null) ]] && echo "user exists" || useradd -M -U -r -s `which nologin` -d /$APP/$PDNS $PDNS
-[[ -d "/$APP/$PDNS/etc/zones" ]] && echo "folder exists" || mkdir -p /$APP/$PDNS/etc/zones/
+[[ -n $(id -u "$PDNS" 2>/dev/null) ]] || useradd -M -U -r -s `which nologin` -d /$APP/$PDNS $PDNS
+[[ -d "/$APP/$PDNS/etc/zones" ]] || mkdir -p /$APP/$PDNS/etc/zones/
 chown -R $PDNS:$PDNS /$APP/$PDNS
 export PATH=$PATH:/$APP/$PDNS/bin
 ```
@@ -95,7 +95,7 @@ EOF
 ```
 
 ```sh
-[[ -f "/etc/systemd/system/pdns.service" ]] && echo "unit exists" || sudo cp \
+[[ -f "/etc/systemd/system/pdns.service" ]] || sudo cp \
   /app/pdns/lib/systemd/system/pdns.service \
   /etc/systemd/system/pdns.service
 sudo systemctl daemon-reload
