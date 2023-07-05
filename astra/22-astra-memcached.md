@@ -12,8 +12,8 @@ cd ./memcached-1.6.21/
 [[ $? -eq 0 ]] && make -j $(nproc)
 [[ $? -eq 0 ]] && make test
 [[ $? -eq 0 ]] && make install
-
-[[ -n $(id -u "$MEMC" 2>/dev/null) ]] useradd -M -U -r -s `which nologin` -d /$APP/$MEMC $MEMC
+[[ $? -eq 0 ]] && mkdir -p /$APP/$MEMC/etc
+[[ -n $(id -u "$MEMC" 2>/dev/null) ]] || useradd -M -U -r -s `which nologin` -d /$APP/$MEMC $MEMC
 chown -R $MEMC:$MEMC /$APP/$MEMC
 ```
 
@@ -27,7 +27,7 @@ chown -R $MEMC:$MEMC /$APP/$MEMC
 [[ -f "/etc/systemd/system/memcached.service" ]] || sudo sed -i 's/\/usr\/bin\/memcached/\/app\/memcached\/bin\/memcached/' \
 /etc/systemd/system/memcached.service
 
-[[ -f "/app/memcached/etc/memcached" ]] || cp /app/src/memcached-1.6.17/scripts/memcached.sysconfig \
+[[ -f "/app/memcached/etc/memcached" ]] || cp /app/src/memcached-1.6.21/scripts/memcached.sysconfig \
 /app/memcached/etc/memcached
 
 sed -i.bak 's/nobody/memcached/' /app/memcached/etc/memcached
@@ -36,7 +36,7 @@ sed -i.bak 's/nobody/memcached/' /app/memcached/etc/memcached
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable memcached.service
-sudo systemctl start memcached.service
+sudo systemctl restart memcached.service
 sudo journalctl -xe -u memcached
 ```
 
