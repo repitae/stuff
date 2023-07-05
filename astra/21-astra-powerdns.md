@@ -1,27 +1,30 @@
 ## pdns
 ```sh
 export APP=app ; export SRC=src ; export PDNS=pdns
-
-export PMIN="--prefix=/$APP/$PDNS --with-modules='' --disable-lua-records"
-export PFAT="--prefix=/$APP/$PDNS --with-modules='bind' --with-dynmodules='pipe remote' --enable-tools --enable-ixfrdist --enable-systemd"
-
+export PDNS_MIN="--prefix=/$APP/$PDNS --with-modules='' --disable-lua-records"
+mv /$APP/$PDNS /$APP/$PDNS.old
 cd /$APP/$SRC
-wget https://downloads.powerdns.com/releases/pdns-4.6.3.tar.bz2
-tar xvf ./pdns-4.6.3.tar.bz2 && cd ./pdns-4.6.3/
+
+wget https://downloads.powerdns.com/releases/pdns-4.7.4.tar.bz2
+tar xvf ./pdns-4.7.4.tar.bz2 && cd ./pdns-4.7.4/
 
 autoreconf -vi
-./configure $PFAT
+./configure --prefix=/$APP/$PDNS \
+  --with-modules="bind" --with-dynmodules="pipe" \
+  --enable-tools --enable-ixfrdist --enable-systemd
+
 [[ $? -eq 0 ]] && make -j $(nproc)
 [[ $? -eq 0 ]] && make install
 
-useradd -M -U -r -s `which nologin` -d /$APP/$PDNS $PDNS
-mkdir -p /$APP/$PDNS/etc/zones/
+[[ -n $(id -u "$PDNS" 2>/dev/null) ]] && echo "user exists" || useradd -M -U -r -s `which nologin` -d /$APP/$PDNS $PDNS
+[[ -d "/$APP/$PDNS/etc/zones" ]] && echo "folder exists" || mkdir -p /$APP/$PDNS/etc/zones/
 chown -R $PDNS:$PDNS /$APP/$PDNS
 export PATH=$PATH:/$APP/$PDNS/bin
 ```
+
 ```sh
-cp /app/pdns/etc/pdns.conf /app/pdns/etc/pdns.conf.dist
-cat << EOF > /app/pdns/etc/pdns.conf
+cp /$APP/$PDNS/etc/pdns.conf /$APP/$PDNS/etc/pdns.conf.dist
+cat << EOF > /$APP/$PDNS/etc/pdns.conf
 setgid=pdns
 setuid=pdns
 
@@ -33,7 +36,7 @@ config-dir=/app/pdns/etc
 version-string=none
 launch=bind,remote
 
-remote-connection-string=pipe:command=/app/polaris/bin/polaris-pdns,timeout=2000
+#remote-connection-string=pipe:command=/app/polaris/bin/polaris-pdns,timeout=2000
 #distributor-threads=3
 negquery-cache-ttl=60
 query-cache-ttl=20
@@ -58,7 +61,7 @@ EOF
 ```
 
 ```sh
-cat << EOF >> /app/pdns/etc/zones/named.conf
+cat << EOF >> /$APP/$PDNS/etc/zones/named.conf
 options {
 directory "/app/pdns/etc";
 version none;
@@ -74,7 +77,7 @@ EOF
 ```
 
 ```sh
-cat << EOF >> /app/pdns/etc/zones/db.example.com
+cat << EOF >> /$APP/$PDNS/etc/zones/db.example.com
 @ IN SOA ns1 admin (
 11 ; Serial
 2h ; Refresh
@@ -92,10 +95,9 @@ EOF
 ```
 
 ```sh
-sudo cp /app/pdns/lib/systemd/system/pdns.service \
-/etc/systemd/system/pdns.service
-```
-```sh
+[[ -f "/etc/systemd/system/pdns.service" ]] && echo "unit exists" || sudo cp \
+  /app/pdns/lib/systemd/system/pdns.service \
+  /etc/systemd/system/pdns.service
 sudo systemctl daemon-reload
 sudo systemctl enable pdns.service
 sudo systemctl start pdns.service
