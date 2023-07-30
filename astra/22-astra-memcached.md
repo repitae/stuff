@@ -1,12 +1,17 @@
 ## memcache
 ```sh
 export APP=app ; export SRC=src ; export MEMC=memcached
-mv /$APP/$MEMC /$APP/$MEMC.old
+[[ -d "/$APP/$SRC" ]] || mkdir -p /$APP/$SRC
+[[ -d "/$APP/$MEMC" ]] || mkdir -p /$APP/$MEMC
+[[ -d "/$APP/$MEMC" ]] && mv /$APP/$MEMC /$APP/$MEMC.old
 cd /$APP/$SRC
 
-wget http://www.memcached.org/files/memcached-1.6.21.tar.gz
-tar xvf ./memcached-1.6.21.tar.gz
-cd ./memcached-1.6.21/
+[[ $? -eq 0 ]] && sudo apt install wget -y
+[[ $? -eq 0 ]] && sudo apt install build-essential -y
+[[ $? -eq 0 ]] && sudo apt install libevent-dev -y
+[[ $? -eq 0 ]] && wget http://www.memcached.org/files/memcached-1.6.21.tar.gz
+[[ $? -eq 0 ]] && tar xvf ./memcached-1.6.21.tar.gz
+[[ $? -eq 0 ]] && cd ./memcached-1.6.21/
 
 ./configure --prefix=/$APP/$MEMC --enable-64bit
 [[ $? -eq 0 ]] && make -j $(nproc)
