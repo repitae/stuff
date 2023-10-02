@@ -48,10 +48,23 @@ echo 'APT::Install-Suggests "0";'  | tee -a /etc/apt/apt.conf.d/99-no-garbage
 
 ## sources
 ```
-sudo sed -i.bak 's/#deb/deb/' /etc/apt/sources.list
+sudo cat << EOF >> /etc/apt/sources.list
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/             1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-base/             1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/           1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/         1.7_x86-64 main contrib non-free
+#deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/         1.7_x86-64 main contrib non-free astra-ce
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-base/     1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-update/   1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-extended/ 1.7_x86-64 main contrib non-free
+#deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-extended/ 1.7_x86-64 main contrib non-free astra-ce
+EOF
+
+#sudo sed -i.bak 's/#deb/deb/' /etc/apt/sources.list
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 sudo apt --purge remove `dpkg -l | grep ^rc | awk '{ print $2}'`
 ```
+
 
 ## dummy 
 ```sh
@@ -63,6 +76,7 @@ iface dm1 inet static
  pre-down ifconfig $IFACE down
  post-down ip link del $IFACE type dummy
  address 192.0.2.1/32
+EOF
 ```
 
 ```sh
