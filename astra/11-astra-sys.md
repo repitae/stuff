@@ -47,8 +47,8 @@ echo 'APT::Install-Suggests "0";'  | tee -a /etc/apt/apt.conf.d/99-no-garbage
 ```
 
 ## sources
-```
-sudo cat << EOF >> /etc/apt/sources.list
+```sh
+cat << EOF | sudo tee -a /etc/apt/sources.list
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/             1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-base/             1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/           1.7_x86-64 main contrib non-free
@@ -68,7 +68,7 @@ sudo apt --purge remove `dpkg -l | grep ^rc | awk '{ print $2}'`
 
 ## dummy 
 ```sh
-sudo cat << EOF >> /etc/network/interfaces.d/dm1
+cat << EOF | sudo tee /etc/network/interfaces.d/dm1
 auto dm1
 iface dm1 inet static
  pre-up ip link add $IFACE type dummy
@@ -80,7 +80,7 @@ EOF
 ```
 
 ```sh
-sudo cat << EOF >> /etc/network/interfaces.d/dm2
+cat << EOF | sudo tee /etc/network/interfaces.d/dm2
 auto dm2
 iface dm2 inet static
  pre-up ip link add $IFACE type dummy
