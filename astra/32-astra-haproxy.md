@@ -62,34 +62,34 @@ export WTLS="ARCH=64 CPU=generic TARGET=linux-glibc \
 ```sh
 cd /$APP/$SRC/
 wget https://github.com/wolfSSL/wolfssl/archive/refs/tags/v5.6.3-stable.tar.gz -O wolfssl-5.6.3-stable.tar.gz 
-[[ $? -eq 0 ]] tar xvf ./wolfssl-5.6.3-stable.tar.gz
-[[ $? -eq 0 ]] cd ./wolfssl-5.6.3-stable/
-[[ $? -eq 0 ]] ./autogen.sh
-[[ $? -eq 0 ]] ./configure --help
-[[ $? -eq 0 ]] ./configure --enable-haproxy --enable-quic --prefix=/$APP/$WTLS
-[[ $? -eq 0 ]] make -j $(nproc)
-[[ $? -eq 0 ]] make install
+[[ $? -eq 0 ]] && tar xvf ./wolfssl-5.6.3-stable.tar.gz
+[[ $? -eq 0 ]] && cd ./wolfssl-5.6.3-stable/
+[[ $? -eq 0 ]] && ./autogen.sh
+[[ $? -eq 0 ]] && ./configure --help
+[[ $? -eq 0 ]] && ./configure --enable-haproxy --enable-quic --prefix=/$APP/$WTLS
+[[ $? -eq 0 ]] && make -j $(nproc)
+[[ $? -eq 0 ]] && make install
+```
+
+```sh
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$APP/$QTLS/lib64 && echo $LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$APP/$WTLS/lib && echo $LD_LIBRARY_PATH
+# make help TARGET=linux-glibc
 ```
 
 ```sh
 cd /$APP/$SRC/
 HAVER=$(curl -s https://www.haproxy.org/download/2.8/src/releases.json | grep latest_release | cut -d '"' -f 4) && echo $HAVER
 wget https://www.haproxy.org/download/2.8/src/haproxy-$HAVER.tar.gz
-[[ $? -eq 0 ]] tar xvf ./haproxy-$HAVER.tar.gz
-
 ```
 ```sh
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$APP/$QTLS/lib64 && echo $LD_LIBRARY_PATH
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$APP/$WTLS/lib && echo $LD_LIBRARY_PATH
-# make help TARGET=linux-glibc
-```
-```sh
-[[ $? -eq 0 ]] cd ./haproxy-$HAVER/
-[[ $? -eq 0 ]] make clean
-[[ $? -eq 0 ]] make -j $(nproc) $OTLS
-# [[ $? -eq 0 ]] make -j $(nproc) $HMIN
-# [[ $? -eq 0 ]] make -j $(nproc) $QTLS
-# [[ $? -eq 0 ]] make -j $(nproc) $WTLS
+[[ $? -eq 0 ]] && tar xvf ./haproxy-$HAVER.tar.gz
+[[ $? -eq 0 ]] && cd ./haproxy-$HAVER/
+[[ $? -eq 0 ]] && make clean
+[[ $? -eq 0 ]] && make -j $(nproc) $OTLS
+# [[ $? -eq 0 ]] && make -j $(nproc) $HMIN
+# [[ $? -eq 0 ]] && make -j $(nproc) $QTLS
+# [[ $? -eq 0 ]] && make -j $(nproc) $WTLS
 [[ $? -eq 0 ]] make install PREFIX=/$APP/$HAPRO
 /$APP/$HAPRO/sbin/haproxy -vv
 ```
