@@ -67,7 +67,7 @@ sudo rm -rf /var/cache/apt/archives/*.deb
 ```
 ## tools
 ```sh
-apt -y install dialog open-vm-tools
+sudo apt -y install dialog open-vm-tools
 ```
 ```sh
 sudo apt update
