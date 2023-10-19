@@ -49,6 +49,7 @@ echo 'APT::Install-Suggests "0";'  | tee -a /etc/apt/apt.conf.d/99-no-garbage
 ## sources
 ```sh
 cat << EOF | sudo tee -a /etc/apt/sources.list
+#
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/             1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-base/             1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/           1.7_x86-64 main contrib non-free
@@ -64,8 +65,10 @@ EOF
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 sudo apt --purge remove `dpkg -l | grep ^rc | awk '{ print $2}'`
 ```
-
-
+## tools
+```sh
+apt -y install dialog open-vm-tools
+```
 ## dummy 
 ```sh
 cat << EOF | sudo tee /etc/network/interfaces.d/dm1
