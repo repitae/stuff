@@ -60,8 +60,8 @@ deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-update/ 
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-extended/ 1.7_x86-64 main contrib non-free
 #deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-extended/ 1.7_x86-64 main contrib non-free astra-ce
 EOF
-
-#sudo sed -i.bak 's/#deb/deb/' /etc/apt/sources.list
+```
+```sh
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 sudo apt --purge remove `dpkg -l | grep ^rc | awk '{ print $2}'`
 ```
@@ -94,13 +94,13 @@ iface dm2 inet static
 EOF
 ```
 
-## arp
+## 
 ```sh
 echo 1 | sudo tee /proc/sys/net/ipv4/conf/all/arp_filter
 echo "net.ipv4.conf.all.arp_filter=1" | sudo tee -a /etc/sysctl.conf
 ```
 
-## ctl
+## 
 ```sh
 systemctl list-units --all --type=mount
 systemctl list-units --type=service
