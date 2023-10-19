@@ -1,6 +1,7 @@
 ## net
 ```sh
-sudo cat << EOF >> /etc/network/interfaces.d/eth0
+cat << EOF | sudo tee -a /etc/network/interfaces
+# eth0
 auto eth0
 iface eth0 inet dhcp
 EOF
@@ -30,8 +31,8 @@ sudo update-grub
 
 ## host
 ```sh
-sudo sed -i.bak 's/astra/ase-c1/' /etc/hosts
-sudo sed -i.bak 's/astra/ase-c1/' /etc/hostname
+sudo sed -i.bak 's/astra/alse-cN/' /etc/hosts
+sudo sed -i.bak 's/astra/alse-cN/' /etc/hostname
 ```
 
 ## piix4
