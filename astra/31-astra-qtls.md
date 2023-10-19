@@ -14,8 +14,9 @@ tar xvf ./openssl-3.1.2-quic1.tar.gz
 [[ $? -eq 0 ]] cd ./openssl-3.1.2-quic1/
 [[ $? -eq 0 ]] make clean
 [[ $? -eq 0 ]] ./Configure --prefix=/app/qtls --openssldir=ssl enable-ktls no-deprecated no-legacy
-[[ $? -eq 0 ]] && make -j $(nproc)
-[[ $? -eq 0 ]] && make test && make install_sw
+[[ $? -eq 0 ]] make -j $(nproc)
+[[ $? -eq 0 ]] make test 
+[[ $? -eq 0 ]] make install_sw
 ```
 ```sh
 #echo /app/qtls/lib64 | tee -a /etc/ld.so.conf.d/qtls.conf
