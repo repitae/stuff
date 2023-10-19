@@ -50,16 +50,16 @@ echo 'APT::Install-Suggests "0";'  | tee -a /etc/apt/apt.conf.d/99-no-garbage
 ## sources
 ```sh
 cat << EOF | sudo tee -a /etc/apt/sources.list
-#
+# sources
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/             1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-base/             1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/           1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/         1.7_x86-64 main contrib non-free
-#deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/         1.7_x86-64 main contrib non-free astra-ce
+# deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/         1.7_x86-64 main contrib non-free astra-ce
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-base/     1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-update/   1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-extended/ 1.7_x86-64 main contrib non-free
-#deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-extended/ 1.7_x86-64 main contrib non-free astra-ce
+# deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/uu/last/repository-extended/ 1.7_x86-64 main contrib non-free astra-ce
 EOF
 ```
 ```sh
@@ -69,6 +69,12 @@ sudo apt --purge remove `dpkg -l | grep ^rc | awk '{ print $2}'`
 ## tools
 ```sh
 apt -y install dialog open-vm-tools
+```
+```sh
+sudo apt update
+sudo apt install tuned tuned-utils tuned-utils-systemtap
+tuned-adm active
+sudo tuned-adm profile virtual-guest
 ```
 ## dummy 
 ```sh
