@@ -79,3 +79,32 @@ systemctl list-unit-files --type=service --state=enabled,disabled
 ```sh
 systemctl --failed
 ```
+
+```sh
+cat << EOF | sudo tee /etc/network/interfaces.d/dm1
+auto dm1
+iface dm1 inet static
+ pre-up ip link add $IFACE type dummy
+ post-up ifconfig $IFACE up
+ pre-down ifconfig $IFACE down
+ post-down ip link del $IFACE type dummy
+ address 192.0.2.1/32
+EOF
+```
+
+```sh
+cat << EOF | sudo tee /etc/network/interfaces.d/dm2
+auto dm2
+iface dm2 inet static
+ pre-up ip link add $IFACE type dummy
+ post-up ifconfig $IFACE up
+ pre-down ifconfig $IFACE down
+ post-down ip link del $IFACE type dummy
+ address 192.0.2.2/32
+EOF
+```
+
+```sh
+echo 1 | sudo tee /proc/sys/net/ipv4/conf/all/arp_filter
+echo "net.ipv4.conf.all.arp_filter=1" | sudo tee -a /etc/sysctl.conf
+```
