@@ -15,7 +15,7 @@ dpkg -l > dpkg.base && dpkg -l | wc
 ```
 
 ```sh
-sudo apt install --no-install-recommends --no-install-suggests ssh
+sudo apt -y install --no-install-recommends --no-install-suggests ssh
 sudo apt -y install --no-install-recommends --no-install-suggests dialog
 sudo apt -y install --no-install-recommends --no-install-suggests open-vm-tools
 ```
