@@ -5,6 +5,7 @@ sudo apt install -y nginx-light
 ```
 
 ```sh
+sudo su www-data -s /bin/bash
 cat <<EOF > /var/www/html/index.html
 <html>
 <head>
@@ -43,6 +44,7 @@ document.write(now);
 </body>
 </html>
 EOF
+exit
 ```
 
 ```sh
