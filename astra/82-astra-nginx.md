@@ -6,6 +6,9 @@ sudo apt install -y nginx-light
 
 ```sh
 sudo su www-data -s /bin/bash
+```
+
+```sh
 cat <<EOF > /var/www/html/index.html
 <html>
 <head>
