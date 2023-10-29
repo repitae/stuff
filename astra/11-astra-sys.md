@@ -65,14 +65,14 @@ sudo tuned-adm profile virtual-guest
 ```
 
 ```sh
-systemctl list-units --type=service
-systemctl list-units --all --type=mount
-systemctl list-unit-files --state=failed
-systemctl list-unit-files --type=service --state=enabled,disabled
+sudo systemctl list-units --type=service
+sudo systemctl list-units --all --type=mount
+sudo systemctl list-unit-files --state=failed
+sudo systemctl list-unit-files --type=service --state=enabled,disabled
 ```
 
 ```sh
-systemctl --failed
+sudo systemctl --failed
 ```
 
 ```sh
