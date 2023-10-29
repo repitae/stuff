@@ -52,8 +52,5 @@ EOF
 ```sh
 exit
 sudo systemctl restart nginx
-sudo journalctr -xe
+sudo journalctl -xe
 ```
-
-
-<!--# echo var="host" default="unknown_host" -->:<!--# echo var="server_port" default="unknown_port" -->
