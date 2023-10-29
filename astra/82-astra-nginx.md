@@ -47,10 +47,10 @@ document.write(now);
 </body>
 </html>
 EOF
-exit
 ```
 
 ```sh
+exit
 systemctl restart nginx
 journalctr -xe
 ```
