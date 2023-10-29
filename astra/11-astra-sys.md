@@ -16,10 +16,13 @@ dpkg -l > dpkg.base && dpkg -l | wc
 
 ```sh
 sudo apt install --no-install-recommends --no-install-suggests ssh
+sudo apt -y install --no-install-recommends --no-install-suggests dialog
+sudo apt -y install --no-install-recommends --no-install-suggests open-vm-tools
 ```
 
 ```sh
-sudo apt -y install dialog open-vm-tools
+echo 'APT::Install-Recommends "0";' | sudo tee -a /etc/apt/apt.conf.d/99-garbage
+echo 'APT::Install-Suggests "0";'  | sudo tee -a /etc/apt/apt.conf.d/99-garbage
 ```
 
 ```sh
@@ -30,11 +33,6 @@ sudo update-grub
 ```sh
 echo "blacklist i2c-piix4" | sudo tee -a /etc/modprobe.d/blacklist-piix.conf
 sudo update-initramfs -u
-```
-
-```sh
-echo 'APT::Install-Recommends "0";' | tee -a /etc/apt/apt.conf.d/99-garbage
-echo 'APT::Install-Suggests "0";'  | tee -a /etc/apt/apt.conf.d/99-garbage
 ```
 
 ```sh
