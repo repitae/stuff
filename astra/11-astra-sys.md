@@ -25,13 +25,11 @@ echo 'APT::Install-Suggests "0";'  | sudo tee -a /etc/apt/apt.conf.d/99-garbage
 ```
 
 ```sh
-sudo sed -i.bak '/GRUB_CMDLINE_LINUX_DEFAULT/s/quiet *//' /etc/default/grub
-sudo update-grub
+sudo sed -i.bak '/GRUB_CMDLINE_LINUX_DEFAULT/s/quiet *//' /etc/default/grub && sudo update-grub
 ```
 
 ```sh
-echo "blacklist i2c-piix4" | sudo tee -a /etc/modprobe.d/blacklist-piix.conf
-sudo update-initramfs -u
+echo "blacklist i2c-piix4" | sudo tee -a /etc/modprobe.d/blacklist-piix.conf && sudo update-initramfs -u
 ```
 
 ```sh
