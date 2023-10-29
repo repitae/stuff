@@ -65,6 +65,12 @@ sudo tuned-adm profile virtual-guest
 ```
 
 ```sh
+sudo systemctl enable acpid
+sudo systemctl start acpid
+sudo systemctl status acpid
+```
+
+```sh
 sudo systemctl list-units --type=service
 sudo systemctl list-units --all --type=mount
 sudo systemctl list-unit-files --state=failed
