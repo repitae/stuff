@@ -5,7 +5,7 @@ sudo apt install -y nginx-light
 ```
 
 ```sh
-sudo su www-data -s /bin/bash
+sudo su - www-data -s /bin/bash
 ```
 
 ```sh
