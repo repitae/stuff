@@ -59,7 +59,7 @@ sudo sed -i.bak 's/astra/alse-cN/' /etc/hostname
 
 ```sh
 sudo apt update
-sudo apt install tuned tuned-utils tuned-utils-systemtap
+sudo apt -y install tuned tuned-utils tuned-utils-systemtap
 tuned-adm active
 sudo tuned-adm profile virtual-guest
 ```
