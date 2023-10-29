@@ -9,7 +9,7 @@ sudo su - www-data -s /bin/bash
 ```
 
 ```sh
-cat <<EOF > ./html/index.html
+cat <<EOF > /var/www/html/index.html
 <html>
 <head>
 <title>Hostname: $(hostname)</title>
