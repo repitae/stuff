@@ -11,6 +11,8 @@ sudo su - www-data -s /bin/bash
 ```sh
 cat <<EOF > /var/www/html/index.html
 <html>
+<!--# echo var="host" default="unknown_host" -->
+<!--# echo var="server_port" default="unknown_port" -->
 <head>
 <title>Hostname: $(hostname)</title>
 </head>
