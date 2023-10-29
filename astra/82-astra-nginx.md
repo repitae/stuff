@@ -51,8 +51,8 @@ EOF
 
 ```sh
 exit
-systemctl restart nginx
-journalctr -xe
+sudo systemctl restart nginx
+sudo journalctr -xe
 ```
 
 
