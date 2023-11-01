@@ -9,6 +9,16 @@ echo "blacklist i2c-piix4" | sudo tee -a /etc/modprobe.d/blacklist-piix.conf && 
 ```
 
 ```sh
+sudo apt install systemd-timesyncd
+cat << EOF | sudo tee -a /etc/systemd/timesyncd.conf
+NTP=ru.pool.ntp.org
+FallbackNTP=pool.ntp.org
+EOF
+systemctl restart systemd-timesyncd
+systemctl status systemd-timesyncd
+```
+
+```sh
 echo 'APT::Install-Recommends "0";' | sudo tee -a /etc/apt/apt.conf.d/99-garbage
 echo 'APT::Install-Suggests "0";'  | sudo tee -a /etc/apt/apt.conf.d/99-garbage
 ```
