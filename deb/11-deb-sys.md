@@ -29,7 +29,7 @@ deb http://deb.debian.org/debian/ bookworm-backports contrib main non-free non-f
 deb-src http://deb.debian.org/debian/ bookworm-backports contrib main non-free non-free-firmware
 
 deb http://deb.debian.org/debian-security/ bookworm-security contrib main non-free non-free-firmware
-deb-src http://deb.debian.org/debian-security/ bookworm-security contrib main non-free non-free-firmwareroot@deb-esx-vm:~# 
+deb-src http://deb.debian.org/debian-security/ bookworm-security contrib main non-free non-free-firmware
 EOF
 ```
 
