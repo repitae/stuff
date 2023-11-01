@@ -14,7 +14,7 @@ cat << EOF | sudo tee -a /etc/systemd/timesyncd.conf
 NTP=ru.pool.ntp.org
 FallbackNTP=pool.ntp.org
 EOF
-systemctl restart systemd-timesyncd
+sudo systemctl restart systemd-timesyncd
 systemctl status systemd-timesyncd
 ```
 
