@@ -50,7 +50,7 @@ dhcpd -t -cf /etc/dhcp/dhcpd.conf && systemctl restart isc-dhcp-server.service
 ```
 
 ```sh                                         	
-sudo apt install isolinux mkisofs ca-certificates build-essential
+sudo apt install isolinux mkisofs ca-certificates build-essential liblzma-dev
 wget -q -O master.zip https://github.com/ipxe/ipxe/archive/refs/heads/master.zip
 unzip master.zip
 cd ./ipxe-master/src
