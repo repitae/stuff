@@ -124,7 +124,6 @@ subnet 192.168.1.0 netmask 255.255.255.0 {
 }
 EOF
 ```
-
 ```sh
 sudo systemctl enable isc-dhcp-server
 sudo systemctl restart isc-dhcp-server
