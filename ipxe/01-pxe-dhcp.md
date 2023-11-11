@@ -1,4 +1,5 @@
 ```sh
+sudo apt update
 sudo apt install -y isc-dhcp-server
 sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.dist
 ```

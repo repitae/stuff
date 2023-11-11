@@ -1,9 +1,10 @@
 ```sh
-sudo apt -y tall isc-dhcp-server
+sudo apt install -y isc-dhcp-server
+sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.dist
 ```
 
 ```sh
-cat << EOF | sudo tee /etc/dhcp/dhcp-ipxe-op.conf
+cat << EOF | sudo tee /etc/dhcp/ipxe-options.conf
 # Declare the iPXE/gPXE/Etherboot option space
 option space ipxe;
 option ipxe-encap-opts code 175 = encapsulate ipxe;
@@ -58,21 +59,19 @@ EOF
 ```
 
 ```sh
-cat << EOF | sudo tee /etc/dhcp/dhcp-ipxe-hw.conf
+cat << EOF | sudo tee /etc/dhcp/ipxe-hardware.conf
 # For information on valid values for option arch, see these links:
-# https://git.ipxe.org/ipxe.git/commitdiff/af9afd0a86aeac1eed28b5028c3de669515fc7fc
-# https://git.ipxe.org/ipxe.git/blob/HEAD:/src/include/ipxe/dhcp.h#l275
 # https://www.rfc-editor.org/errata_search.php?rfc=4578
 #
 allow bootp;
 allow booting;
 next-server 192.168.1.21;
-                   
+
 option ipxe.no-pxedhcp 1; # Disable ProxyDHCP
 
 # Make sure iPXE features support
 # If not load a full-featured version.
-# See ipxe-option-space.conf for definitions.
+# 
 if    exists ipxe.http
   and exists ipxe.menu
   and (
@@ -86,41 +85,37 @@ if    exists ipxe.http
     filename "http://192.168.1.21/boot.ipxe";
 } elsif option arch = 00:09 { # EFI BC
 } elsif option arch = 00:08 { # EFI Xscale
-} elsif option arch = 00:07 { filename "ipxe-x64.efi"; # Intel x86-64
+} elsif option arch = 00:07 { filename "ipxe.efi"; 
 } elsif option arch = 00:06 { # Intel x86 32-bit
 } elsif option arch = 00:05 { # Intel Lean Client
 } elsif option arch = 00:04 { # Arc x86
 } elsif option arch = 00:03 { # DEC Alpha
 } elsif option arch = 00:02 { # EFI Itanium
 } elsif option arch = 00:01 { # NEC/PC98
-} else { filename "ipxe.pxe";
-        #filename "undionly.kpxe";
+} elsif option arch = 00:00 { filename "ipxe.pxe";
 }
 EOF
 ```
 
 ```sh
-cat << EOF | sudo tee /etc/dhcp/dhcp.conf
+cat << EOF | sudo tee /etc/dhcp/dhcpd.conf
 authoritative;
 ddns-update-style none;
 use-host-decl-names on;
 
-include "/etc/dhcp/dhcp-ipxe-op.conf";
-#include "/etc/dhcp/static.conf";
+include "/etc/dhcp/ipxe-options.conf";
 
 subnet 192.168.1.0 netmask 255.255.255.0 {
     range 192.168.1.250 192.168.1.252;
-    option subnet-mask 255.255.255.0;
-    option routers 92.168.1.1;
     default-lease-time 60;
     max-lease-time 90;
+    option subnet-mask 255.255.255.0;
+    option routers 192.168.1.1;
     option domain-name "lz";
     option domain-search "lz";
     option domain-name-servers 1.1.1.1;
     option ntp-servers 192.168.1.1;
-    #option log-servers 192.168.1.10;
-    #option lpr-servers 192.168.1.10;
-    include "/etc/dhcp/dhcp-ipxe-hw.conf";
+    include "/etc/dhcp/ipxe-hardware.conf";
 }
 EOF
 ```
