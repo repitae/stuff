@@ -126,6 +126,7 @@ EOF
 ```
 
 ```sh
+sudo dhcpd -t -cf /etc/dhcp/dhcpd.conf
 sudo systemctl enable isc-dhcp-server
 sudo systemctl restart isc-dhcp-server
 sudo systemctl status isc-dhcp-server
