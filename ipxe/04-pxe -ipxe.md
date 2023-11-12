@@ -119,8 +119,3 @@ boot || goto failed
 goto start
 EOF
 ```
-
-```sh
-find /opt/pxe -type d -print0 | xargs -0 chmod 0777
-find /opt/pxe -type f -print0 | xargs -0 chmod 0666
-```

@@ -18,3 +18,8 @@ sudo cp -r /media/cdrom/alse/* /opt/pxe/dist/alse17
 sudo umount /media/cdrom/alce
 sudo umount /media/cdrom/alse
 ```
+
+```sh
+find /opt/pxe -type d -print0 | xargs -0 chmod 0777
+find /opt/pxe -type f -print0 | xargs -0 chmod 0666
+```
