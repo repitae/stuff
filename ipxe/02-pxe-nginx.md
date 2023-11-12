@@ -6,11 +6,11 @@ sudo apt install -y nginx
 ```sh
 cat << EOF | sudo tee /etc/nginx/sites-available/pxe.conf
 server {
-    listen 81 default_server;
+    listen 80 default_server;
     root /opt/pxe;
+    index index.html;
     server_name _;
     location / {
-        try_files $uri $uri/ =404;
         autoindex on;
     }
 }
@@ -21,9 +21,4 @@ EOF
 sudo ln -s /etc/nginx/sites-available/pxe.conf /etc/nginx/sites-enabled/pxe.conf
 rm /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx
-```
-
-```sh
-mkdir -p /opt/pxe
-chmod 777 /opt/pxe
 ```

@@ -1,6 +1,7 @@
 ```sh
 sudo apt update
 sudo apt install -y isc-dhcp-server
+sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.dist
 ```
 
 ```sh
@@ -52,25 +53,26 @@ option ipxe.menu      code 39 = unsigned integer 8;
 option ipxe.sdi       code 40 = unsigned integer 8;
 option ipxe.nfs       code 41 = unsigned integer 8;
 
+# Other useful general options
 # http://www.ietf.org/assignments/dhcpv6-parameters/dhcpv6-parameters.txt
 option arch code 93 = unsigned integer 16;
 EOF
 ```
 
 ```sh
-cat << EOF | sudo tee /etc/dhcp/ipxe-clients.conf
-# https://git.ipxe.org/ipxe.git/commitdiff/af9afd0a86aeac1eed28b5028c3de669515fc7fc
-# https://git.ipxe.org/ipxe.git/blob/HEAD:/src/include/ipxe/dhcp.h#l275
+cat << EOF | sudo tee /etc/dhcp/ipxe-hardware.conf
+# For information on valid values for option arch, see these links:
 # https://www.rfc-editor.org/errata_search.php?rfc=4578
-
+#
 allow bootp;
 allow booting;
 next-server 192.168.1.21;
-option ipxe.no-pxedhcp 1;
+
+option ipxe.no-pxedhcp 1; # Disable ProxyDHCP
 
 # Make sure iPXE features support
 # If not load a full-featured version.
-
+# 
 if    exists ipxe.http
   and exists ipxe.menu
   and (
@@ -97,7 +99,6 @@ EOF
 ```
 
 ```sh
-sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.dist
 cat << EOF | sudo tee /etc/dhcp/dhcpd.conf
 authoritative;
 ddns-update-style none;
@@ -107,15 +108,15 @@ include "/etc/dhcp/ipxe-options.conf";
 
 subnet 192.168.1.0 netmask 255.255.255.0 {
     range 192.168.1.250 192.168.1.252;
+    default-lease-time 60;
+    max-lease-time 90;
     option subnet-mask 255.255.255.0;
     option routers 192.168.1.1;
     option domain-name "lz";
     option domain-search "lz";
     option domain-name-servers 1.1.1.1;
     option ntp-servers 192.168.1.1;
-    include "/etc/dhcp/ipxe-clients.conf";
-    default-lease-time 60;
-    max-lease-time 90;
+    include "/etc/dhcp/ipxe-hardware.conf";
 }
 EOF
 ```
