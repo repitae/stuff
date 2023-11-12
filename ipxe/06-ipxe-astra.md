@@ -1,18 +1,19 @@
 ```sh
-mkdir -p /opt/pxe/boot/{tmp,deb12}
-cd /opt/pxe/boot/tmp
+mkdir -p /media/cdrom/{alce,alse}
+mkdir -p -m 0777 /opt/pxe/boot/{alce,alse}
 ```
 
 ```sh
-wget http://ftp.debian.org/debian/dists/bookworm/main/installer-amd64/current/images/netboot/netboot.tar.gz
-tar -xvf ./netboot.tar.gz
+sudo mount alce-2.12.46.6-17.04.2023_15.09.iso /media/cdrom/alce
+sudo mount installation-1.7.4.11-23.06.23_17.13.iso /media/cdrom/alce
 ```
 
 ```sh
-sudo cp /opt/pxe/boot/tmp/debian-installer/amd64/linux /opt/pxe/boot/deb12/linux
-sudo cp /opt/pxe/boot/tmp/debian-installer/amd64/initrd.gz /opt/pxe/boot/deb12/initrd.gz
+sudo cp -r /media/cdrom/alce/ /opt/pxe/dist/alce21
+sudo cp -r /media/cdrom/alse/ /opt/pxe/dist/alse17
 ```
 
 ```sh
-rm -rf /opt/pxe/boot/tmp
+sudo umount /media/cdrom/alce
+sudo umount /media/cdrom/alse
 ```
