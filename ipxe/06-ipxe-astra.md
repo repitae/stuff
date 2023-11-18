@@ -1,18 +1,18 @@
 ```sh
 sudo mkdir -p /media/cdrom/{alce,alse}
-sudo mkdir -p -m 0777 /opt/pxe/boot/{alce,alse}
+sudo mkdir -p -m 0777 /opt/pxe/{boot,dist}/{alce,alse}
 [ ! -d /opt/pxe/boot/ipxe ] && sudo mkdir -m 0777 -p /opt/pxe/boot/ipxe
-```
-
-```sh
 cd /opt/pxe/boot/ipxe
-sudo mount alce-2.12.46.6-17.04.2023_15.09.iso /media/cdrom/alce
-sudo mount installation-1.7.4.11-23.06.23_17.13.iso /media/cdrom/alse
 ```
 
 ```sh
-sudo cp -r /media/cdrom/alce/* /opt/pxe/dist/alce21
-sudo cp -r /media/cdrom/alse/* /opt/pxe/dist/alse17
+sudo mount alce-2.12.46.6-17.04.2023_15.09.iso /media/cdrom/alce
+sudo mount alse-1.7.5.9-16.10.23_16.58.iso /media/cdrom/alse
+```
+
+```sh
+[ -d /opt/pxe/dist/alce ] && sudo cp -r /media/cdrom/alce/* /opt/pxe/dist/alce
+[ -d /opt/pxe/dist/alse ] && sudo cp -r /media/cdrom/alse/* /opt/pxe/dist/alse
 ```
 
 ```sh
