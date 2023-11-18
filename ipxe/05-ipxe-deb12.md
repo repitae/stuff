@@ -1,5 +1,5 @@
 ```sh
-mkdir -m 0777 -p /opt/pxe/boot/deb12
+[ ! -d /opt/pxe/boot/deb12 ] && sudo mkdir -m 0777 -p /opt/pxe/boot/deb12
 [ ! -d /opt/pxe/boot/ipxe ] && sudo mkdir -m 0777 -p /opt/pxe/boot/ipxe
 ```
 
