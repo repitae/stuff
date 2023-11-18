@@ -1,6 +1,6 @@
 ```sh
-mkdir -p /media/cdrom/{alce,alse}
-mkdir -p -m 0777 /opt/pxe/boot/{alce,alse}
+sudo mkdir -p /media/cdrom/{alce,alse}
+sudo mkdir -p -m 0777 /opt/pxe/boot/{alce,alse}
 [ ! -d /opt/pxe/boot/ipxe ] && sudo mkdir -m 0777 -p /opt/pxe/boot/ipxe
 ```
 
