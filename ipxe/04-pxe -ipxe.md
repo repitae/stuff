@@ -1,5 +1,5 @@
 ```sh
-sudo mkdir -m 777 -p /opt/pxe/{boot,dist,seed}
+[ ! -d /opt/pxe ] && sudo mkdir -m 777 -p /opt/pxe/{boot,dist,seed}
 cd /opt/pxe
 ```
 
