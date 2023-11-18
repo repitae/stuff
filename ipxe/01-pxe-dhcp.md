@@ -58,6 +58,10 @@ EOF
 ```
 
 ```sh
+MIPADDR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $4}'`
+```
+
+```sh
 cat << EOF | sudo tee /etc/dhcp/ipxe-clients.conf
 # https://git.ipxe.org/ipxe.git/commitdiff/af9afd0a86aeac1eed28b5028c3de669515fc7fc
 # https://git.ipxe.org/ipxe.git/blob/HEAD:/src/include/ipxe/dhcp.h#l275
@@ -65,7 +69,7 @@ cat << EOF | sudo tee /etc/dhcp/ipxe-clients.conf
 
 allow bootp;
 allow booting;
-next-server 192.168.1.21;
+next-server $MIPADDR;
 option ipxe.no-pxedhcp 1;
 
 # Make sure iPXE features support
@@ -81,7 +85,7 @@ if    exists ipxe.http
           exists ipxe.efi
         )
       ) {
-    filename "http://192.168.1.21/boot.ipxe";
+    filename "http://$MIPADDR/boot.ipxe";
 } elsif option arch = 00:09 { # EFI BC
 } elsif option arch = 00:08 { # EFI Xscale
 } elsif option arch = 00:07 { filename "ipxe.efi"; 
@@ -106,7 +110,7 @@ use-host-decl-names on;
 include "/etc/dhcp/ipxe-options.conf";
 
 subnet 192.168.1.0 netmask 255.255.255.0 {
-    range 192.168.1.250 192.168.1.252;
+    range 192.168.1.210 192.168.1.250;
     option subnet-mask 255.255.255.0;
     option routers 192.168.1.1;
     option domain-name "lz";
