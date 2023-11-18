@@ -14,3 +14,7 @@ TFTP_ADDRESS="0.0.0.0:69"
 TFTP_OPTIONS="-4 -c -l -s -vv"
 EOF
 ```
+
+```sh
+sudo service tftpd-hpa restart
+```
