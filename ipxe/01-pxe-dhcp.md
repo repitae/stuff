@@ -103,6 +103,9 @@ EOF
 
 ```sh
 sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.dist
+```
+
+```sh
 cat << EOF | sudo tee /etc/dhcp/dhcpd.conf
 authoritative;
 ddns-update-style none;
@@ -127,6 +130,9 @@ EOF
 
 ````sh
 sudo cp /etc/default/isc-dhcp-server //etc/default/isc-dhcp-server.dist
+```
+
+```sh
 cat << EOF | sudo tee /etc/default/isc-dhcp-server
 INTERFACESv4="$MIPINTR"
 EOF

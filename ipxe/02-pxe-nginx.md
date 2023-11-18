@@ -20,5 +20,5 @@ EOF
 ```sh
 sudo ln -s /etc/nginx/sites-available/pxe.conf /etc/nginx/sites-enabled/pxe.conf
 rm /etc/nginx/sites-enabled/default
-sudo systemctl restart nginx
+nginx -t && sudo systemctl restart nginx
 ```
