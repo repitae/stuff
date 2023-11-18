@@ -16,5 +16,11 @@ EOF
 ```
 
 ```sh
+sudo mkdir -m 777 -p /opt/pxe/{boot,dist,seed}
 sudo service tftpd-hpa restart
+```
+
+```sh
+systemctl status tftpd-hpa
+journalctl -xeu tftpd-hpa
 ```
