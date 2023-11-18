@@ -1,4 +1,9 @@
 ```sh
+MIPINTR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $2}'`
+MIPADDR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $4}'`
+```
+
+```sh
 cat << EOF | sudo tee /opt/pxe/seed/ase17reg.cfg
 # mirror
 #d-i mirror/protocol string http
@@ -10,7 +15,7 @@ cat << EOF | sudo tee /opt/pxe/seed/ase17reg.cfg
 # local
 d-i mirror/protocol string http
 d-i mirror/country string manual
-d-i mirror/http/hostname string 192.168.1.21
+d-i mirror/http/hostname string $MIPADDR
 d-i mirror/http/directory string /dist/alse17/
 d-i mirror/http/proxy string
 
@@ -121,7 +126,6 @@ d-i preseed/late_command string \
 d-i finish-install/reboot_in_progress note
 d-i finish-install/exit/poweroff boolean true
 
-#
 EOF
 ```
 
