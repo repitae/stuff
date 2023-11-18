@@ -48,7 +48,7 @@ item --gap Regular Partition:
 item ase17reg    [REG] Astra SE 17
 item ace21reg    [REG] Astra CE 21
 item deb12reg    [REG] Debian 12
-item --gap LMV Partition:
+item --gap LVM Partition:
 item ase17lvm    [LVM] Astra SE 17
 item ace21lvm    [LVM] Astra CE 21
 item deb12lvm    [LVM] Debian 12
