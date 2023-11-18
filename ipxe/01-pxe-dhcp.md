@@ -4,6 +4,11 @@ sudo apt install -y isc-dhcp-server
 ```
 
 ```sh
+MIPINTR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $2}'`
+MIPADDR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $4}'`
+```
+
+```sh
 cat << EOF | sudo tee /etc/dhcp/ipxe-options.conf
 # Declare the iPXE/gPXE/Etherboot option space
 option space ipxe;
@@ -55,10 +60,6 @@ option ipxe.nfs       code 41 = unsigned integer 8;
 # http://www.ietf.org/assignments/dhcpv6-parameters/dhcpv6-parameters.txt
 option arch code 93 = unsigned integer 16;
 EOF
-```
-
-```sh
-MIPADDR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $4}'`
 ```
 
 ```sh
@@ -123,6 +124,13 @@ subnet 192.168.1.0 netmask 255.255.255.0 {
 }
 EOF
 ```
+
+````sh
+sudo cp /etc/default/isc-dhcp-server //etc/default/isc-dhcp-server.dist
+cat << EOF | sudo tee /etc/default/isc-dhcp-server
+INTERFACESv4="$MIPINTR"
+EOF
+````
 
 ```sh
 sudo dhcpd -t -cf /etc/dhcp/dhcpd.conf
