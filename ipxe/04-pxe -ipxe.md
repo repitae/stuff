@@ -82,36 +82,30 @@ goto start
 kernel \${base}/boot/ase17/linux \$kargs \$astra url=\${base}/seed/ase17reg.cfg
 initrd \${base}/boot/ase17/initrd.gz
 boot || goto shell
-goto start
 
 :ase17lvm
 kernel \${base}/boot/ase17/linux \$kargs \$astra url=\${base}/seed/ase17lvm.cfg
 initrd \${base}/boot/ase17/initrd.gz
 boot || goto shell
-goto start
 
 :ace21reg
 kernel \${base}/boot/ace21/linux \$kargs \$astra url=\${base}/seed/ace21reg.cfg
 initrd \${base}/boot/ace21/initrd.gz
 boot || goto shell
-goto start
 
 :ace21lvm
 kernel \${base}/boot/ace21/linux \$kargs \$astra url=\${base}/seed/ace21lvm.cfg
 initrd \${base}/boot/ace21/initrd.gz
 boot || goto shell
-goto start
 
 :deb12reg
 kernel \${base}/boot/deb12/linux \$kargs url=\${base}/seed/deb12reg.cfg
 initrd \${base}/boot/deb12/initrd.gz
 boot || goto shell
-goto start
 
 :deb12lvm
 kernel \${base}/boot/deb12/linux \$kargs url=\${base}/seed/deb12lvm.cfg
 initrd \${base}/boot/deb12/initrd.gz
 boot || goto shell
-goto start
 EOF
 ```
