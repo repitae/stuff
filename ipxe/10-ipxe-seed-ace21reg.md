@@ -251,6 +251,7 @@ d-i preseed/late_command string \
 # finish-install
 d-i finish-install/reboot_in_progress note
 d-i finish-install/exit/poweroff boolean true
+
 EOF
 ```
 
