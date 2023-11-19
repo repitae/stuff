@@ -87,20 +87,12 @@ d-i passwd/root-password-crypted password $1$HheOqSVS$N1YprVqRqdVMqBcJ80GQc.
 
 # user
 d-i passwd/make-user boolean true
-d-i passwd/user-fullname string qwe
-d-i passwd/username string qwe
+d-i passwd/user-fullname string usr
+d-i passwd/username string usr
 d-i passwd/user-password-crypted password $1$XLJi9.Sn$MrqL634Qcr/flIrA5OIul/
 
 # taskel
 tasksel tasksel/first multiselect SSH server
-#tasksel tasksel/astra-feat-setup multiselect
-
-# security
-d-i astra-additional-setup/os-check select Base security level Orel
-d-i astra-additional-setup/additional-settings-orel multiselect Disable ptrace capability
-
-# astra-license
-astra-license astra-license/license boolean true
 
 # popularity-contest
 popularity-contest popularity-contest/participate boolean false
