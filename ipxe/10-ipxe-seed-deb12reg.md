@@ -5,6 +5,9 @@ MIPADDR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $4}'`
 
 ```sh
 cat << EOF | sudo tee /opt/pxe/seed/deb12lvm.cfg
+# preseed
+d-i preseed/early_command string echo "Preseed Starting"
+
 # mirror
 d-i mirror/protocol string http
 d-i mirror/country string manual
@@ -104,8 +107,8 @@ d-i grub-installer/bootdev  string /dev/sda
 
 # late_command
 d-i preseed/late_command string \
- in-target rm -f /etc/NetworkManager/*; \
- in-target echo "blacklist i2c-piix4" > /etc/modprobe.d/blacklist-piix.conf;
+ in-target apt -y install open-vm-tools ssh sudo; \
+ echo "Preseed Ending";
 
 # finish-install
 d-i finish-install/reboot_in_progress note
