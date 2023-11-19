@@ -105,7 +105,6 @@ d-i grub-installer/bootdev  string /dev/sda
 # late_command
 d-i preseed/late_command string \
  in-target rm -f /etc/NetworkManager/*; \
- in-target apt purge -y ntp; \
  in-target echo "blacklist i2c-piix4" > /etc/modprobe.d/blacklist-piix.conf;
 
 # finish-install
