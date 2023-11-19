@@ -4,7 +4,7 @@ MIPADDR=`ip -4 -o addr show scope global | awk -F ' *|/' '{print $4}'`
 ```
 
 ```sh
-cat << EOF | sudo tee /opt/pxe/seed/ase17reg.cfg
+cat << EOF | sudo tee /opt/pxe/seed/ace21lvm.cfg
 # mirror
 #d-i mirror/protocol string http
 #d-i mirror/country string manual
