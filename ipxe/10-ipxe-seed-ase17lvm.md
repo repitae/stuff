@@ -91,8 +91,8 @@ d-i base-installer/kernel/image string linux-5.15-generic
 
 # user
 d-i passwd/make-user boolean true
-d-i passwd/username string qwe
-d-i passwd/user-fullname string qwe
+d-i passwd/username string usr
+d-i passwd/user-fullname string usr
 d-i passwd/user-password-crypted password $1$XLJi9.Sn$MrqL634Qcr/flIrA5OIul/
 
 # taskel
@@ -120,7 +120,7 @@ d-i grub-installer/password-crypted password $1$HheOqSVS$N1YprVqRqdVMqBcJ80GQc.
 # late_command
 d-i preseed/late_command string \
  in-target rm -f /etc/NetworkManager/*;
- #in-target echo "blacklist i2c-piix4" > /etc/modprobe.d/blacklist-piix.conf;
+ in-target echo "blacklist i2c-piix4" > /etc/modprobe.d/blacklist-piix.conf;
 
 # finish-install
 d-i finish-install/reboot_in_progress note
