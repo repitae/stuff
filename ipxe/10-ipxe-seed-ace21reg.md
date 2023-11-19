@@ -91,8 +91,8 @@ d-i base-installer/kernel/image string linux-5.15-generic
 
 # user
 d-i passwd/make-user boolean true
-d-i passwd/username string qwe
-d-i passwd/user-fullname string qwe
+d-i passwd/username string usr
+d-i passwd/user-fullname string usr
 d-i passwd/user-password-crypted password $1$XLJi9.Sn$MrqL634Qcr/flIrA5OIul/
 
 # taskel
