@@ -59,20 +59,20 @@ d-i clock-setup/ntp-server string pool.ntp.org
 
 # partman
 d-i partman-auto/choose_recipe select All files in one partition (recommended for new users)
-#d-i partman-auto/method string regular
+d-i partman-auto/method string regular
 d-i partman/confirm boolean true
 d-i partman/confirm_nooverwrite boolean true
 d-i partman/confirm_write_new_label string true
 
-d-i partman-auto/method string lvm
-d-i partman-auto/purge_lvm_from_device boolean true
-d-i partman-auto/purge_lvm_from_device string true
-d-i partman-auto-crypto/erase_disks boolean true
-d-i partman-auto-lvm/guided_size string max
-d-i partman-basicfilesystems/no_swap boolean false
-d-i partman-lvm/confirm boolean true
-d-i partman-lvm/vgdelete_confirm boolean true
-d-i partman-md/confirm boolean true
+#d-i partman-auto/method string lvm
+#d-i partman-auto/purge_lvm_from_device boolean true
+#d-i partman-auto/purge_lvm_from_device string true
+#d-i partman-auto-crypto/erase_disks boolean true
+#d-i partman-auto-lvm/guided_size string max
+#d-i partman-basicfilesystems/no_swap boolean false
+#d-i partman-lvm/confirm boolean true
+#d-i partman-lvm/vgdelete_confirm boolean true
+#d-i partman-md/confirm boolean true
 
 d-i partman/choose_partition select Finish partitioning and write changes to disk
 d-i partman-partitioning/confirm_write_new_label boolean true
