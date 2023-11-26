@@ -1,0 +1,47 @@
+# Packet list hidden columns
+# List all columns to hide in the packet list.
+gui.column.hidden: %L,%B,%Cus:vlan.id:0:R,%Cus:dns.a or dns.qry.name or dns.resp.name:0:R,%Cus:tls.handshake.version:0:R,%Cus:tls.handshake.ja3:0:R,%Cus:tls.handshake.ja3_full:0:R,%Cus:tls.handshake.ja4:0:R,%Cus:tls.handshake.ja4_r:0:R,%Cus:pkt_comment:0:R
+
+# Packet list column format
+# Each pair of strings consists of a column title and its format
+gui.column.format: 
+	"No.", "%m",
+	"Time", "%t",
+	"Delta", "%Gt",
+	"Source", "%s",
+	"Destination", "%d",
+	"Proto", "%p",
+	"Length", "%L",
+	"CBytes", "%B",
+	"Vlan", "%Cus:vlan.id:0:R",
+	"TTL", "%Cus:ip.ttl:0:R",
+	"DF", "%Cus:ip.flags.df:0:U",
+	"DSCP", "%Cus:ip.dsfield.dscp:0:R",
+	"SPort", "%Cus:tcp.srcport or udp.srcport:0:R",
+	"DPort", "%Cus:tcp.dstport or udp.dstport:0:R",
+	"SI", "%Cus:tcp.stream or udp.stream:0:R",
+	"Len", "%Cus:tcp.len:0:R",
+	"MSS", "%Cus:tcp.options.mss_val:0:R",
+	"Flags", "%Cus:tcp.flags.str:0:R",
+	"SeqNum", "%Cus:tcp.seq:0:R",
+	"SeqNxt", "%Cus:tcp.nxtseq:0:R",
+	"AckNum", "%Cus:tcp.ack:0:R",
+	"AckFor", "%Cus:tcp.analysis.acks_frame:0:R",
+	"Window", "%Cus:tcp.window_size:0:R",
+	"BIF", "%Cus:tcp.analysis.bytes_in_flight:0:R",
+	"PBS", "%Cus:tcp.analysis.push_bytes_sent:0:R",
+	"DNS", "%Cus:dns.a or dns.qry.name or dns.resp.name:0:R",
+	"TLS", "%Cus:tls.handshake.version:0:R",
+	"SNI", "%Cus:tls.handshake.extensions_server_name:0:R",
+	"ALPN", "%Cus:tls.handshake.extensions_alpn_str:0:R",
+	"JA3H", "%Cus:tls.handshake.ja3:0:R",
+	"JA3F", "%Cus:tls.handshake.ja3_full:0:R",
+	"JA4H", "%Cus:tls.handshake.ja4:0:R",
+	"JA4R", "%Cus:tls.handshake.ja4_r:0:R",
+   	"BGPAS", "%Cus:bgp.open.myas:0:R",
+	"BGPIdt", "%Cus:bgp.open.identifier:0:R",
+	"LoPref", "%Cus:bgp.update.path_attribute.local_pref:0:R",
+	"ASPath", "%Cus:bgp.update.path_attribute.as_path_segment.as2:0:R",
+	"Convers", "%Cus:tcp.completeness:0:R",
+	"Comment", "%Cus:frame.comment:0:R",
+	"Info", "%i"
