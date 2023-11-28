@@ -15,18 +15,10 @@
 "TRUE","BGP//Type Open","bgp.type == 1","Open"
 "TRUE","BGP//Type Update","bgp.type == 2","Update"
 
-"TRUE","Delta//DNS Time >= 0.5s","dns.time >= 0.5","DNS Responses >= 0.5s"
 "TRUE","Delta//DNS Time >= 1.0s","dns.time >= 1.0","DNS Responses >= 1.0s"
-"TRUE","Delta//Frame Delta Time >= 0.250s","frame.time_delta_displayed >= 0.250","Packets Delta Time >= 0.250s"
-"TRUE","Delta//Frame Delta Time >= 0.500s","frame.time_delta_displayed >= 0.500","Packets Delta Time >= 0.500s"
-"TRUE","Delta//Frame Delta Time >= 0.750s","frame.time_delta_displayed >= 0.750","Packets Delta Time >= 0.750s"
-"TRUE","Delta//Frame Delta Time >= 1.250s","frame.time_delta_displayed >= 1.250","Packets Delta Time >= 1.250s"
-"TRUE","Delta//HTTP Time >= 0.5s","http.time>0.5","HTTP Responses >= 0.5s"
-"TRUE","Delta//HTTP Time >= 1.0s","http.time>1.0","HTTP Responses >= 1.0s"
-"TRUE","Delta//L4 Delta Time >= 0.250s","tcp.time_delta >= 0.250 || udp.time_delta >= 0.250","Conversation Delta Time >= 0.250"
-"TRUE","Delta//L4 Delta Time >= 0.500s","tcp.time_delta >= 0.500 || udp.time_delta >= 0.500","Conversation Delta Time >= 0.500"
-"TRUE","Delta//L4 Delta Time >= 0.750s","tcp.time_delta >= 0.750 || udp.time_delta >= 0.750","Conversation Delta Time >= 0.750"
-"TRUE","Delta//L4 Delta Time >= 1.250s","tcp.time_delta >= 1.250 || udp.time_delta >= 1.250","Conversation Delta Time >= 1.250"
+"TRUE","Delta//Frame Delta Time >= 1.0s","frame.time_delta_displayed >= 1.0","Packets Delta Time >= 1.0s"
+"TRUE","Delta//HTTP Time >= 1.0s","http.time >= 1.0","HTTP Responses >= 1.0s"
+"TRUE","Delta//L4 Delta Time >= 1.0s","tcp.time_delta >= 1.0 || udp.time_delta >= 1.0","Conversation Delta Time >= 1.0"
 
 "TRUE","DNS//Errors","dns.flags.rcode > 0","DNS Errors"
 "TRUE","DNS//MX","dns.qry.type == 15","DNS MX Queries"
@@ -56,7 +48,7 @@
 "TRUE","ICMP//Unreachable","icmp.type == 3 && icmp.code == 1","Host Unreachable"
 
 "TRUE","PKT//Packets Comments","frame.comment","Packets with Comments"
-"TRUE","PKT//Disable ESP Proto","!(udpencap || esp)","Disable ESP Packets"
+"TRUE","PKT//Not ESP Proto","!(udpencap || esp)","Not ESP Packets"
 
 "TRUE","TCP//Buffer Full","tcp.window_size == 0 && tcp.flags.reset != 1","TCP Buffer Full"
 "TRUE","TCP//Connection Refusal ACK Scan","tcp.flags.reset == 1 && tcp.flags.ack == 1 && tcp.seq == 1 && tcp.ack == 1","Connection Refusal ACK Scan"
@@ -66,9 +58,11 @@
 "TRUE","TCP//SYN with Options","tcp.flags.syn == 1 && (tcp.option_kind == 2 || tcp.option_kind == 3 || tcp.option_kind == 4)","SYN with WS, MSS, SACK"
 "TRUE","TCP//SYN with NoOption","tcp.flags.syn == 1 && !(tcp.option_kind == 2 || tcp.option_kind == 3 || tcp.option_kind == 4)","SYN with No Options"
 "TRUE","TCP//Ack RTT >= 0.5s","tcp.analysis.ack_rtt >= 0.5","ACK RTT >= 0.5s"
-"TRUE","TCP//Initial RTT >= 0.5s","tcp.analysis.initial_rtt >= 0.5","Initial RTT >= 0.5s"
-"TRUE","TCP//Retransmissions","tcp.analysis.retransmission","Retransmissions Packet Loss"
+"TRUE","TCP//Ini RTT >= 0.5s","tcp.analysis.initial_rtt >= 0.5","Initial RTT >= 0.5s"
+"TRUE","TCP//Retransmissions","tcp.analysis.retransmission","Packet Retransmissions"
+"TRUE","TCP//SPURs","tcp.analysis.spurious_retransmission","Spurious Retransmission"
 "TRUE","TCP//Flags","tcp.analysis.flags","TCP Analysis Flags"
+
 
 "TRUE","TLS//Client Hello (HS 1)","tls.handshake.type == 1","Client Hello"
 "TRUE","TLS//Server Hello (HS 2)","tls.handshake.type == 2","Server Hello"
