@@ -76,17 +76,8 @@ option ipxe.no-pxedhcp 1;
 # Make sure iPXE features support
 # If not load a full-featured version.
 
-if    exists ipxe.http
-  and exists ipxe.menu
-  and (
-        ( exists ipxe.pxe
-      and exists ipxe.bzimage
-      and exists ipxe.elf
-        ) or (
-          exists ipxe.efi
-        )
-      ) {
-    filename "http://$MIPADDR/boot.ipxe";
+if exists ipxe.pxe or exists ipxe.efi
+{ filename "http://$MIPADDR/boot.ipxe";
 } elsif option arch = 00:09 { # EFI BC
 } elsif option arch = 00:08 { # EFI Xscale
 } elsif option arch = 00:07 { filename "ipxe.efi"; 
