@@ -1,0 +1,21 @@
+BIRD=/app/bird && echo $BIRD
+wget https://bird.network.cz/download/bird-2.14.tar.gz
+tar -xvf ./bird-2.14.tar.gz
+cd ./bind-2.14
+apt install libncurses-dev libreadline-dev
+./configure --prefix=$BIRD --exec-prefix=$BIRD --enable-memcheck --enable-pthreads
+make -j$(nproc)
+
+WSSL=/app/wssl && echo $WSSL
+wget https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolfssl-5.6.6.tar.gz
+tar -xvf ./wolfssl-5.6.6.tar.gz 
+cd ./wolfssl-5.6.6
+./configure --help
+make -j$(nproc)
+
+LUA=/app/lua && echo $LUA
+wget https://www.lua.org/ftp/lua-5.4.6.tar.gz
+tar -xvf ./lua-5.4.6.tar.gz
+cd ./lua-5.4.6
+./configure --help
+make -j$(nproc) all test
