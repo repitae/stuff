@@ -65,7 +65,7 @@ make clean
   --enable-jit
 [[ $? -eq 0 ]] && make -j $(nproc)
 make check && sudo make install
-#make uninstall
+ln -sf /app/pcre2-10.42 /app/pcre2
 ```
 
 ```sh
@@ -90,7 +90,9 @@ make -j $(nproc) ARCH=64 CPU=generic TARGET=linux-glibc \
   USE_SYSTEMD=1 \
   USE_TFO=1 \
   USE_THREAD=1 \
-  LUA_LIB_NAME=lua54 \
+  PCREDIR=/app/pcre2 \
+  LUA_LIB=/app/lua/lib \
+  LUA_INC=/app/lua/include \
   SSL_LIB=/app/wolfssl/lib \
   SSL_INC=/app/wolfssl/include
 make install PREFIX=/app/haproxy-2.8.5
