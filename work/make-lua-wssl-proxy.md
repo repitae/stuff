@@ -44,12 +44,24 @@ cd wolfssl-5.6.6
   --enable-sp-asm \
   --enable-sp-math \
   --disable-oldtls
-make -j $(nproc) && make test
-sudo make install
+[[ $? -eq 0 ]] && make -j $(nproc)
+make test && sudo make install
 #sudo make uninstall
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
 
+```sh
+cd /app/src/
+curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+[[ $? -eq 0 ]] && tar xvf ./pcre2-10.42.tar.gz
+cd ./pcre2-10.42
+./configure --prefix=/app/pcre2 \
+  --enable-pcre2-16 \
+  --enable-pcre2-32 \
+  --enable-jit
+  
+
+```
 ```sh
 cd /app/src/
 curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
