@@ -1,16 +1,24 @@
 ```sh
+[ -d /app/src1 ] || mkdir -p /app/src1
+cd /app/src
+```
+
+```sh
 wget http://www.lua.org/ftp/lua-5.4.6.tar.gz
 tar zxf ./lua-5.4.6.tar.gz
 cd lua-5.4.6
-make all test INSTALL_TOP=/app/lua-5.4.6/
+make all test
+sudo make install INSTALL_TOP=/app/lua-5.4.6
+#sudo make uninstall INSTALL_TOP=/app/lua-5.4.6
+sudo ln -sf /app/lua-5.4.6 /app/lua
 ```
 
 ```sh
 wget https://github.com/LuaJIT/LuaJIT/archive/refs/tags/v2.1.ROLLING.tar.gz 
 tar xvf ./v2.1.ROLLING.tar.gz
 cd ./LuaJIT-2.1.ROLLING
-make
-sudo make install PREFIX=/app/LuaJIT-2.1
+make PREFIX=/app/LuaJIT-2.1
+sudo make install PREFIX=/app/LuaJIT-2.1 
 #sudo make uninstall PREFIX=/app/LuaJIT-2.1
 ln -sf /app/LuaJIT-2.1 /app/luajit
 ```
