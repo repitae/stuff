@@ -69,6 +69,7 @@ make clean
 make check && sudo make install
 ln -sf /app/pcre2-10.42 /app/pcre2
 ```
+
 ```sh
 cd /app/src/
 curl -LO https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download
@@ -81,7 +82,6 @@ make clean
 [[ $? -eq 0 ]] && make -j $(nproc)
 make check && sudo make install
 ln -sf /app/pcre-8.45 /app/pcre
-
 ```
 
 ```sh
