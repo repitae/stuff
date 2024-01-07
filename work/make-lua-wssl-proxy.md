@@ -1,4 +1,6 @@
 ```sh
+apt-get update
+sudo apt-get install build-essential
 [ -d /app/src1 ] || mkdir -p /app/src1
 ```
 
@@ -111,8 +113,6 @@ make -j $(nproc) TARGET=linux-glibc \
   LUA_INC=/app/lua/include \
   SSL_LIB=/app/wolfssl/lib \
   SSL_INC=/app/wolfssl/include \
-  WOLFSSL_LIB=/app/wolfssl/lib \
-  WOLFSSL_INC=/app/wolfssl/include \
   ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
 [[ $? -eq 0 ]] && make install PREFIX=/app/haproxy-2.8.5
 #make uninstall PREFIX=/app/haproxy-2.8.5
