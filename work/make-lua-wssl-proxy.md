@@ -62,8 +62,8 @@ cd ./pcre2-10.42
 [[ $? -eq 0 ]] && make -j $(nproc)
 make check && sudo make install
 #make uninstall
-
 ```
+
 ```sh
 cd /app/src/
 curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
