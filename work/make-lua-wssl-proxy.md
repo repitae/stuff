@@ -55,11 +55,13 @@ cd /app/src/
 curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./pcre2-10.42.tar.gz
 cd ./pcre2-10.42
-./configure --prefix=/app/pcre2 \
+./configure --prefix=/app/pcre2-10.42 \
   --enable-pcre2-16 \
   --enable-pcre2-32 \
   --enable-jit
-  
+[[ $? -eq 0 ]] && make -j $(nproc)
+make check && sudo make install
+#make uninstall
 
 ```
 ```sh
