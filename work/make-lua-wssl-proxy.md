@@ -90,8 +90,9 @@ curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
 cd ./haproxy-2.8.5
 make clean
-make -j $(nproc) ARCH=64 CPU=generic \
-  TARGET=linux-glibc \
+make -j $(nproc) TARGET=linux-glibc \
+  CPU=generic \
+  ARCH=x86_64 \
   USE_CRYPT_H=1 \
   USE_ENGINE=1 \
   USE_LIBCRYPT=1 \
@@ -109,7 +110,10 @@ make -j $(nproc) ARCH=64 CPU=generic \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
   SSL_LIB=/app/wolfssl/lib \
-  SSL_INC=/app/wolfssl/include
-make install PREFIX=/app/haproxy-2.8.5
+  SSL_INC=/app/wolfssl/include \
+  WOLFSSL_LIB=/app/wolfssl/lib \
+  WOLFSSL_INC=/app/wolfssl/include \
+  ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
+[[ $? -eq 0 ]] && make install PREFIX=/app/haproxy-2.8.5
 #make uninstall PREFIX=/app/haproxy-2.8.5
 ldd /app/haproxy-2.8.5/sbin/haproxy | grep 'not found'
