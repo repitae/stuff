@@ -84,8 +84,8 @@ make -j $(nproc) ARCH=64 CPU=generic TARGET=linux-glibc \
   USE_NS=1 \
   USE_OPENSSL_WOLFSSL=1 \
   USE_OPENSSL=1 \
-  USE_PCRE_JIT=1 \
-  USE_PCRE=1 \
+  USE_PCRE2_JIT=1 \
+  USE_PCRE2=1 \
   USE_QUIC=1 \
   USE_SYSTEMD=1 \
   USE_TFO=1 \
