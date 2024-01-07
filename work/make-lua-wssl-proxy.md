@@ -46,6 +46,8 @@ make clean
   --enable-sp \
   --enable-sp-asm \
   --enable-sp-math \
+  --enable-session-ticket \
+  --enable-earlydata \
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
