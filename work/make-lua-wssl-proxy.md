@@ -7,6 +7,7 @@ cd /app/src/
 curl -LO http://www.lua.org/ftp/lua-5.4.6.tar.gz
 tar zxf ./lua-5.4.6.tar.gz
 cd lua-5.4.6
+make clean
 make -j $(nproc) all test
 sudo make install INSTALL_TOP=/app/lua-5.4.6
 #sudo make uninstall INSTALL_TOP=/app/lua-5.4.6
@@ -18,6 +19,7 @@ cd /app/src/
 curl -LO https://github.com/LuaJIT/LuaJIT/archive/refs/tags/v2.1.ROLLING.tar.gz 
 [[ $? -eq 0 ]] && tar xvf ./v2.1.ROLLING.tar.gz
 cd ./LuaJIT-2.1.ROLLING
+make clean
 make -j $(nproc) PREFIX=/app/LuaJIT-2.1
 sudo make install PREFIX=/app/LuaJIT-2.1 
 #sudo make uninstall PREFIX=/app/LuaJIT-2.1
@@ -29,6 +31,7 @@ cd /app/src/
 curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolfssl-5.6.6.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
 cd wolfssl-5.6.6
+make clean
 #./configure --prefix=/app/wolfssl --enable-aesni --enable-afalg --enable-alpn --enable-fallback-scsv --enable-haproxy --enable-hrrcookie \
 #  --enable-intelasm --enable-quic --enable-rwlock --enable-sni --enable-sp --enable-sp-asm --enable-sp-math --disable-oldtls
 ./configure --prefix=/app/wolfssl-5.6.6 \
@@ -55,6 +58,7 @@ cd /app/src/
 curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./pcre2-10.42.tar.gz
 cd ./pcre2-10.42
+make clean
 ./configure --prefix=/app/pcre2-10.42 \
   --enable-pcre2-16 \
   --enable-pcre2-32 \
