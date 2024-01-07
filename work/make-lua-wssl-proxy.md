@@ -67,6 +67,20 @@ make clean
 make check && sudo make install
 ln -sf /app/pcre2-10.42 /app/pcre2
 ```
+```sh
+cd /app/src/
+curl -LO https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download
+[[ $? -eq 0 ]] && tar xvf ./pcre-8.45.tar.gz
+cd ./pcre-8.45
+make clean
+./configure --prefix=/app/pcre-8.45 \
+  --enable-utf \
+  --enable-jit
+[[ $? -eq 0 ]] && make -j $(nproc)
+make check && sudo make install
+ln -sf /app/pcre-8.45 /app/pcre
+
+```
 
 ```sh
 cd /app/src/
@@ -84,13 +98,13 @@ make -j $(nproc) ARCH=64 CPU=generic TARGET=linux-glibc \
   USE_NS=1 \
   USE_OPENSSL_WOLFSSL=1 \
   USE_OPENSSL=1 \
-  USE_PCRE2_JIT=1 \
-  USE_PCRE2=1 \
+  USE_PCRE_JIT=1 \
+  USE_PCRE=1 \
   USE_QUIC=1 \
   USE_SYSTEMD=1 \
   USE_TFO=1 \
   USE_THREAD=1 \
-  PCREDIR=/app/pcre2 \
+  PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
   SSL_LIB=/app/wolfssl/lib \
