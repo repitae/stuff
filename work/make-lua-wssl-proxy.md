@@ -1,7 +1,7 @@
 ```sh
 apt-get update
 sudo apt-get install build-essential
-[ -d /app/src1 ] || mkdir -p /app/src1
+[ -d /app/src ] || mkdir -p /app/src
 ```
 
 ```sh
@@ -88,7 +88,6 @@ curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.8.5.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
 cd ./haproxy-2.8.5
-#cd ./haproxy-2.9.1
 make clean
 make -j $(nproc) TARGET=linux-glibc \
   CPU=generic \
@@ -113,8 +112,9 @@ make -j $(nproc) TARGET=linux-glibc \
   SSL_INC=/app/wolfssl/include \
   ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
 make install PREFIX=/app/haproxy-2.8.5
-#make install PREFIX=/app//haproxy-2.9.1
 ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
-#ldd /app/haproxy-2.9.1/sbin/haproxy
-#/app/haproxy-2.9.1/sbin/haproxy -vv
+ln -sf /app/haproxy-2.8.5 /app/haproxy
+[ -d /app/haproxy/etc ] || mkdir -p /app/haproxy/etc
+[ -d /app/haproxy/log ] || mkdir -p /app/haproxy/log
+[ -d /app/haproxy/run ] || mkdir -p /app/haproxy/run
