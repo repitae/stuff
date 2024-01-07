@@ -32,8 +32,6 @@ curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolf
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
 cd wolfssl-5.6.6
 make clean
-#./configure --prefix=/app/wolfssl --enable-aesni --enable-afalg --enable-alpn --enable-fallback-scsv --enable-haproxy --enable-hrrcookie \
-#  --enable-intelasm --enable-quic --enable-rwlock --enable-sni --enable-sp --enable-sp-asm --enable-sp-math --disable-oldtls
 ./configure --prefix=/app/wolfssl-5.6.6 \
   --enable-aesni \
   --enable-alpn \
