@@ -116,4 +116,5 @@ make -j $(nproc) TARGET=linux-glibc \
   ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
 [[ $? -eq 0 ]] && make install PREFIX=/app/haproxy-2.8.5
 #make uninstall PREFIX=/app/haproxy-2.8.5
-ldd /app/haproxy-2.8.5/sbin/haproxy | grep 'not found'
+ldd /app/haproxy-2.8.5/sbin/haproxy
+/app/haproxy-2.8.5/sbin/haproxy -vv
