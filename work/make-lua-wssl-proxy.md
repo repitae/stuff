@@ -7,7 +7,7 @@ cd /app/src
 wget http://www.lua.org/ftp/lua-5.4.6.tar.gz
 tar zxf ./lua-5.4.6.tar.gz
 cd lua-5.4.6
-make all test
+make -j $(nproc) all test
 sudo make install INSTALL_TOP=/app/lua-5.4.6
 #sudo make uninstall INSTALL_TOP=/app/lua-5.4.6
 sudo ln -sf /app/lua-5.4.6 /app/lua
@@ -17,7 +17,7 @@ sudo ln -sf /app/lua-5.4.6 /app/lua
 wget https://github.com/LuaJIT/LuaJIT/archive/refs/tags/v2.1.ROLLING.tar.gz 
 tar xvf ./v2.1.ROLLING.tar.gz
 cd ./LuaJIT-2.1.ROLLING
-make PREFIX=/app/LuaJIT-2.1
+make -j $(nproc) PREFIX=/app/LuaJIT-2.1
 sudo make install PREFIX=/app/LuaJIT-2.1 
 #sudo make uninstall PREFIX=/app/LuaJIT-2.1
 ln -sf /app/LuaJIT-2.1 /app/luajit
@@ -42,7 +42,7 @@ cd wolfssl-5.6.6
   --enable-sp-asm \
   --enable-sp-math \
   --disable-oldtls
-make && make test
+make -j $(nproc) && make test
 sudo make install
 #sudo make uninstall
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
