@@ -115,6 +115,4 @@ make install PREFIX=/app/haproxy-2.8.5
 ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
 ln -sf /app/haproxy-2.8.5 /app/haproxy
-[ -d /app/haproxy/etc ] || mkdir -p /app/haproxy/etc
-[ -d /app/haproxy/log ] || mkdir -p /app/haproxy/log
-[ -d /app/haproxy/run ] || mkdir -p /app/haproxy/run
+[ -d '/app/haproxy/{etc,log,run}' ] || mkdir -p /app/haproxy/{etc,log,run}
