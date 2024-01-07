@@ -12,7 +12,6 @@ cd lua-5.4.6
 make clean
 make -j $(nproc) all test
 sudo make install INSTALL_TOP=/app/lua-5.4.6
-#sudo make uninstall INSTALL_TOP=/app/lua-5.4.6
 sudo ln -sf /app/lua-5.4.6 /app/lua
 ```
 
@@ -24,7 +23,6 @@ cd ./LuaJIT-2.1.ROLLING
 make clean
 make -j $(nproc) PREFIX=/app/LuaJIT-2.1
 sudo make install PREFIX=/app/LuaJIT-2.1 
-#sudo make uninstall PREFIX=/app/LuaJIT-2.1
 ln -sf /app/LuaJIT-2.1 /app/luajit
 ```
 
@@ -51,7 +49,6 @@ make clean
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-#sudo make uninstall
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
 
@@ -91,6 +88,7 @@ curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.8.5.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
 cd ./haproxy-2.8.5
+#cd ./haproxy-2.9.1
 make clean
 make -j $(nproc) TARGET=linux-glibc \
   CPU=generic \
@@ -114,7 +112,9 @@ make -j $(nproc) TARGET=linux-glibc \
   SSL_LIB=/app/wolfssl/lib \
   SSL_INC=/app/wolfssl/include \
   ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
-[[ $? -eq 0 ]] && make install PREFIX=/app/haproxy-2.8.5
-#make uninstall PREFIX=/app/haproxy-2.8.5
+make install PREFIX=/app/haproxy-2.8.5
+#make install PREFIX=/app//haproxy-2.9.1
 ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
+#ldd /app/haproxy-2.9.1/sbin/haproxy
+#/app/haproxy-2.9.1/sbin/haproxy -vv
