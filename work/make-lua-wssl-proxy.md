@@ -132,21 +132,22 @@ chown -R haproxy:haproxy /app/haproxy
 ```sh
 cat << EOF | sudo tee /etc/systemd/system/haproxy.service
 [Unit]
-Description=haproxy.service
+Description=HAProxy Load Balancer
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-EnvironmentFile=-/app/haproxy/default
-EnvironmentFile=-/app/haproxy/sysconfig
-Environment="CONFIG=/app/haproxy/haproxy.cfg" "PIDFILE=/app/haproxy/run/haproxy.pid" "EXTRAOPTS=-S /app/haproxy/run/master.sock"
-ExecStartPre=/app/haproxy/sbin/haproxy -f $CONFIG -c -q
+EnvironmentFile=/app/haproxy/etc/default
+ExecStartPre=/app/haproxy/sbin/haproxy -f $CONFIG -c -q $EXTRAOPTS
 ExecStart=/app/haproxy/sbin/haproxy -Ws -f $CONFIG -p $PIDFILE $EXTRAOPTS
-ExecReload=/app/haproxy/sbin/haproxy -Ws -f $CONFIG -c -q $EXTRAOPTS
+ExecReload=/app/haproxy/sbin/haproxy -f $CONFIG -c -q $EXTRAOPTS
 ExecReload=/bin/kill -USR2 $MAINPID
 KillMode=mixed
-Restart=on-failure
-RestartSec=5s
+Restart=always
+RestartSec=5
+#StartLimitBurst=5
+#StartLimitInterval=30
+StartLimitInterval=0
 SuccessExitStatus=143
 Type=notify
 
