@@ -63,7 +63,10 @@ curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolf
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
-./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic
+./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic \
+  --enable-examples \
+  --enable-crypttests \
+  --enable-crypttests-libs
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/wolfssl-5.6.6-lw /app/wolfssl-lw
