@@ -82,6 +82,15 @@ ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
 
 ```sh
+cd /app/src/wolfssl-5.6.6
+make clean
+# ./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic
+[[ $? -eq 0 ]] && make -j $(nproc)
+make test && sudo make install
+# ln -sf /app/wolfssl-5.6.6 /app/wolfssl
+```
+
+```sh
 cd /app/src/
 curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.8.5.tar.gz
