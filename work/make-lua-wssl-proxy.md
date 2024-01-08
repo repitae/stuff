@@ -69,9 +69,10 @@ make clean
   --enable-crypttests-libs
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-ln -sf /app/wolfssl-5.6.6-lw /app/wolfssl-lw
 /app/src/wolfssl-5.6.6-lw/wolfcrypt/benchmark/benchmark
+ln -sf /app/wolfssl-5.6.6-lw /app/wolfssl-lw
 ```
+
 ```sh
 cd /app/src/wolfssl-5.6.6-mp
 make clean
@@ -87,16 +88,13 @@ make clean
   --enable-intelasm \
   --enable-quic \
   --enable-sni \
-  --enable-sp \
-  --enable-sp-asm \
-  --enable-sp-math \
   --enable-session-ticket \
   --enable-earlydata \
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-ln -sf /app/wolfssl-5.6.6 /app/wolfssl
-/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
+ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```
 
 ```sh
@@ -122,8 +120,8 @@ make clean
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
+ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
 
 ```sh
