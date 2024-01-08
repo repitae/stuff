@@ -182,7 +182,6 @@ EOF
 ```
 
 ```sh
-sudo chmod 644 /etc/systemd/system/haproxy.service
 cat << EOF | sudo tee /app/haproxy/etc/default
 CONFIG=/app/haproxy/etc/haproxy.cfg
 PIDFILE=/app/haproxy/run/haproxy.pid
@@ -225,6 +224,7 @@ backend srv
   server s2 192.168.1.22:80
 EOF
 /app/haproxy/sbin/haproxy -c -f /app/haproxy/etc/haproxy.cfg
+sudo chmod 644 /etc/systemd/system/haproxy.service
 ```
 
 ```sh
