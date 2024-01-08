@@ -157,7 +157,7 @@ ldd /app/haproxy-2.9.1/sbin/haproxy
 
 ```sh
 useradd -M -U -r -s `which nologin` -d /app/haproxy haproxy
-chown -R haproxy:haproxy /app/haproxy
+chown -R haproxy:haproxy /app/haproxy*
 ```
 
 ```sh
