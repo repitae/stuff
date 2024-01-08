@@ -50,6 +50,12 @@ make clean
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
+#wolfssl genkey rsa -size 2048 -out mykey -outform pem -output KEY
+#wolfssl req -new -days 3650 -key mykey.priv -out test.cert -x509
+openssl req -new > cert.csr
+openssl rsa -in privkey.pem -out key.pem
+openssl x509 -in cert.csr -out cert.pem -req -signkey key.pem -days 1001
+cat key.pem >> cert.pem
 ```
 
 ```sh
@@ -116,3 +122,51 @@ ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
 ln -sf /app/haproxy-2.8.5 /app/haproxy
 [ -d '/app/haproxy/{etc,log,run}' ] || mkdir -p /app/haproxy/{etc,log,run}
+```
+
+```sh
+useradd -M -U -r -s `which nologin` -d /app/haproxy haproxy
+chown -R haproxy:haproxy /app/haproxy
+```
+
+```sh
+cat << EOF | sudo tee /etc/systemd/system/haproxy.service
+[Unit]
+Description=haproxy.service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=-/app/haproxy/default
+EnvironmentFile=-/app/haproxy/sysconfig
+Environment="CONFIG=/app/haproxy/haproxy.cfg" "PIDFILE=/app/haproxy/run/haproxy.pid" "EXTRAOPTS=-S /app/haproxy/run/master.sock"
+ExecStartPre=/app/haproxy/sbin/haproxy -f $CONFIG -c -q
+ExecStart=/app/haproxy/sbin/haproxy -Ws -f $CONFIG -p $PIDFILE $EXTRAOPTS
+ExecReload=/app/haproxy/sbin/haproxy -Ws -f $CONFIG -c -q $EXTRAOPTS
+ExecReload=/bin/kill -USR2 $MAINPID
+KillMode=mixed
+Restart=on-failure
+RestartSec=5s
+SuccessExitStatus=143
+Type=notify
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+```sh
+sudo chmod 644 /etc/systemd/system/haproxy.service
+/app/haproxy/sbin/haproxy -c -f /app/haproxy/etc/haproxy.cfg
+sudo systemctl daemon-reload
+sudo systemctl enable haproxy
+sudo systemctl start haproxy
+sudo systemctl status haproxy
+sudo systemctl list-units --failed
+sudo journalctl --flush --rotate --vacuum-time=1m
+```
+
+```sh
+openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM'
+openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM:ECDHE+AES:EDH+AES'
+```
