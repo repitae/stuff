@@ -25,6 +25,34 @@ make -j $(nproc) PREFIX=/app/LuaJIT-2.1
 sudo make install PREFIX=/app/LuaJIT-2.1 
 ln -sf /app/LuaJIT-2.1 /app/luajit
 ```
+```sh
+cd /app/src/
+curl -LO https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download
+[[ $? -eq 0 ]] && tar xvf ./pcre-8.45.tar.gz
+cd ./pcre-8.45
+make clean
+./configure --prefix=/app/pcre-8.45 \
+  --enable-utf \
+  --enable-jit
+[[ $? -eq 0 ]] && make -j $(nproc)
+make check && sudo make install
+ln -sf /app/pcre-8.45 /app/pcre
+```
+
+```sh
+cd /app/src/
+curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+[[ $? -eq 0 ]] && tar xvf ./pcre2-10.42.tar.gz
+cd ./pcre2-10.42
+make clean
+./configure --prefix=/app/pcre2-10.42 \
+  --enable-pcre2-16 \
+  --enable-pcre2-32 \
+  --enable-jit
+[[ $? -eq 0 ]] && make -j $(nproc)
+make check && sudo make install
+ln -sf /app/pcre2-10.42 /app/pcre2
+```
 
 ```sh
 cd /app/src/
@@ -32,6 +60,7 @@ curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolf
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
 cd wolfssl-5.6.6
 make clean
+# ./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic
 ./configure --prefix=/app/wolfssl-5.6.6 \
   --enable-aesni \
   --enable-alpn \
@@ -56,35 +85,6 @@ openssl req -new > cert.csr
 openssl rsa -in privkey.pem -out key.pem
 openssl x509 -in cert.csr -out cert.pem -req -signkey key.pem -days 1001
 cat key.pem >> cert.pem
-```
-
-```sh
-cd /app/src/
-curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
-[[ $? -eq 0 ]] && tar xvf ./pcre2-10.42.tar.gz
-cd ./pcre2-10.42
-make clean
-./configure --prefix=/app/pcre2-10.42 \
-  --enable-pcre2-16 \
-  --enable-pcre2-32 \
-  --enable-jit
-[[ $? -eq 0 ]] && make -j $(nproc)
-make check && sudo make install
-ln -sf /app/pcre2-10.42 /app/pcre2
-```
-
-```sh
-cd /app/src/
-curl -LO https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download
-[[ $? -eq 0 ]] && tar xvf ./pcre-8.45.tar.gz
-cd ./pcre-8.45
-make clean
-./configure --prefix=/app/pcre-8.45 \
-  --enable-utf \
-  --enable-jit
-[[ $? -eq 0 ]] && make -j $(nproc)
-make check && sudo make install
-ln -sf /app/pcre-8.45 /app/pcre
 ```
 
 ```sh
