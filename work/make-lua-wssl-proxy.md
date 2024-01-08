@@ -1,7 +1,7 @@
 ```sh
 apt-get update
 sudo apt-get install build-essential
-[ -d /app/src ] || mkdir -p /app/src
+[[ -d /app/src ]] || mkdir -p /app/src
 ```
 
 ```sh
@@ -66,7 +66,7 @@ make clean
 ./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-# ln -sf /app/wolfssl-5.6.6 /app/wolfssl
+ln -sf /app/wolfssl-5.6.6-lw /app/wolfssl-lw
 ```
 
 ```sh
@@ -96,7 +96,43 @@ ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 cd /app/src/
 curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.8.5.tar.gz
-cd ./haproxy-2.8.5
+curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
+[[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
+```
+
+```sh
+cd /app/src/haproxy-2.8.5
+make clean
+# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
+make -j $(nproc) TARGET=linux-glibc \
+  USE_CRYPT_H=1 \
+  USE_ENGINE=1 \
+  USE_LIBCRYPT=1 \
+  USE_LUA=1 \
+  USE_NS=1 \
+  USE_OPENSSL_WOLFSSL=1 \
+  USE_PCRE=1 \
+  USE_PCRE_JIT=1 \
+  USE_STATIC_PCRE=1 \
+  USE_QUIC=1 \
+  USE_SYSTEMD=1 \
+  USE_TFO=1 \
+  USE_THREAD=1 \
+  PCREDIR=/app/pcre \
+  LUA_LIB=/app/lua/lib \
+  LUA_INC=/app/lua/include \
+  SSL_LIB=/app/wolfssl-lw/lib \
+  SSL_INC=/app/wolfssl-lw/include \
+  ADDLIB='-Wl,-rpath=/app/wolfssl-lw/lib'
+make install PREFIX=/app/haproxy-2.8.5-lw
+ldd /app/haproxy-2.8.5-lw/sbin/haproxy
+/app/haproxy-2.8.5-lw/sbin/haproxy -vv
+ln -sf /app/haproxy-2.8.5-lw /app/haproxy-lw
+[[ -d '/app/haproxy-lw/{etc,log,run,ssl}' ]] || mkdir -p /app/haproxy-lw/{etc,log,run,ssl}
+```
+
+```sh
+cd /app/src/haproxy-2.8.5
 make clean
 # make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
 make -j $(nproc) TARGET=linux-glibc \
@@ -123,14 +159,11 @@ make install PREFIX=/app/haproxy-2.8.5
 ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
 ln -sf /app/haproxy-2.8.5 /app/haproxy
-[ -d '/app/haproxy/{etc,log,run,ssl}' ] || mkdir -p /app/haproxy/{etc,log,run,ssl}
+[[ -d '/app/haproxy/{etc,log,run,ssl}' ]] || mkdir -p /app/haproxy/{etc,log,run,ssl}
 ```
 
 ```sh
-cd /app/src/
-curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
-[[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
-cd ./haproxy-2.9.1
+cd /app/src/haproxy-2.9.1
 make clean
 # make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
 make -j $(nproc) TARGET=linux-glibc \
@@ -156,8 +189,7 @@ make -j $(nproc) TARGET=linux-glibc \
 make install PREFIX=/app/haproxy-2.9.1
 ldd /app/haproxy-2.9.1/sbin/haproxy
 /app/haproxy-2.9.1/sbin/haproxy -vv
-#ln -sf /app/haproxy-2.9.1 /app/haproxy
-[ -d '/app/haproxy/{etc,log,run,ssl}' ] || mkdir -p /app/haproxy/{etc,log,run,ssl}
+[[ -d '/app/haproxy/{etc,log,run,ssl}' ]] || mkdir -p /app/haproxy/{etc,log,run,ssl}
 ```
 
 ```sh
