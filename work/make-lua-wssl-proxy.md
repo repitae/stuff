@@ -189,6 +189,47 @@ EOF
 
 ```sh
 sudo chmod 644 /etc/systemd/system/haproxy.service
+cat << EOF | sudo tee /app/haproxy/etc/default
+CONFIG=/app/haproxy/etc/haproxy.cfg
+PIDFILE=/app/haproxy/run/haproxy.pid
+EXTRAOPTS="-S /app/haproxy/run/master.sock"
+EOF
+cat << EOF | sudo tee /app/haproxy/etc/haproxy.cfg
+global
+  user nobody
+  group nogroup
+  profiling.tasks on
+  tune.ssl.default-dh-param 2048
+  ssl-dh-param-file /app/haproxy/ssl/dhparam.pem
+  stats socket /app/haproxy/run/admin.sock user nobody group nogroup mode 660 level admin
+  #openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM'
+  #openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM:ECDHE+AES:EDH+AES'
+  #ssl-default-servers-ciphers EECDH+AESGCM+ASH2:EDH+AESGCM:EECDH+AES:EDH+AES
+  ssl-default-bind-ciphers EECDH+AESGCM+ASH2:EDH+AESGCM
+  ssl-default-bind-options ssl-min-ver TLSv1.2
+
+defaults
+  mode http
+  log global
+  timeout connect 5s
+  timeout client 10s
+  timeout server 10s
+  timeout http-request 10s
+  option forwarded
+  option http-server-close
+  option httplog
+
+frontend www
+  bind :80
+  bind :443 ssl crt /app/haproxy/ssl/cert.crt alpn h2,http/1.1
+  http-request redirect scheme https unless { ssl_fc }
+  http-response set-header Strict-Transport-Security max-age=63072000
+  default_backend srv
+
+backend srv
+  server s1 192.168.1.21:80
+  server s2 192.168.1.22:80
+EOF
 /app/haproxy/sbin/haproxy -c -f /app/haproxy/etc/haproxy.cfg
 ```
 
@@ -202,6 +243,4 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 ```
 
 ```sh
-openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM'
-openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM:ECDHE+AES:EDH+AES'
 ```
