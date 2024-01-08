@@ -154,11 +154,14 @@ Type=notify
 [Install]
 WantedBy=multi-user.target
 EOF
+sudo chmod 644 /etc/systemd/system/haproxy.service
 ```
 
 ```sh
-sudo chmod 644 /etc/systemd/system/haproxy.service
 /app/haproxy/sbin/haproxy -c -f /app/haproxy/etc/haproxy.cfg
+```
+
+```sh
 sudo systemctl daemon-reload
 sudo systemctl enable haproxy
 sudo systemctl start haproxy
