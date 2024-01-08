@@ -79,17 +79,21 @@ make clean
 ./configure --prefix=/app/wolfssl-5.6.6-mp \
   --enable-aesni \
   --enable-alpn \
+  --enable-earlydata \
   --enable-examples \
   --enable-crypttests \
   --enable-crypttests-libs \
   --enable-fallback-scsv \
+  --enable-fpecc \
   --enable-haproxy \
   --enable-hrrcookie \
   --enable-intelasm \
+  --enable-intelrand \
   --enable-quic \
+  --enable-sp-math-all \
   --enable-sni \
   --enable-session-ticket \
-  --enable-earlydata \
+  --enable-tlsx \
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
