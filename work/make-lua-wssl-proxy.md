@@ -58,7 +58,19 @@ ln -sf /app/pcre2-10.42 /app/pcre2
 cd /app/src/
 curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolfssl-5.6.6.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
-cd wolfssl-5.6.6
+```
+
+```sh
+cd /app/src/wolfssl-5.6.6
+make clean
+# ./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic
+[[ $? -eq 0 ]] && make -j $(nproc)
+make test && sudo make install
+# ln -sf /app/wolfssl-5.6.6 /app/wolfssl
+```
+
+```sh
+cd /app/src/wolfssl-5.6.6
 make clean
 # ./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic
 ./configure --prefix=/app/wolfssl-5.6.6 \
@@ -79,15 +91,6 @@ make clean
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
-```
-
-```sh
-cd /app/src/wolfssl-5.6.6
-make clean
-# ./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic
-[[ $? -eq 0 ]] && make -j $(nproc)
-make test && sudo make install
-# ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
 
 ```sh
