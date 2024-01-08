@@ -79,12 +79,6 @@ make clean
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
-# wolfssl genkey rsa -size 2048 -out mykey -outform pem -output KEY
-# wolfssl req -new -days 3650 -key mykey.priv -out test.cert -x509
-openssl req -new > cert.csr
-openssl rsa -in privkey.pem -out key.pem
-openssl x509 -in cert.csr -out cert.pem -req -signkey key.pem -days 1001
-cat key.pem >> cert.pem
 ```
 
 ```sh
@@ -202,9 +196,9 @@ global
   tune.ssl.default-dh-param 2048
   ssl-dh-param-file /app/haproxy/ssl/dhparam.pem
   stats socket /app/haproxy/run/admin.sock user nobody group nogroup mode 660 level admin
-  #openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM'
-  #openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM:ECDHE+AES:EDH+AES'
-  #ssl-default-servers-ciphers EECDH+AESGCM+ASH2:EDH+AESGCM:EECDH+AES:EDH+AES
+  # openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM'
+  # openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM:ECDHE+AES:EDH+AES'
+  # ssl-default-servers-ciphers EECDH+AESGCM+ASH2:EDH+AESGCM:EECDH+AES:EDH+AES
   ssl-default-bind-ciphers EECDH+AESGCM+ASH2:EDH+AESGCM
   ssl-default-bind-options ssl-min-ver TLSv1.2
 
