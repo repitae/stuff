@@ -240,6 +240,7 @@ global
   stats socket /app/haproxy/run/admin.sock user nobody group nogroup mode 660 level admin
   # openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM'
   # openssl ciphers -V 'ECDHE+AESGCM:EDH+AESGCM:ECDHE+AES:EDH+AES'
+  # nmap --script ssl-enum-ciphers -p 443 192.168.1.112
   # ssl-default-servers-ciphers EECDH+AESGCM+ASH2:EDH+AESGCM:EECDH+AES:EDH+AES
   ssl-default-bind-ciphers EECDH+AESGCM+ASH2:EDH+AESGCM
   ssl-default-bind-options ssl-min-ver TLSv1.2
