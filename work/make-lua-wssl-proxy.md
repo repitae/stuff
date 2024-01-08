@@ -70,18 +70,15 @@ make clean
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/wolfssl-5.6.6-lw /app/wolfssl-lw
-```
-```sh
 /app/src/wolfssl-5.6.6-lw/wolfcrypt/benchmark/benchmark
 ```
-
 ```sh
-cd /app/src/wolfssl-5.6.6
+cd /app/src/wolfssl-5.6.6-mp
 make clean
-./configure --prefix=/app/wolfssl-5.6.6 \
+./configure --prefix=/app/wolfssl-5.6.6-mp \
   --enable-aesni \
   --enable-alpn \
-   --enable-examples \
+  --enable-examples \
   --enable-crypttests \
   --enable-crypttests-libs \
   --enable-fallback-scsv \
@@ -99,9 +96,33 @@ make clean
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
 ```
 
 ```sh
+cd /app/src/wolfssl-5.6.6
+make clean
+./configure --prefix=/app/wolfssl-5.6.6 \
+  --enable-aesni \
+  --enable-alpn \
+  --enable-examples \
+  --enable-crypttests \
+  --enable-crypttests-libs \
+  --enable-fallback-scsv \
+  --enable-haproxy \
+  --enable-hrrcookie \
+  --enable-intelasm \
+  --enable-quic \
+  --enable-sni \
+  --enable-sp \
+  --enable-sp-asm \
+  --enable-sp-math \
+  --enable-session-ticket \
+  --enable-earlydata \
+  --disable-oldtls
+[[ $? -eq 0 ]] && make -j $(nproc)
+make test && sudo make install
+ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
 ```
 
