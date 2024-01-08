@@ -90,9 +90,7 @@ cat key.pem >> cert.pem
 ```sh
 cd /app/src/
 curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
-curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.8.5.tar.gz
-[[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
 cd ./haproxy-2.8.5
 make clean
 # make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
@@ -120,7 +118,41 @@ make install PREFIX=/app/haproxy-2.8.5
 ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
 ln -sf /app/haproxy-2.8.5 /app/haproxy
-[ -d '/app/haproxy/{etc,log,run}' ] || mkdir -p /app/haproxy/{etc,log,run}
+[ -d '/app/haproxy/{etc,log,run,ssl}' ] || mkdir -p /app/haproxy/{etc,log,run,ssl}
+```
+
+```sh
+cd /app/src/
+curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
+[[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
+cd ./haproxy-2.9.1
+make clean
+# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
+make -j $(nproc) TARGET=linux-glibc \
+  USE_CRYPT_H=1 \
+  USE_ENGINE=1 \
+  USE_LIBCRYPT=1 \
+  USE_LUA=1 \
+  USE_NS=1 \
+  USE_OPENSSL_WOLFSSL=1 \
+  USE_PCRE=1 \
+  USE_PCRE_JIT=1 \
+  USE_STATIC_PCRE=1 \
+  USE_QUIC=1 \
+  USE_SYSTEMD=1 \
+  USE_TFO=1 \
+  USE_THREAD=1 \
+  PCREDIR=/app/pcre \
+  LUA_LIB=/app/lua/lib \
+  LUA_INC=/app/lua/include \
+  SSL_LIB=/app/wolfssl/lib \
+  SSL_INC=/app/wolfssl/include \
+  ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
+make install PREFIX=/app/haproxy-2.9.1
+ldd /app/haproxy-2.9.1/sbin/haproxy
+/app/haproxy-2.9.1/sbin/haproxy -vv
+#ln -sf /app/haproxy-2.9.1 /app/haproxy
+[ -d '/app/haproxy/{etc,log,run,ssl}' ] || mkdir -p /app/haproxy/{etc,log,run,ssl}
 ```
 
 ```sh
