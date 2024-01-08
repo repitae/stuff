@@ -116,7 +116,6 @@ make clean
   --enable-intelasm \
   --enable-quic \
   --enable-sni \
-  --enable-sp \
   --enable-sp-asm \
   --enable-sp-math \
   --enable-session-ticket \
