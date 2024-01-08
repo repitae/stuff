@@ -50,8 +50,8 @@ make clean
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
-#wolfssl genkey rsa -size 2048 -out mykey -outform pem -output KEY
-#wolfssl req -new -days 3650 -key mykey.priv -out test.cert -x509
+# wolfssl genkey rsa -size 2048 -out mykey -outform pem -output KEY
+# wolfssl req -new -days 3650 -key mykey.priv -out test.cert -x509
 openssl req -new > cert.csr
 openssl rsa -in privkey.pem -out key.pem
 openssl x509 -in cert.csr -out cert.pem -req -signkey key.pem -days 1001
@@ -95,9 +95,8 @@ curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
 cd ./haproxy-2.8.5
 make clean
+# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
 make -j $(nproc) TARGET=linux-glibc \
-  CPU=generic \
-  ARCH=x86_64 \
   USE_CRYPT_H=1 \
   USE_ENGINE=1 \
   USE_LIBCRYPT=1 \
@@ -145,8 +144,8 @@ ExecReload=/bin/kill -USR2 $MAINPID
 KillMode=mixed
 Restart=always
 RestartSec=5
-#StartLimitBurst=5
-#StartLimitInterval=30
+# StartLimitBurst=5
+# StartLimitInterval=30
 StartLimitInterval=0
 SuccessExitStatus=143
 Type=notify
