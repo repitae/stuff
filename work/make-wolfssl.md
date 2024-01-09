@@ -348,6 +348,7 @@ backend srv
 EOF
 /app/haproxy/sbin/haproxy -c -f /app/haproxy/etc/haproxy.cfg
 ```
+
 ### Systemd
 ```sh
 sudo systemctl daemon-reload
