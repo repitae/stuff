@@ -44,16 +44,16 @@
 | HMAC-SHA384                     |   885 MiB took 1.002 seconds |     883.307 MiB/s |
 | HMAC-SHA512                     |   875 MiB took 1.000 seconds |     874.848 MiB/s |
 | PBKDF2                          |    65 KiB took 1.000 seconds |      64.675 KiB/s |
-| RSA 2048 key gen                |   11 ops took 1.071  seconds |    10.271 ops/sec |
-| RSA 2048  public                | 36200 ops took 1.000 seconds | 36196.772 ops/sec |
-| RSA 2048 private                |   700 ops took 1.060 seconds |   660.223 ops/sec |
-| DH 2048  key gen                |  2970 ops took 1.000 seconds |  2969.550 ops/sec |
-| DH 2048    agree                |  1500 ops took 1.045 seconds |  1435.660 ops/sec |
-| ECC   [SECP256R1] 256 key gen   | 3400 ops took 1.021  seconds |  3328.469 ops/sec |
-| ECDHE [SECP256R1] 256   agree   | 3400 ops took 1.019  seconds |  3335.033 ops/sec |
-| ECDSA [SECP256R1] 256    sign   | 3300 ops took 1.027  seconds |  3214.745 ops/sec |
-| ECDSA [SECP256R1] 256  verify   | 5000 ops took 1.011  seconds |  4944.464 ops/sec |
-| CURVE 25519 key gen             | 49929 ops took 1.000 seconds | 49928.143 ops/sec |
-| CURVE 25519   agree             | 51500 ops took 1.000 seconds | 51491.443 ops/sec |
+| RSA   2048              key gen |   11 ops took 1.071  seconds |    10.271 ops/sec |
+| RSA   2048               public | 36200 ops took 1.000 seconds | 36196.772 ops/sec |
+| RSA   2048              private |   700 ops took 1.060 seconds |   660.223 ops/sec |
+| DH    2048              key gen |  2970 ops took 1.000 seconds |  2969.550 ops/sec |
+| DH    2048                agree |  1500 ops took 1.045 seconds |  1435.660 ops/sec |
+| ECC   [SECP256R1] 256   key gen | 3400 ops took 1.021  seconds |  3328.469 ops/sec |
+| ECDHE [SECP256R1] 256     agree | 3400 ops took 1.019  seconds |  3335.033 ops/sec |
+| ECDSA [SECP256R1] 256      sign | 3300 ops took 1.027  seconds |  3214.745 ops/sec |
+| ECDSA [SECP256R1] 256    verify | 5000 ops took 1.011  seconds |  4944.464 ops/sec |
+| CURVE 25519             key gen | 49929 ops took 1.000 seconds | 49928.143 ops/sec |
+| CURVE 25519               agree | 51500 ops took 1.000 seconds | 51491.443 ops/sec |
 
 > Benchmark complete 
