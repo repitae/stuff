@@ -99,20 +99,6 @@ cd /app/src/
 curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolfssl-5.6.6.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
 ```
-
-### HaProxy-2.8.5
-```sh
-cd /app/src/
-curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
-[[ $? -eq 0 ]] && tar zxf ./haproxy-2.8.5.tar.gz
-```
-
-### HaProxy-2.9.1
-```sh
-cd /app/src/
-curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
-[[ $? -eq 0 ]] && tar zxf ./haproxy-2.9.1.tar.gz
-```
 ### WolfSSL-5.6.6-MP-Math
 ```sh
 cd /app/src/wolfssl-5.6.6
@@ -170,6 +156,21 @@ make test && sudo make install
 /app/src/wolfssl-5.6.6-sp/wolfcrypt/benchmark/benchmark
 ln -sf /app/wolfssl-5.6.6-sp /app/wolfssl-sp
 ```
+
+### HaProxy-2.8.5
+```sh
+cd /app/src/
+curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./haproxy-2.8.5.tar.gz
+```
+
+### HaProxy-2.9.1
+```sh
+cd /app/src/
+curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./haproxy-2.9.1.tar.gz
+```
+
 ### HaProxy-2.8.5 WolfSSL-5.6.6-MP-Math
 ```sh
 cd /app/src/haproxy-2.8.5
@@ -245,7 +246,7 @@ make -j $(nproc) TARGET=linux-glibc \
   USE_LIBCRYPT=1 \
   USE_LUA=1 \
   USE_NS=1 \
-  USE_OPENSSL_WOLFSSL=1 \
+  USE_OPENSSL=1 \
   USE_PCRE=1 \
   USE_PCRE_JIT=1 \
   USE_STATIC_PCRE=1 \
@@ -275,7 +276,7 @@ make -j $(nproc) TARGET=linux-glibc \
   USE_LIBCRYPT=1 \
   USE_LUA=1 \
   USE_NS=1 \
-  USE_OPENSSL_WOLFSSL=1 \
+  USE_OPENSSL=1 \
   USE_PCRE=1 \
   USE_PCRE_JIT=1 \
   USE_STATIC_PCRE=1 \
@@ -287,7 +288,7 @@ make -j $(nproc) TARGET=linux-glibc \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
   SSL_LIB=/app/openssl-3.1.4/lib \
-  SSL_INC=/app/openssl-3.1.4/include \
+  SSL_INC=/app/openssl-3.1.4/include
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4
 ldd /app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy
 /app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy -vv
@@ -305,7 +306,7 @@ make -j $(nproc) TARGET=linux-glibc \
   USE_LIBCRYPT=1 \
   USE_LUA=1 \
   USE_NS=1 \
-  USE_OPENSSL_WOLFSSL=1 \
+  USE_OPENSSL=1 \
   USE_PCRE=1 \
   USE_PCRE_JIT=1 \
   USE_STATIC_PCRE=1 \
