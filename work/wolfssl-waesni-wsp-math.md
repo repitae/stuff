@@ -55,4 +55,5 @@
 | ECDSA [      SECP256R1]   256   verify      5000 ops took 1.011 sec, avg 0.202 ms, 4944.464 ops/sec |
 | CURVE  25519  key gen     49929 ops took 1.000 sec, avg 0.020 ms, 49928.143 ops/sec                 |
 | CURVE  25519    agree     51500 ops took 1.000 sec, avg 0.019 ms, 51491.443 ops/sec                 |
-| Benchmark complete                                                                                  |
+
+> Benchmark complete
