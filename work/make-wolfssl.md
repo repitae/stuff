@@ -113,7 +113,7 @@ cd /app/src/
 curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./haproxy-2.9.1.tar.gz
 ```
-### WolfSSL-5.6.6 (Math All)
+### WolfSSL-5.6.6-MP-Math
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
@@ -142,7 +142,7 @@ make test && sudo make install
 ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```
 
-### WolfSSL-5.6.6 (Math SP)
+### WolfSSL-5.6.6-SP-Math
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
@@ -192,9 +192,9 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/wolfssl-lw/lib \
-  SSL_INC=/app/wolfssl-lw/include \
-  ADDLIB='-Wl,-rpath=/app/wolfssl-lw/lib'
+  SSL_LIB=/app/wolfssl-mp/lib \
+  SSL_INC=/app/wolfssl-mp/include \
+  ADDLIB='-Wl,-rpath=/app/wolfssl-mp/lib'
 make install PREFIX=/app/haproxy-2.8.5-mp
 ldd /app/haproxy-2.8.5-mp/sbin/haproxy
 /app/haproxy-2.8.5-mp/sbin/haproxy -vv
@@ -224,9 +224,9 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/wolfssl/lib \
-  SSL_INC=/app/wolfssl/include \
-  ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
+  SSL_LIB=/app/wolfssl-sp/lib \
+  SSL_INC=/app/wolfssl-sp/include \
+  ADDLIB='-Wl,-rpath=/app/wolfssl-sp/lib'
 make install PREFIX=/app/haproxy-2.8.5-sp
 ldd /app/haproxy-2.8.5-sp/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
