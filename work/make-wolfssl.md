@@ -318,6 +318,19 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 ```
 
 ```
+openssl speed -bytes 10485767 -seconds 1 sha256 sha512
+openssl speed -bytes 10485767 -seconds 1 -evp sha256 sha512
+
+openssl speed -bytes 10485767 -seconds 1 aes-128-cbc aes-256-cbc
+openssl speed -bytes 10485767 -seconds 1 -evp aes-128-cbc aes-256-cbc
+
+openssl speed -bytes 10485767 -seconds 1 -evp rsa2048
+openssl speed -bytes 10485767 -seconds 1 -evp rsa2048
+
+/app/src/wolfssl-5.6.6-lw/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
+
 some tests:
 1. wout AES-NI and wout SP-MATH = LOW
 2. with AES-NI and wout SP-MATH = MID
@@ -382,7 +395,6 @@ some tests:
 | CURVE 25519           key gen | 30944 ops took 1.000 seconds |
 | CURVE 25519             agree | 31300 ops took 1.002 seconds |
 
-> Benchmark complete  
 
 > /app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark  
 > wolfSSL version 5.6.6 with AES-NI without SP-MATCH  
@@ -442,7 +454,6 @@ some tests:
 | CURVE 25519           key gen | 49929 ops took 1.000 seconds |
 | CURVE 25519             agree | 51500 ops took 1.000 seconds |
 
-> Benchmark complete 
 
 > /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark  
 > wolfSSL version 5.6.6 with AES-NI with SP-MATH  
@@ -502,4 +513,3 @@ some tests:
 | CURVE 25519           key gen |  49427 ops took 1.000 seconds |
 | CURVE 25519             agree |  50900 ops took 1.000 seconds |
 
-> Benchmark complete
