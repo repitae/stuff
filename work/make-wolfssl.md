@@ -317,7 +317,11 @@ sudo systemctl list-units --failed
 sudo journalctl --flush --rotate --vacuum-time=1m
 ```
 
-```sh
+```
+Make some tests:
+1. without AES-NI and without SP-MATH = LOW
+2. with AES-NI and without SP-MATH = MID
+3. with AES-NI and with SP-MATH = BEST
 ```
 
 > /app/src/wolfssl-5.6.6-lw/wolfcrypt/benchmark/benchmark  
