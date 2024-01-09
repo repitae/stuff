@@ -320,9 +320,9 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 ```sh
 ```
 
-> wolfSSL version 5.6.6 wAESNI wSP-MATH
-> Math:   Single Precision: ecc 256 384 521 rsa/dh 2048 3072 4096 asm sp_x86_64.c
-> wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)
+> wolfSSL version 5.6.6 wAESNI wSP-MATH  
+> Math:   Single Precision: ecc 256 384 521 rsa/dh 2048 3072 4096 asm sp_x86_64.c  
+> wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)  
 
 |:-|:-:|
 |RNG                        |235 MiB took 1.011 seconds, 232.456 MiB/s Cycles per byte =  10.24|
