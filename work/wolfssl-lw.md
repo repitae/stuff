@@ -4,7 +4,7 @@
 > wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)  
 
 | ALG | MiB | CPB |
-|:---|:---:|:---:|
+|:---:|:---:|:---:|
 | RNG                             |   155 MiB took 1.029 seconds |     150.689 MiB/s |
 | AES-128-CBC-enc                 |   420 MiB took 1.011 seconds |     415.308 MiB/s |
 | AES-128-CBC-dec                 |   450 MiB took 1.004 seconds |     448.390 MiB/s |
