@@ -319,8 +319,8 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 
 ```
 Make some tests:
-1. without AES-NI and without SP-MATH = LOW
-2. with AES-NI and without SP-MATH = MID
+1. wout AES-NI and wout SP-MATH = LOW
+2. with AES-NI and wout SP-MATH = MID
 3. with AES-NI and with SP-MATH = BEST
 ```
 
