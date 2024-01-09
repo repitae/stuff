@@ -57,26 +57,15 @@ make clean
 make check && sudo make install
 ln -sf /app/pcre2-10.42 /app/pcre2
 ```
-### OpenSSL-3.0.12
-```sh
-cd /app/src/
-curl -LO https://www.openssl.org/source/openssl-3.0.12.tar.gz
-[[ $? -eq 0 ]] && tar zxf ./openssl-3.0.12.tar.gz
-cd ./openssl-3.0.12
-make clean
-./config --prefix=/app/openssl-3.0.12 no-deprecated no-legacy no-ssl
-[[ $? -eq 0 ]] && make -j $(nproc)
-make test && sudo make install
-```
 
-### OpenSSL-3.1.4
+### OpenSSL-3.1.4-QUIC
 ```sh
 cd /app/src/
-curl -LO https://www.openssl.org/source/openssl-3.1.4.tar.gz
-[[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4.tar.gz
-cd ./openssl-3.1.4
+curl -LO https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.4-quic1.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4-quic1.tar.gz
+cd ./openssl-3.1.4-quic1
 make clean
-./config --prefix=/app/openssl-3.1.4 no-deprecated no-legacy no-ssl
+./config --prefix=/app/openssl-3.1.4-quic1 no-deprecated no-legacy no-ssl
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ```
@@ -88,7 +77,7 @@ curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
 cd ./openssl-3.2.0
 make clean
-./config --prefix=/app/openssl-3.2.0 no-deprecated no-legacy no-ssl
+./config --prefix=/app/openssl-3.2.0 no-deprecated no-legacy no-ssl enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ```
@@ -235,7 +224,7 @@ ln -sf /app/haproxy-2.8.5-sp /app/haproxy-sp
 [[ -d '/app/haproxy-2.8.5-sp/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-sp/{etc,log,run,ssl}
 ```
 
-### HaProxy-2.8.5-OpenSSL-3.0.12
+### HaProxy-2.8.5-OpenSSL-3.1.4-QUIC
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -257,42 +246,13 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/openssl-3.0.12/lib \
-  SSL_INC=/app/openssl-3.0.12/include
-make install PREFIX=/app/haproxy-2.8.5-openssl-3.0.12
-ldd /app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy
-/app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy -vv
-[[ -d '/app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}
-```
-
-### HaProxy-2.8.5-OpenSSL-3.1.4
-```sh
-cd /app/src/haproxy-2.8.5
-make clean
-# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
-make -j $(nproc) TARGET=linux-glibc \
-  USE_CRYPT_H=1 \
-  USE_ENGINE=1 \
-  USE_LIBCRYPT=1 \
-  USE_LUA=1 \
-  USE_NS=1 \
-  USE_OPENSSL=1 \
-  USE_PCRE=1 \
-  USE_PCRE_JIT=1 \
-  USE_STATIC_PCRE=1 \
-  USE_QUIC=1 \
-  USE_SYSTEMD=1 \
-  USE_TFO=1 \
-  USE_THREAD=1 \
-  PCREDIR=/app/pcre \
-  LUA_LIB=/app/lua/lib \
-  LUA_INC=/app/lua/include \
-  SSL_LIB=/app/openssl-3.1.4/lib \
-  SSL_INC=/app/openssl-3.1.4/include
+  SSL_LIB=/app/openssl-3.1.4-quic1/lib \
+  SSL_INC=/app/openssl-3.1.4-quic1/include \
+  ADDLIB='-Wl,-rpath=/app/openssl-3.1.4-quic1/lib'
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4
-ldd /app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy
-/app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy -vv
-[[ -d '/app/haproxy-2.8.5-openssl-3.1.4/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.1.4/{etc,log,run,ssl}
+ldd /app/haproxy-2.8.5-openssl-3.1.4-quic1/sbin/haproxy
+/app/haproxy-2.8.5-openssl-3.1.4-quic1/sbin/haproxy -vv
+[[ -d '/app/haproxy-2.8.5-openssl-3.1.4-quic1/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.1.4-quic1/{etc,log,run,ssl}
 ```
 
 ### HaProxy-2.8.5-OpenSSL-3.2.0
@@ -319,6 +279,7 @@ make -j $(nproc) TARGET=linux-glibc \
   LUA_INC=/app/lua/include \
   SSL_LIB=/app/openssl-3.2.0/lib \
   SSL_INC=/app/openssl-3.2.0/include \
+  ADDLIB='-Wl,-rpath=/app/openssl-3.2.0/lib'
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.2.0
 ldd /app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy
 /app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy -vv
