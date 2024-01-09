@@ -60,6 +60,27 @@ make check && sudo make install
 ln -sf /app/pcre2-10.42 /app/pcre2
 ```
 
+### OpenSSL-3.0.12
+```sh
+cd /app/src/
+curl -LO https://www.openssl.org/source/openssl-3.0.12.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./openssl-3.0.12.tar.gz
+```
+
+### OpenSSL-3.1.4
+```sh
+cd /app/src/
+curl -LO https://www.openssl.org/source/openssl-3.1.4.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4.tar.gz
+```
+
+### OpenSSL-3.2.0
+```sh
+cd /app/src/
+curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
+```
+
 ### WolfSSL-5.6.6
 ```sh
 cd /app/src/
