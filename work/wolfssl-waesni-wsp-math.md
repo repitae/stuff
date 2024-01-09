@@ -3,7 +3,7 @@
 > Math:   Multi-Precision: Wolf(SP) word-size=64 bits=8192 sp_int.c 
 > wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each) 
 
-| TEST | MiB | CPB |
+| ALG | MiB | CPB |
 |:---|:---:|---:|
 | RNG               | 235 MiB took 1.013 sec   | 231.879 MiB/s Cycles per byte = 10.27   |
 | AES-128-CBC-enc   | 2195 MiB took 1.000 sec  | 2194.641 MiB/s Cycles per byte = 1.08   |
@@ -45,24 +45,24 @@
 | HMAC-SHA512       | 875 MiB took 1.000 sec   | 874.848 MiB/s Cycles per byte = 2.72    |
 | PBKDF2            | 65 KiB took 1.000 sec    | 64.675 KiB/s Cycles per byte = 37688.24 |
 
-| TEST | OPS | CPB |
-|:---:|:---:|:---:|
+| ALG | OPS | CPB |
+|:---|:---:|:---:|
 | RSA 2048 key gen | 11 ops took 1.071 sec    | avg 97.361 ms, 10.271 ops/sec |
 | RSA 2048 public  | 36200 ops took 1.000 sec | avg 0.028 ms, 36196.772 ops/sec |
 | RSA 2048 private | 700 ops took 1.060 sec   | avg 1.515 ms, 660.223 ops/sec |
 | DH 2048  key gen | 2970 ops took 1.000 sec  | avg 0.337 ms, 2969.550 ops/sec |
 | DH 2048  agree   | 1500 ops took 1.045 sec  | avg 0.697 ms, 1435.660 ops/sec |
 
-| TEST | OPS | CPB |
-|:---:|:---:|:---:|
+| ALG | OPS | CPB |
+|:---|:---:|:---:|
 | ECC [SECP256R1] 256 key gen  | 3400 ops took 1.021 sec | 3328.469 ops/sec |
 | ECDHE [SECP256R1] 256 agree  | 3400 ops took 1.019 sec | 3335.033 ops/sec |
 | ECDSA [SECP256R1] 256 sign   | 3300 ops took 1.027 sec | 3214.745 ops/sec |
 | ECDSA [SECP256R1] 256 verify | 5000 ops took 1.011 sec | 4944.464 ops/sec |
 
-| TEST | OPS | CPB |
-|:---:|:---:|:---:|
+| ALG | OPS | CPB |
+|:---|:---:|:---:|
 | CURVE 25519 key gen | 49929 ops took 1.000 sec | 49928.143 ops/sec |
 | CURVE 25519 agree   | 51500 ops took 1.000 sec | 51491.443 ops/sec |
 
-> Benchmark complete
+> Benchmark complete 
