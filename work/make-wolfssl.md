@@ -279,7 +279,6 @@ ldd /app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy
 [[ -d '/app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}
 ```
 
-
 ### HaProxy-2.8.5 OpenSSL-3.1.4
 ```sh
 cd /app/src/haproxy-2.8.5
