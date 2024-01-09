@@ -171,7 +171,7 @@ curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./haproxy-2.9.1.tar.gz
 ```
 
-### HaProxy-2.8.5 WolfSSL-5.6.6-MP-Math
+### HaProxy-2.8.5-WolfSSL-5.6.6-MP-Math
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -203,7 +203,7 @@ ln -sf /app/haproxy-2.8.5-mp /app/haproxy-mp
 [[ -d '/app/haproxy-mp/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-mp/{etc,log,run,ssl}
 ```
 
-### HaProxy-2.8.5 WolfSSL-5.6.6-SP-Math
+### HaProxy-2.8.5-WolfSSL-5.6.6-SP-Math
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -235,7 +235,7 @@ ln -sf /app/haproxy-2.8.5-sp /app/haproxy-sp
 [[ -d '/app/haproxy-2.8.5-sp/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-sp/{etc,log,run,ssl}
 ```
 
-### HaProxy-2.8.5 OpenSSL-3.0.12
+### HaProxy-2.8.5-OpenSSL-3.0.12
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -265,7 +265,7 @@ ldd /app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy
 [[ -d '/app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}
 ```
 
-### HaProxy-2.8.5 OpenSSL-3.1.4
+### HaProxy-2.8.5-OpenSSL-3.1.4
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -295,7 +295,7 @@ ldd /app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy
 [[ -d '/app/haproxy-2.8.5-openssl-3.1.4/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.1.4/{etc,log,run,ssl}
 ```
 
-### HaProxy-2.8.5 OpenSSL-3.2.0
+### HaProxy-2.8.5-OpenSSL-3.2.0
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
