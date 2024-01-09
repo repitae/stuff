@@ -9,7 +9,7 @@ sudo apt-get install build-essential
 ```sh
 cd /app/src/
 curl -LO http://www.lua.org/ftp/lua-5.4.6.tar.gz
-tar zxf ./lua-5.4.6.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./lua-5.4.6.tar.gz
 cd lua-5.4.6
 make clean
 make -j $(nproc) all test
@@ -21,7 +21,7 @@ sudo ln -sf /app/lua-5.4.6 /app/lua
 ```sh
 cd /app/src/
 curl -LO https://github.com/LuaJIT/LuaJIT/archive/refs/tags/v2.1.ROLLING.tar.gz 
-[[ $? -eq 0 ]] && tar xvf ./v2.1.ROLLING.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./v2.1.ROLLING.tar.gz
 cd ./LuaJIT-2.1.ROLLING
 make clean
 make -j $(nproc) PREFIX=/app/LuaJIT-2.1
@@ -33,7 +33,7 @@ ln -sf /app/LuaJIT-2.1 /app/luajit
 ```sh
 cd /app/src/
 curl -LO https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download
-[[ $? -eq 0 ]] && tar xvf ./pcre-8.45.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./pcre-8.45.tar.gz
 cd ./pcre-8.45
 make clean
 ./configure --prefix=/app/pcre-8.45 \
@@ -48,7 +48,7 @@ ln -sf /app/pcre-8.45 /app/pcre
 ```sh
 cd /app/src/
 curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
-[[ $? -eq 0 ]] && tar xvf ./pcre2-10.42.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./pcre2-10.42.tar.gz
 cd ./pcre2-10.42
 make clean
 ./configure --prefix=/app/pcre2-10.42 \
@@ -59,7 +59,6 @@ make clean
 make check && sudo make install
 ln -sf /app/pcre2-10.42 /app/pcre2
 ```
-
 ### OpenSSL-3.0.12
 ```sh
 cd /app/src/
@@ -86,6 +85,20 @@ curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 cd /app/src/
 curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolfssl-5.6.6.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
+```
+
+### HaProxy-2.8.5
+```sh
+cd /app/src/
+curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./haproxy-2.8.5.tar.gz
+```
+
+### HaProxy-2.9.1
+```sh
+cd /app/src/
+curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
+[[ $? -eq 0 ]] && tar zxf ./haproxy-2.9.1.tar.gz
 ```
 
 ### WolfSSL-5.6.6 (Default)
@@ -159,21 +172,6 @@ make test && sudo make install
 /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
-
-### HaProxy-2.8.5
-```sh
-cd /app/src/
-curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
-[[ $? -eq 0 ]] && tar xvf ./haproxy-2.8.5.tar.gz
-```
-
-### HaProxy-2.9.1
-```sh
-cd /app/src/
-curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
-[[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
-```
-
 ### HaProxy-2.8.5 (WolfSSL Default Math)
 ```sh
 cd /app/src/haproxy-2.8.5
