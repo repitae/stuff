@@ -2,7 +2,8 @@
 > Math: Single Precision: ecc 256 384 521 rsa/dh 2048 3072 4096 asm sp_x86_64.c 
 > wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each) 
 
-|:-|:-:|-:| 
+|:-|:-:|-:|
+
 | RNG | 235 MiB took 1.011 seconds, | 232.456 MiB/s Cycles per byte = 10.24 | 
 | AES-128-CBC-enc | 2210 MiB took 1.002 seconds, | 2205.383 MiB/s Cycles per byte = 1.08 | 
 | AES-128-CBC-dec | 14675 MiB took 1.000 seconds, | 14672.362 MiB/s Cycles per byte = 0.16 | 
