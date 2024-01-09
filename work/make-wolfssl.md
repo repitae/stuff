@@ -256,8 +256,8 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/wolfssl/lib \
-  SSL_INC=/app/wolfssl/include
+  SSL_LIB=/app/openssl-3.0.12/lib \
+  SSL_INC=/app/openssl-3.0.12/include
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.0.12
 ldd /app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy
 /app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy -vv
@@ -286,8 +286,8 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/wolfssl/lib \
-  SSL_INC=/app/wolfssl/include \
+  SSL_LIB=/app/openssl-3.1.4/lib \
+  SSL_INC=/app/openssl-3.1.4/include \
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4
 ldd /app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy
 /app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy -vv
@@ -316,8 +316,8 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/wolfssl/lib \
-  SSL_INC=/app/wolfssl/include \
+  SSL_LIB=/app/openssl-3.2.0/lib \
+  SSL_INC=/app/openssl-3.2.0/include \
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.2.0
 ldd /app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy
 /app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy -vv
