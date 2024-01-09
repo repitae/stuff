@@ -320,15 +320,10 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 ```sh
 ```
 
+> wolfSSL version 5.6.6 wAESNI wSP-MATH
+> Math:   Single Precision: ecc 256 384 521 rsa/dh 2048 3072 4096 asm sp_x86_64.c
+> wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)
 
----
-$ /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
----
- wolfSSL version 5.6.6 wAESNI wSP-MATH
----
-Math:   Single Precision: ecc 256 384 521 rsa/dh 2048 3072 4096 asm sp_x86_64.c
-wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)
----
 |:-|:-:|
 |RNG                        |235 MiB took 1.011 seconds, 232.456 MiB/s Cycles per byte =  10.24|
 |AES-128-CBC-enc           |2210 MiB took 1.002 seconds, 2205.383 MiB/s Cycles per byte =   1.08|
@@ -380,4 +375,5 @@ wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)
 |ECDSA [      SECP256R1]   |256   verify     27600 ops took 1.001 sec, avg 0.036 ms, 27561.454 ops/sec|
 |CURVE  25519  key gen     |49427 ops took 1.000 sec, avg 0.020 ms, 49426.741 ops/sec|
 |CURVE  25519    agree     |50900 ops took 1.000 sec, avg 0.020 ms, 50887.164 ops/sec|
-Benchmark complete
+
+> Benchmark complete
