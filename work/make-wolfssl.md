@@ -316,3 +316,20 @@ sudo systemctl status haproxy
 sudo systemctl list-units --failed
 sudo journalctl --flush --rotate --vacuum-time=1m
 ```
+
+```sh
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6-lw/wolfcrypt/benchmark/benchmark
+
+openssl speed -bytes 10485767 -seconds 1 sha256 sha512
+openssl speed -bytes 10485767 -seconds 1 -evp sha256 sha512
+
+openssl speed -bytes 10485767 -seconds 1 aes-128-cbc aes-256-cbc
+openssl speed -bytes 10485767 -seconds 1 -evp aes-128-cbc aes-256-cbc
+
+openssl speed -bytes 10485767 -seconds 1 -evp rsa2048
+openssl speed -bytes 10485767 -seconds 1 -evp rsa2048
+
+openssl s_time -connect 192.168.1.112:443
+```
