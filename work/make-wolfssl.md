@@ -76,7 +76,7 @@ curl -LO https://www.openssl.org/source/openssl-3.1.4.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4.tar.gz
 cd ./openssl-3.1.4
 make clean
-./config --prefix=/app/openssl-3.1.4
+./config --prefix=/app/openssl-3.1.4 no-deprecated no-legacy no-ssl
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ```
@@ -88,7 +88,7 @@ curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
 cd ./openssl-3.2.0
 make clean
-./config --prefix=/app/openssl-3.2.0
+./config --prefix=/app/openssl-3.2.0 no-deprecated no-legacy no-ssl
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ```
@@ -185,7 +185,7 @@ make test && sudo make install
 /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
-### HaProxy-2.8.5 (WolfSSL Default Math)
+### HaProxy-2.8.5 WolfSSL-5.6.6-Math-All
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -217,7 +217,7 @@ ln -sf /app/haproxy-2.8.5-lw /app/haproxy-lw
 [[ -d '/app/haproxy-lw/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-lw/{etc,log,run,ssl}
 ```
 
-### HaProxy-2.8.5 (WolfSSL SP Math)
+### HaProxy-2.8.5 WolfSSL-5.6.6-SP-Math
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -247,6 +247,97 @@ ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
 ln -sf /app/haproxy-2.8.5 /app/haproxy
 [[ -d '/app/haproxy-2.8.5/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5/{etc,log,run,ssl}
+```
+
+### HaProxy-2.8.5 OpenSSL-3.0.12
+```sh
+cd /app/src/haproxy-2.8.5
+make clean
+# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
+make -j $(nproc) TARGET=linux-glibc \
+  USE_CRYPT_H=1 \
+  USE_ENGINE=1 \
+  USE_LIBCRYPT=1 \
+  USE_LUA=1 \
+  USE_NS=1 \
+  USE_OPENSSL_WOLFSSL=1 \
+  USE_PCRE=1 \
+  USE_PCRE_JIT=1 \
+  USE_STATIC_PCRE=1 \
+  USE_QUIC=1 \
+  USE_SYSTEMD=1 \
+  USE_TFO=1 \
+  USE_THREAD=1 \
+  PCREDIR=/app/pcre \
+  LUA_LIB=/app/lua/lib \
+  LUA_INC=/app/lua/include \
+  SSL_LIB=/app/wolfssl/lib \
+  SSL_INC=/app/wolfssl/include
+make install PREFIX=/app/haproxy-2.8.5-openssl-3.0.12
+ldd /app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy
+/app/haproxy-2.8.5-openssl-3.0.12/sbin/haproxy -vv
+[[ -d '/app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.0.12/{etc,log,run,ssl}
+```
+
+
+### HaProxy-2.8.5 OpenSSL-3.1.4
+```sh
+cd /app/src/haproxy-2.8.5
+make clean
+# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
+make -j $(nproc) TARGET=linux-glibc \
+  USE_CRYPT_H=1 \
+  USE_ENGINE=1 \
+  USE_LIBCRYPT=1 \
+  USE_LUA=1 \
+  USE_NS=1 \
+  USE_OPENSSL_WOLFSSL=1 \
+  USE_PCRE=1 \
+  USE_PCRE_JIT=1 \
+  USE_STATIC_PCRE=1 \
+  USE_QUIC=1 \
+  USE_SYSTEMD=1 \
+  USE_TFO=1 \
+  USE_THREAD=1 \
+  PCREDIR=/app/pcre \
+  LUA_LIB=/app/lua/lib \
+  LUA_INC=/app/lua/include \
+  SSL_LIB=/app/wolfssl/lib \
+  SSL_INC=/app/wolfssl/include \
+make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4
+ldd /app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy
+/app/haproxy-2.8.5-openssl-3.1.4/sbin/haproxy -vv
+[[ -d '/app/haproxy-2.8.5-openssl-3.1.4/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.1.4/{etc,log,run,ssl}
+```
+
+### HaProxy-2.8.5 OpenSSL-3.2.0
+```sh
+cd /app/src/haproxy-2.8.5
+make clean
+# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
+make -j $(nproc) TARGET=linux-glibc \
+  USE_CRYPT_H=1 \
+  USE_ENGINE=1 \
+  USE_LIBCRYPT=1 \
+  USE_LUA=1 \
+  USE_NS=1 \
+  USE_OPENSSL_WOLFSSL=1 \
+  USE_PCRE=1 \
+  USE_PCRE_JIT=1 \
+  USE_STATIC_PCRE=1 \
+  USE_QUIC=1 \
+  USE_SYSTEMD=1 \
+  USE_TFO=1 \
+  USE_THREAD=1 \
+  PCREDIR=/app/pcre \
+  LUA_LIB=/app/lua/lib \
+  LUA_INC=/app/lua/include \
+  SSL_LIB=/app/wolfssl/lib \
+  SSL_INC=/app/wolfssl/include \
+make install PREFIX=/app/haproxy-2.8.5-openssl-3.2.0
+ldd /app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy
+/app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy -vv
+[[ -d '/app/haproxy-2.8.5-openssl-3.2.0/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.2.0/{etc,log,run,ssl}
 ```
 
 ### HaProxy-2.9.1 (Default)
