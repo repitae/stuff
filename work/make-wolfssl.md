@@ -5,7 +5,7 @@ sudo apt-get install build-essential
 [[ -d /app/src ]] | |  mkdir -p /app/src
 ```
 
-## Lua-5.4.6
+### Lua-5.4.6
 ```sh
 cd /app/src/
 curl -LO http://www.lua.org/ftp/lua-5.4.6.tar.gz
@@ -17,7 +17,7 @@ sudo make install INSTALL_TOP=/app/lua-5.4.6
 sudo ln -sf /app/lua-5.4.6 /app/lua
 ```
 
-## LuaJIT-2.1
+### LuaJIT-2.1
 ```sh
 cd /app/src/
 curl -LO https://github.com/LuaJIT/LuaJIT/archive/refs/tags/v2.1.ROLLING.tar.gz 
@@ -29,7 +29,7 @@ sudo make install PREFIX=/app/LuaJIT-2.1
 ln -sf /app/LuaJIT-2.1 /app/luajit
 ```
 
-## PCRE-8.45
+### PCRE-8.45
 ```sh
 cd /app/src/
 curl -LO https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download
@@ -44,7 +44,7 @@ make check && sudo make install
 ln -sf /app/pcre-8.45 /app/pcre
 ```
 
-## PCRE2-10.42
+### PCRE2-10.42
 ```sh
 cd /app/src/
 curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
@@ -60,17 +60,14 @@ make check && sudo make install
 ln -sf /app/pcre2-10.42 /app/pcre2
 ```
 
-
-
-
-## WolfSSL-5.6.6
+### WolfSSL-5.6.6
 ```sh
 cd /app/src/
 curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolfssl-5.6.6.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
 ```
 
-## WolfSSL-5.6.6 (Default)
+### WolfSSL-5.6.6 (Default)
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
@@ -84,7 +81,7 @@ make test && sudo make install
 ln -sf /app/wolfssl-5.6.6-lw /app/wolfssl-lw
 ```
 
-## WolfSSL-5.6.6 (Math All)
+### WolfSSL-5.6.6 (Math All)
 ```sh
 cd /app/src/wolfssl-5.6.6-mp
 make clean
@@ -113,7 +110,7 @@ make test && sudo make install
 ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```
 
-## WolfSSL-5.6.6 (Math SP)
+### WolfSSL-5.6.6 (Math SP)
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
@@ -142,21 +139,21 @@ make test && sudo make install
 ln -sf /app/wolfssl-5.6.6 /app/wolfssl
 ```
 
-## HaProxy-2.8.5
+### HaProxy-2.8.5
 ```sh
 cd /app/src/
 curl -LO https://www.haproxy.org/download/2.8/src/haproxy-2.8.5.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.8.5.tar.gz
 ```
 
-## HaProxy-2.9.1
+### HaProxy-2.9.1
 ```sh
 cd /app/src/
 curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar xvf ./haproxy-2.9.1.tar.gz
 ```
 
-## HaProxy-2.8.5 (WolfSSL Default Math)
+### HaProxy-2.8.5 (WolfSSL Default Math)
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -188,7 +185,7 @@ ln -sf /app/haproxy-2.8.5-lw /app/haproxy-lw
 [[ -d '/app/haproxy-lw/{etc,log,run,ssl}' ]] | |  mkdir -p /app/haproxy-lw/{etc,log,run,ssl}
 ```
 
-## HaProxy-2.8.5 (WolfSSL SP Math)
+### HaProxy-2.8.5 (WolfSSL SP Math)
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -220,7 +217,7 @@ ln -sf /app/haproxy-2.8.5 /app/haproxy
 [[ -d '/app/haproxy/{etc,log,run,ssl}' ]] | |  mkdir -p /app/haproxy/{etc,log,run,ssl}
 ```
 
-## HaProxy-2.9.1 (Default)
+### HaProxy-2.9.1 (Default)
 ```sh
 cd /app/src/haproxy-2.9.1
 make clean
@@ -250,13 +247,14 @@ ldd /app/haproxy-2.9.1/sbin/haproxy
 /app/haproxy-2.9.1/sbin/haproxy -vv
 [[ -d '/app/haproxy/{etc,log,run,ssl}' ]] | |  mkdir -p /app/haproxy/{etc,log,run,ssl}
 ```
-## User
+
+### User
 ```sh
 useradd -M -U -r -s `which nologin` -d /app/haproxy haproxy
 chown -R haproxy:haproxy /app/haproxy*
 ```
 
-## Service
+### Service
 ```sh
 cat << EOF |  sudo tee /etc/systemd/system/haproxy.service
 [Unit]
@@ -285,7 +283,7 @@ EOF
 sudo chmod 644 /etc/systemd/system/haproxy.service
 ```
 
-## Configs
+### Configs
 ```sh
 cat << EOF |  sudo tee /app/haproxy/etc/default
 CONFIG=/app/haproxy/etc/haproxy.cfg
@@ -331,7 +329,7 @@ backend srv
 EOF
 /app/haproxy/sbin/haproxy -c -f /app/haproxy/etc/haproxy.cfg
 ```
-## Systemd
+### Systemd
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable haproxy
@@ -341,7 +339,7 @@ sudo systemctl list-units --failed
 sudo journalctl --flush --rotate --vacuum-time=1m
 ```
 
-## Benchmarks
+### Remarks
 ```sh
 /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
 /app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
