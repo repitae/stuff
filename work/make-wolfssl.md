@@ -52,8 +52,6 @@ curl -LO https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcr
 cd ./pcre2-10.42
 make clean
 ./configure --prefix=/app/pcre2-10.42 \
-  --enable-pcre2-16 \
-  --enable-pcre2-32 \
   --enable-jit
 [[ $? -eq 0 ]] && make -j $(nproc)
 make check && sudo make install
