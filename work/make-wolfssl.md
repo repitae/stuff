@@ -113,24 +113,9 @@ cd /app/src/
 curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./haproxy-2.9.1.tar.gz
 ```
-
-### WolfSSL-5.6.6 (Default)
-```sh
-cd /app/src/wolfssl-5.6.6
-make clean
-./configure --prefix=/app/wolfssl-5.6.6-lw --enable-haproxy --enable-quic \
-  --enable-examples \
-  --enable-crypttests \
-  --enable-crypttests-libs
-[[ $? -eq 0 ]] && make -j $(nproc)
-make test && sudo make install
-/app/src/wolfssl-5.6.6-lw/wolfcrypt/benchmark/benchmark
-ln -sf /app/wolfssl-5.6.6-lw /app/wolfssl-lw
-```
-
 ### WolfSSL-5.6.6 (Math All)
 ```sh
-cd /app/src/wolfssl-5.6.6-mp
+cd /app/src/wolfssl-5.6.6
 make clean
 ./configure --prefix=/app/wolfssl-5.6.6-mp \
   --enable-aesni \
@@ -161,7 +146,7 @@ ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
-./configure --prefix=/app/wolfssl-5.6.6 \
+./configure --prefix=/app/wolfssl-5.6.6-sp \
   --enable-aesni \
   --enable-alpn \
   --enable-earlydata \
@@ -182,10 +167,10 @@ make clean
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
-ln -sf /app/wolfssl-5.6.6 /app/wolfssl
+/app/src/wolfssl-5.6.6-sp/wolfcrypt/benchmark/benchmark
+ln -sf /app/wolfssl-5.6.6-sp /app/wolfssl-sp
 ```
-### HaProxy-2.8.5 WolfSSL-5.6.6-Math-All
+### HaProxy-2.8.5 WolfSSL-5.6.6-MP-Math
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -210,11 +195,11 @@ make -j $(nproc) TARGET=linux-glibc \
   SSL_LIB=/app/wolfssl-lw/lib \
   SSL_INC=/app/wolfssl-lw/include \
   ADDLIB='-Wl,-rpath=/app/wolfssl-lw/lib'
-make install PREFIX=/app/haproxy-2.8.5-lw
-ldd /app/haproxy-2.8.5-lw/sbin/haproxy
-/app/haproxy-2.8.5-lw/sbin/haproxy -vv
-ln -sf /app/haproxy-2.8.5-lw /app/haproxy-lw
-[[ -d '/app/haproxy-lw/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-lw/{etc,log,run,ssl}
+make install PREFIX=/app/haproxy-2.8.5-mp
+ldd /app/haproxy-2.8.5-mp/sbin/haproxy
+/app/haproxy-2.8.5-mp/sbin/haproxy -vv
+ln -sf /app/haproxy-2.8.5-mp /app/haproxy-mp
+[[ -d '/app/haproxy-mp/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-mp/{etc,log,run,ssl}
 ```
 
 ### HaProxy-2.8.5 WolfSSL-5.6.6-SP-Math
@@ -242,11 +227,11 @@ make -j $(nproc) TARGET=linux-glibc \
   SSL_LIB=/app/wolfssl/lib \
   SSL_INC=/app/wolfssl/include \
   ADDLIB='-Wl,-rpath=/app/wolfssl/lib'
-make install PREFIX=/app/haproxy-2.8.5
-ldd /app/haproxy-2.8.5/sbin/haproxy
+make install PREFIX=/app/haproxy-2.8.5-sp
+ldd /app/haproxy-2.8.5-sp/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
-ln -sf /app/haproxy-2.8.5 /app/haproxy
-[[ -d '/app/haproxy-2.8.5/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5/{etc,log,run,ssl}
+ln -sf /app/haproxy-2.8.5-sp /app/haproxy-sp
+[[ -d '/app/haproxy-2.8.5-sp/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-sp/{etc,log,run,ssl}
 ```
 
 ### HaProxy-2.8.5 OpenSSL-3.0.12
