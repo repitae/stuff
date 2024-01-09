@@ -1,8 +1,10 @@
-| # /app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark                                           |
+> /app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
+> wolfSSL version 5.6.6 wAESNI woSP-MATCH
+> Math:   Multi-Precision: Wolf(SP) word-size=64 bits=8192 sp_int.c
+> wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)
+
+| AES | Sec | MiB |
 |---|---|---|
-|  wolfSSL version 5.6.6 wAESNI woSP-MATCH                                                            |
-| Math:   Multi-Precision: Wolf(SP) word-size=64 bits=8192 sp_int.c                                   |
-| wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)                                         |
 | RNG                        235 MiB took 1.013 seconds,  231.879 MiB/s Cycles per byte =  10.27      |
 | AES-128-CBC-enc           2195 MiB took 1.000 seconds, 2194.641 MiB/s Cycles per byte =   1.08      |
 | AES-128-CBC-dec          14560 MiB took 1.000 seconds, 14559.899 MiB/s Cycles per byte =   0.16     |
