@@ -318,7 +318,7 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 ```
 
 ```
-Make some tests:
+some tests:
 1. wout AES-NI and wout SP-MATH = LOW
 2. with AES-NI and wout SP-MATH = MID
 3. with AES-NI and with SP-MATH = BEST
