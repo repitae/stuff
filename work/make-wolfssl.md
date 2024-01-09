@@ -62,6 +62,11 @@ ln -sf /app/pcre2-10.42 /app/pcre2
 cd /app/src/
 curl -LO https://www.openssl.org/source/openssl-3.0.12.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.0.12.tar.gz
+cd ./openssl-3.0.12
+make clean
+./config --prefix=/app/openssl-3.0.12
+[[ $? -eq 0 ]] && make -j $(nproc)
+make test && sudo make install
 ```
 
 ### OpenSSL-3.1.4
@@ -69,6 +74,11 @@ curl -LO https://www.openssl.org/source/openssl-3.0.12.tar.gz
 cd /app/src/
 curl -LO https://www.openssl.org/source/openssl-3.1.4.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4.tar.gz
+cd ./openssl-3.1.4
+make clean
+./config --prefix=/app/openssl-3.1.4
+[[ $? -eq 0 ]] && make -j $(nproc)
+make test && sudo make install
 ```
 
 ### OpenSSL-3.2.0
@@ -76,6 +86,11 @@ curl -LO https://www.openssl.org/source/openssl-3.1.4.tar.gz
 cd /app/src/
 curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
+cd ./openssl-3.2.0
+make clean
+./config --prefix=/app/openssl-3.2.0
+[[ $? -eq 0 ]] && make -j $(nproc)
+make test && sudo make install
 ```
 
 ### WolfSSL-5.6.6
