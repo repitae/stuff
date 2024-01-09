@@ -64,7 +64,7 @@ curl -LO https://www.openssl.org/source/openssl-3.0.12.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.0.12.tar.gz
 cd ./openssl-3.0.12
 make clean
-./config --prefix=/app/openssl-3.0.12
+./config --prefix=/app/openssl-3.0.12 no-deprecated no-legacy no-ssl
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ```
