@@ -318,14 +318,14 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 ```
 
 ```
-**some tests:**
+some tests:
 1. wout AES-NI and wout SP-MATH = LOW
 2. with AES-NI and wout SP-MATH = MID
 3. with AES-NI and with SP-MATH = BEST
 ```
 
 > /app/src/wolfssl-5.6.6-lw/wolfcrypt/benchmark/benchmark  
-> wolfSSL version 5.6.6 without AESNI without SP-MATH  
+> wolfSSL version 5.6.6 without AES-NI without SP-MATH  
 > Math:   Multi-Precision: Wolf(SP) word-size=64 bits=8192 sp_int.c  
 > wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)  
 
@@ -385,7 +385,7 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 > Benchmark complete  
 
 > /app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark  
-> wolfSSL version 5.6.6 with AESNI without SP-MATCH  
+> wolfSSL version 5.6.6 with AES-NI without SP-MATCH  
 > Math:   Multi-Precision: Wolf(SP) word-size=64 bits=8192 sp_int.c  
 > wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)  
 
@@ -445,7 +445,7 @@ sudo journalctl --flush --rotate --vacuum-time=1m
 > Benchmark complete 
 
 > /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark  
-> wolfSSL version 5.6.6 with AESNI with SP-MATH  
+> wolfSSL version 5.6.6 with AES-NI with SP-MATH  
 > Math:   Single Precision: ecc 256 384 521 rsa/dh 2048 3072 4096 asm sp_x86_64.c  
 > wolfCrypt Benchmark (block bytes 1048576, min 1.0 sec each)  
 
