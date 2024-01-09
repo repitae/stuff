@@ -2,7 +2,7 @@
 ```sh
 apt-get update
 sudo apt-get install build-essential
-[[ -d /app/src ]] | |  mkdir -p /app/src
+[[ -d /app/src ]] ||  mkdir -p /app/src
 ```
 
 ### Lua-5.4.6
@@ -182,7 +182,7 @@ make install PREFIX=/app/haproxy-2.8.5-lw
 ldd /app/haproxy-2.8.5-lw/sbin/haproxy
 /app/haproxy-2.8.5-lw/sbin/haproxy -vv
 ln -sf /app/haproxy-2.8.5-lw /app/haproxy-lw
-[[ -d '/app/haproxy-lw/{etc,log,run,ssl}' ]] | |  mkdir -p /app/haproxy-lw/{etc,log,run,ssl}
+[[ -d '/app/haproxy-lw/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-lw/{etc,log,run,ssl}
 ```
 
 ### HaProxy-2.8.5 (WolfSSL SP Math)
@@ -214,7 +214,7 @@ make install PREFIX=/app/haproxy-2.8.5
 ldd /app/haproxy-2.8.5/sbin/haproxy
 /app/haproxy-2.8.5/sbin/haproxy -vv
 ln -sf /app/haproxy-2.8.5 /app/haproxy
-[[ -d '/app/haproxy/{etc,log,run,ssl}' ]] | |  mkdir -p /app/haproxy/{etc,log,run,ssl}
+[[ -d '/app/haproxy-2.8.5/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5/{etc,log,run,ssl}
 ```
 
 ### HaProxy-2.9.1 (Default)
@@ -245,7 +245,7 @@ make -j $(nproc) TARGET=linux-glibc \
 make install PREFIX=/app/haproxy-2.9.1
 ldd /app/haproxy-2.9.1/sbin/haproxy
 /app/haproxy-2.9.1/sbin/haproxy -vv
-[[ -d '/app/haproxy/{etc,log,run,ssl}' ]] | |  mkdir -p /app/haproxy/{etc,log,run,ssl}
+[[ -d '/app/haproxy-2.9.1/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.9.1/{etc,log,run,ssl}
 ```
 
 ### User
