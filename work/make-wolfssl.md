@@ -228,7 +228,6 @@ ln -sf /app/haproxy-2.8.5-sp /app/haproxy-sp
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
-# make -j $(nproc) CPU=generic ARCH=x86_64 TARGET=linux-glibc \
 make -j $(nproc) TARGET=linux-glibc \
   USE_CRYPT_H=1 \
   USE_ENGINE=1 \
@@ -246,10 +245,12 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/openssl-3.1.4-quic1/lib \
+  SSL_LIB=/app/openssl-3.1.4-quic1/lib64 \
   SSL_INC=/app/openssl-3.1.4-quic1/include \
-  ADDLIB='-Wl,-rpath=/app/openssl-3.1.4-quic1/lib'
-make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4
+  ADDLIB="-Wl,-rpath=/app/openssl-3.1.4-quic1/lib"
+  # LDFLAGS="-Wl,-V,-rpath,/app/openssl-3.1.4-quic1/lib"
+make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-quic1
+#make uninstall PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-quic1
 ldd /app/haproxy-2.8.5-openssl-3.1.4-quic1/sbin/haproxy
 /app/haproxy-2.8.5-openssl-3.1.4-quic1/sbin/haproxy -vv
 [[ -d '/app/haproxy-2.8.5-openssl-3.1.4-quic1/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.1.4-quic1/{etc,log,run,ssl}
