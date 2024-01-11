@@ -1,5 +1,5 @@
 ### статическая cookie:
-> так называемая статическая балансировочная cookie  
+> так называемая _статическая_ **балансировочная** cookie  
 >> балансер сгенерит header в ответ клиенту: "Set-Cookie: SERVER_ID=cookie-s1"  
 >> клиент все следующие шлет с header: "Cookie: SERVER_ID=cookie-s1"  
 >> ВАЖНО: Если `s1` упадет, балансер перекинет сессию на `s2`  
@@ -14,7 +14,7 @@ backend servers
 ```
 
 ### динамическая cookie:
-> так называемая динамическая балансировочная cookie 
+> так называемая _динамическая_ **балансировочная** cookie 
 >> балансер генерит header "Set-Cookie: SERVER_ID=some_hash"  
 >> клиент все следующие запросы шлет с header "Cookie: SERVER_ID=some_hash"  
 >> ВАЖНО: Хеш генерится от server ip, port и secret-cookie-key  
@@ -32,7 +32,8 @@ backend servers
 ```
 
 ### прикладная cookie:
-> можно использовать только одну прикладную cookie  
+> так называемая **прикладная** cookie  
+> (можно использовать только одну прикладную cookie)  
 >> приклад генерит header "Set-Cookie: SESSION_ID=some_one_hash"  
 >> клиент все следующие запросы шлет с header "Cookie: SESSION_ID=c1~some_one_hash"  
 >> ВАЖНО: cookie переписывается балансером в вид SESSION_ID=c1~some_one_hash  
