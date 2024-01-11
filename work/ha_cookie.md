@@ -1,30 +1,35 @@
 ### статическая cookie:
+> так называемая статическая балансировочная cookie:  
+> балансер сгенерит хедер в ответ клиенту: "Set-Cookie: SERVER_ID=cookie-s1"  
+> клиент все следующие шлет с header: "Cookie: SERVER_ID=cookie-s1"
+> ВАЖНО: Если `s1` упадет, балансер перекинет сессию на `s2` 
+> у клиента выпадет контекст сессии, т.е. будет разлогон  
+
+```  
 backend servers
   mode http
-  > так называемая статическая балансировочная cookie:  
   cookie SERVER_ID insert indirect nocache httponly secure
   server s1 192.168.10.11:80 check cookie cookie-s1
   server s2 192.168.10.12:80 check cookie cookie-s2
-  > балансер сгенерит хедер в ответ клиенту: "Set-Cookie: SERVER_ID=cookie-s1"  
-  > клиент все следующие шлет с header: "Cookie: SERVER_ID=cookie-s1"
-  >
-  > ВАЖНО: Если `s1` упадет, балансер перекинет сессию на `s2` 
-  > у клиента выпадет контекст сессии, т.е. будет разлогон  
+```
 
 ### динамическая cookie:
+> так называемая динамическая балансировочная cookie:
+> балансер генерит хедер "Set-Cookie: SERVER_ID=some_hash_123lkj234qwe"
+> клиент все следующие запросы шлет с header "Cookie: SERVER_ID=some_hash_123lkj234qwe"
+>
+> ВАЖНО: Хеш генерится от server ip, port и secret-cookie-key
+> Остальное поведение - как со статической cookie
+> тут cookie на сервер добавлять нельзя (отвалится dynamic-cookie-key)
+
+```
 backend servers
   mode http
-  > так называемая динамическая балансировочная cookie:
   cookie SERVER_ID insert indirect nocache httponly secure dynamic
   dynamic-cookie-key secret-cookie-key
   server s1 192.168.10.11:80 check
   server s2 192.168.10.12:80 check
-  > балансер генерит хедер "Set-Cookie: SERVER_ID=some_hash_123lkj234qwe"
-  > клиент все следующие запросы шлет с header "Cookie: SERVER_ID=some_hash_123lkj234qwe"
-  >
-  > ВАЖНО: Хеш генерится от server ip, port и secret-cookie-key
-  > Остальное поведение - как со статической cookie
-  > тут cookie на сервер добавлять нельзя (отвалится dynamic-cookie-key)
+```
 
 ### прикладная cookie:
 backend servers
