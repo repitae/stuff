@@ -1,8 +1,8 @@
 ### статическая cookie:
 > так называемая статическая балансировочная cookie:  
 > балансер сгенерит хедер в ответ клиенту: "Set-Cookie: SERVER_ID=cookie-s1"  
-> клиент все следующие шлет с header: "Cookie: SERVER_ID=cookie-s1"
-> ВАЖНО: Если `s1` упадет, балансер перекинет сессию на `s2` 
+> клиент все следующие шлет с header: "Cookie: SERVER_ID=cookie-s1"  
+> ВАЖНО: Если `s1` упадет, балансер перекинет сессию на `s2`  
 > у клиента выпадет контекст сессии, т.е. будет разлогон  
 
 ```  
@@ -14,13 +14,12 @@ backend servers
 ```
 
 ### динамическая cookie:
-> так называемая динамическая балансировочная cookie:
-> балансер генерит хедер "Set-Cookie: SERVER_ID=some_hash_123lkj234qwe"
-> клиент все следующие запросы шлет с header "Cookie: SERVER_ID=some_hash_123lkj234qwe"
->
-> ВАЖНО: Хеш генерится от server ip, port и secret-cookie-key
-> Остальное поведение - как со статической cookie
-> тут cookie на сервер добавлять нельзя (отвалится dynamic-cookie-key)
+> так называемая динамическая балансировочная cookie:  
+> балансер генерит хедер "Set-Cookie: SERVER_ID=some_hash"  
+> клиент все следующие запросы шлет с header "Cookie: SERVER_ID=some_hash"  
+> ВАЖНО: Хеш генерится от server ip, port и secret-cookie-key  
+> Остальное поведение - как со статической cookie  
+> тут cookie на сервер добавлять нельзя (отвалится dynamic-cookie-key)  
 
 ```
 backend servers
@@ -32,19 +31,19 @@ backend servers
 ```
 
 ### прикладная cookie:
+> можно использовать только одну прикладную cookie  
+> приклад генерит хедер "Set-Cookie: SESSION_ID=some_one_hash"  
+> клиент все следующие запросы шлет с header "Cookie: SESSION_ID=c1~some_one_hash"  
+> ВАЖНО: cookie переписывается балансером в вид SESSION_ID=c1~some_one_hash  
+> Клиент должен уметь работать с модифицированной cookie, и отправлять ее обратно не меняя,  
+> при ответе клиента, балансер удаляет свою модификацию (c1~)  
+> и отправляет оригинальтую куку серверу "Cookie: some_one_hash"  
+
 backend servers
   mode http
-  # можно использовать только одну прикладную cookie
   cookie SESSION_ID prefix nocache httponly secure
   server s1 192.168.10.11:80 check c1
   server s2 192.168.10.12:80 check c2
-  #
-  # приклад генерит хедер "Set-Cookie: SESSION_ID=some_one_hash_123"
-  # клиент все следующие запросы шлет с header "Cookie: SESSION_ID=c1~some_one_hash_123"
-  #
-  # ВАЖНО: cookie переписывается балансером в вид SESSION_ID=c1~some_one_hash_123
-  # Клиент должен уметь работать с модифицированной cookie, и отправлять ее обратно (не меняя),
-  # при ответе клиента, балансер удаляет свою модификация (c1~) и отправляет оригинальтую куку серверу "Cookie: some_one_hash_123"
 
 ### прилипание по source, без cookie (т.н. source affinity):
 backend servers
