@@ -247,8 +247,8 @@ make -j $(nproc) TARGET=linux-glibc \
   LUA_INC=/app/lua/include \
   SSL_LIB=/app/openssl-3.1.4-quic1/lib64 \
   SSL_INC=/app/openssl-3.1.4-quic1/include \
-  ADDLIB="-Wl,-rpath=/app/openssl-3.1.4-quic1/lib"
-  # LDFLAGS="-Wl,-V,-rpath,/app/openssl-3.1.4-quic1/lib"
+  ADDLIB="-Wl,-rpath=/app/openssl-3.1.4-quic1/lib64" \
+  LDFLAGS="-Wl,-V,-rpath,/app/openssl-3.1.4-quic1/lib"
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-quic1
 #make uninstall PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-quic1
 ldd /app/haproxy-2.8.5-openssl-3.1.4-quic1/sbin/haproxy
