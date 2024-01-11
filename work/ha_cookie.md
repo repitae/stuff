@@ -51,7 +51,8 @@ backend servers
 
 ### прилипание по source, без cookie:
 > просто потому что метод балансировки по source ip 
-> (т.н. source affinity)  
+> (т.н. source affinity), или **прилипание по source**    
+
 ```
 backend servers
   balance source
