@@ -33,7 +33,7 @@ backend servers
 
 ### прикладная cookie:
 > так называемая **прикладная** cookie  
-> (можно использовать только одну прикладную cookie)  
+> (можно использовать только одну cookie с приклада)  
 >> приклад генерит header "Set-Cookie: SESSION_ID=some_one_hash"  
 >> клиент все следующие запросы шлет с header "Cookie: SESSION_ID=c1~some_one_hash"  
 >> ВАЖНО: cookie переписывается балансером в вид SESSION_ID=c1~some_one_hash  
