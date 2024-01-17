@@ -14,15 +14,15 @@ backend servers
 
 ### динамическая cookie:
 > так называемая _динамическая_ **балансировочная** cookie 
->> балансер генерит header "Set-Cookie: SERVER_ID=some_hash"  
->> клиент все следующие запросы шлет с header "Cookie: SERVER_ID=some_hash"  
+>> балансер генерит header "Set-Cookie: ADC_BACKEND_ID=some_hash"  
+>> клиент все следующие запросы шлет с header "Cookie: ADC_BACKEND_ID=some_hash"  
 >>> ВАЖНО: Хеш генерится от server ip, port и secret-cookie-key, Остальное поведение как со статической cookie  
 >>> ВАЖНО: Тут директиву cookie на server добавлять нельзя, отвалится dynamic-cookie-key, так как опция на сервер с большим приоритетом  
 
 ```
 backend servers
   mode http
-  cookie SERVER_ID insert indirect nocache httponly secure dynamic
+  cookie ADC_BACKEND_ID insert indirect nocache httponly secure dynamic
   dynamic-cookie-key secret-cookie-key
   server s1 192.168.10.11:80 check
   server s2 192.168.10.12:80 check
