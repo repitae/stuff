@@ -1,4 +1,4 @@
-# /app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
+$ /app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
 ------------------------------------------------------------------------------
  wolfSSL version 5.6.6 wAESNI woSP-MATCH
 ------------------------------------------------------------------------------
