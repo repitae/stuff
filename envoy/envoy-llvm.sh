@@ -25,9 +25,15 @@ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.0/clang
 tar xf clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 mv clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04 llvm14
 
+cd /app/src
 wget https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.5/clang+llvm-15.0.5-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 tar xf clang+llvm-15.0.5-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 mv clang+llvm-15.0.5-x86_64-linux-gnu-ubuntu-18.04 llvm15
+
+cd /app/src
+wget https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.4/clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+tar xf clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+mv clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar llvm16
 
 git clone https://github.com/envoyproxy/envoy envoy14
 cd /app/src/envoy14
