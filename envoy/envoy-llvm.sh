@@ -8,7 +8,6 @@ sudo apt-get install \
    wget \
    virtualenv
 
-
 #sudo apt-get install libc++-15-dev libc++-dev libc++1-15 libc++abi-15-dev libc++abi1-15 lib32stdc++-8-dev libstdc++-8-dev
 
 sudo wget -O /usr/local/bin/bazel https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-$([ $(uname -m) = "aarch64" ] && echo "arm64" || echo "amd64")
@@ -29,12 +28,13 @@ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.4/clang
 tar xf clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar.xz
 mv clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04 /app/llvm16
 
-cd /app/src/
-git clone https://github.com/envoyproxy/envoy envoy14
-cd /app/src/envoy14
+mkdir -p /app/src/ && cd /app/src
+git clone https://github.com/envoyproxy/envoy envoy
+cd /app/src/envoy
 bazel clean
 #bazel clean --expunge
-bazel/setup_clang.sh /app/src/llvm14
+bazel/setup_clang.sh /app/src/llvm16
+bazel build envoy --config=sizeopt
 bazel build envoy --config=clang --config=sizeopt
 
 cd /app/src/

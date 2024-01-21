@@ -18,10 +18,10 @@ mkdir objdir && cd objdir
 [[ -f /app/gcc-12.3.0/bin/gcc ]] && VERSION=12.3.0
 ```
 export PATH=/app/gcc-$VERSION/bin:$PATH
-export LIBRARY_PATH=/app/VERSION/lib64:$LIBRARY_PATH
-export LD_LIBRARY_PATH=/app/VERSION/lib64:$LD_LIBRARY_PATH
-export C_INCLUDE_PATH=/app/VERSION/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=/app/VERSION/include:$CPLUS_INCLUDE_PA
+export LIBRARY_PATH=/app/$VERSION/lib64:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/app/$VERSION/lib64:$LD_LIBRARY_PATH
+export C_INCLUDE_PATH=/app/$VERSION/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=/app/$VERSION/include:$CPLUS_INCLUDE_PA
 ```
 /usr/local/bin/bazel --version
 ```
