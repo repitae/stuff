@@ -14,17 +14,17 @@ sudo apt-get install \
 sudo wget -O /usr/local/bin/bazel https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-$([ $(uname -m) = "aarch64" ] && echo "arm64" || echo "amd64")
 sudo chmod +x /usr/local/bin/bazel
 
-cd /app/src
+cd /app
 wget https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.0/clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 tar xf clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 mv clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04 llvm14
 
-cd /app/src
+cd /app
 wget https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.5/clang+llvm-15.0.5-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 tar xf clang+llvm-15.0.5-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 mv clang+llvm-15.0.5-x86_64-linux-gnu-ubuntu-18.04 llvm15
 
-cd /app/src
+cd /app
 wget https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.4/clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar.xz
 tar xf clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar.xz
 mv clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar llvm16
