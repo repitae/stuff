@@ -17,7 +17,7 @@ mkdir objdir && cd objdir
 [[ -f /app/gcc-13.2.0/bin/gcc ]] && VERSION=gcc-13.2.0
 [[ -f /app/gcc-12.3.0/bin/gcc ]] && VERSION=gcc-12.3.0
 ```
-export PATH=/app/gcc-$VERSION/bin:$PATH
+export PATH=/app/$VERSION/bin:$PATH
 export LIBRARY_PATH=/app/$VERSION/lib64:$LIBRARY_PATH
 export LD_LIBRARY_PATH=/app/$VERSION/lib64:$LD_LIBRARY_PATH
 export C_INCLUDE_PATH=/app/$VERSION/include:$C_INCLUDE_PATH
