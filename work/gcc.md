@@ -14,8 +14,8 @@ mkdir objdir && cd objdir
 ../configure --prefix=/app/gcc-13.2.0
 [[ $? -eq 1 ]] && make -j$(nproc) && make install
 ```
-[[ -f /app/gcc-13.2.0/bin/gcc ]] && VERSION=13.2.0
-[[ -f /app/gcc-12.3.0/bin/gcc ]] && VERSION=12.3.0
+[[ -f /app/gcc-13.2.0/bin/gcc ]] && VERSION=gcc-13.2.0
+[[ -f /app/gcc-12.3.0/bin/gcc ]] && VERSION=gcc-12.3.0
 ```
 export PATH=/app/gcc-$VERSION/bin:$PATH
 export LIBRARY_PATH=/app/$VERSION/lib64:$LIBRARY_PATH
