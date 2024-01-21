@@ -30,9 +30,9 @@ git clone https://github.com/envoyproxy/envoy envoy-gcc
 cd envoy-gcc
 bazel clean
 #bazel clean --expunge
-bazel/setup_clang.sh /app/src/llvm14
+#bazel/setup_clang.sh /app/src/llvm14
 #bazel build envoy --config=libc++
-bazel build envoy --config=clang
+#bazel build envoy --config=clang
 bazel build envoy --config=sizeopt
 ```
 export CC=/app/gcc-12.3.0/
