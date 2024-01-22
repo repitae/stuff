@@ -8,6 +8,15 @@ sudo chown -R root:root /usr/local/go
 ```
 
 ```
+cd /app/src/
+wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
+tar xzf go1.21.6.linux-amd64.tar.gz
+[[ -d /usr/local/go ]] && sudo rm -rf /usr/local/go
+sudo mv go /usr/local
+sudo chown -R root:root /usr/local/go
+```
+
+```
 export GO111MODULE=on
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
@@ -28,7 +37,7 @@ go build ./cmd/traefik
 ```
 
 ```
-lld ~/go/src/github.com/traefik/traefik/traefik
+ldd ~/go/src/github.com/traefik/traefik/traefik
 ls ~/go/src/github.com/traefik/traefik
 go test ./... || go test -v ./...
 ```
