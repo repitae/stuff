@@ -1,0 +1,23 @@
+[Unit]
+Description=Upgrade Linux System
+Requires=network-online.target
+After=network-online.target network.target local-fs.target systemd-logind.service
+RequiresMountsFor=/var/log /var/run /var/lib /boot
+# If unit restarts more 
+# than 10 times in 60 seconds
+# do not attempt to restart further
+StartLimitIntervalSec=60
+StartLimitBurst=10
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c  \
+  'apt-get update          && \
+   apt-get upgrade -y      && \
+   apt-get dist-upgrade -y && \
+   apt-get autoremove '
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
