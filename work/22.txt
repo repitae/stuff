@@ -1,0 +1,52 @@
+defaults
+    retries 3
+    option  dontlognull
+    option  redispatch
+    # extra options
+    option tcp-smart-accept
+    option tcp-smart-connect
+    option http-server-close
+    # main timeouts
+    timeout client 30s
+    timeout connect 5s
+    timeout server 30s
+    # extra timeouts
+    timeout http-request   10s
+    timeout http-keep-alive 5s
+    timeout queue           5s
+    timeout tunnel          5m
+    timeout client-fin      1s
+    timeout server-fin      1s
+    timeout tarpit          60s
+    # tune
+    tune.bufsize 128000
+    #tune.ssl.cachesize 1000000
+    tune.ssl.cachesize 2097152
+                       
+    
+/etc/security/limits.conf
+* soft nofile 100000
+* hard nofile 100000
+root soft nofile 100000
+root hard nofile 100000
+    
+sysctl:
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_fin_timeout = 30
+#
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_synack_retries = 2
+net.ipv4.ip_local_port_range = 1024 65535
+net.ipv4.tcp_tw_recycle = 1
+net.core.wmem_max = 12582912
+net.core.rmem_max = 12582912
+net.ipv4.tcp_rmem = 20480 174760 25165824
+net.ipv4.tcp_wmem = 20480 174760 25165824
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_no_metrics_save = 1
+net.core.netdev_max_backlog = 10000
+# Syn flood
+net.ipv4.tcp_max_syn_backlog = 8096
+net.core.somaxconn = 8096
