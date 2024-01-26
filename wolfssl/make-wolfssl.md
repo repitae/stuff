@@ -106,7 +106,7 @@ make clean
   --enable-intelasm \
   --enable-quic \
   --enable-sni \
-  --enable-sp-asm \  
+  --enable-sp-asm \
   --enable-sp-math-all \
   --enable-session-ticket \
   --enable-tlsx \
@@ -142,7 +142,7 @@ make clean
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-/app/src/wolfssl-5.6.6-sp/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark 
 ln -sf /app/wolfssl-5.6.6-sp /app/wolfssl-sp
 ```
 
