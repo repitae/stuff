@@ -113,7 +113,7 @@ make clean
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-/app/src/wolfssl-5.6.6-mp/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
 ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```
 
