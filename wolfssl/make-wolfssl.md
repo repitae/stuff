@@ -63,9 +63,9 @@ ln -sf /app/pcre2-10.42 /app/pcre2
 cd /app/src/
 curl -LO https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.4-quic1.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4-quic1.tar.gz
-cd ./openssl-openssl-3.1.4-quic1
+cd /app/src/openssl-openssl-3.1.4-quic1
 make clean
-./config --prefix=/app/openssl-3.1.4-quic1 no-deprecated no-legacy no-ssl
+./config --prefix=/app/openssl-3.1.4-quic1 no-deprecated no-legacy no-ssl enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/openssl-3.1.4-quic1 /app/openssl
@@ -76,7 +76,7 @@ ln -sf /app/openssl-3.1.4-quic1 /app/openssl
 cd /app/src/
 curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
-cd ./openssl-3.2.0
+cd /app/src/openssl-3.2.0
 make clean
 ./config --prefix=/app/openssl-3.2.0 no-deprecated no-legacy no-ssl enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
@@ -291,9 +291,9 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/openssl-3.2.0/lib \
+  SSL_LIB=/app/openssl-3.2.0/lib64 \
   SSL_INC=/app/openssl-3.2.0/include \
-  ADDLIB='-Wl,-rpath=/app/openssl-3.2.0/lib'
+  ADDLIB='-Wl,-rpath=/app/openssl-3.2.0/lib64'
 make install PREFIX=/app/haproxy-2.8.5-openssl-3.2.0
 ldd /app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy
 /app/haproxy-2.8.5-openssl-3.2.0/sbin/haproxy -vv
