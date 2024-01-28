@@ -63,7 +63,7 @@ ln -sf /app/pcre2-10.42 /app/pcre2
 cd /app/src/
 curl -LO https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.4-quic1.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4-quic1.tar.gz
-cd ./openssl-3.1.4-quic1
+cd ./openssl-openssl-3.1.4-quic1
 make clean
 ./config --prefix=/app/openssl-3.1.4-quic1 no-deprecated no-legacy no-ssl
 [[ $? -eq 0 ]] && make -j $(nproc)
@@ -123,7 +123,7 @@ make test && sudo make install
 ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```
 
-### WolfSSL-5.6.6-SP-Math
+### WolfSSL-5.6.6-SP-Math-Restricted
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
