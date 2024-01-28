@@ -65,7 +65,7 @@ curl -LO https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.4-quic
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4-quic1.tar.gz
 cd /app/src/openssl-openssl-3.1.4-quic1
 make clean
-./Configure --prefix=/app/openssl-3.1.4qc1 no-deprecated no-legacy no-ssl enable-quic
+./Configure --prefix=/app/openssl-3.1.4qc1 no-deprecated no-legacy no-ssl no-des enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && make install
 ln -sf /app/openssl-3.1.4-quic1 /app/openssl
@@ -78,11 +78,11 @@ curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
 cd /app/src/openssl-3.2.0
 make clean
-./Configure --prefix=/app/openssl-3.2.0qc no-deprecated no-legacy no-ssl enable-quic
+#./Configure --prefix=/app/openssl-3.2.0qc no-deprecated no-legacy no-ssl enable-quic
 ./Configure --prefix=/app/openssl-3.2.0qc no-legacy no-ssl no-des enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && make install
-ln -sf /app/openssl-3.2.0 /app/openssl
+ln -sf /app/openssl-3.2.0qc /app/openssl
 ```
 
 ### WolfSSL-5.6.6
