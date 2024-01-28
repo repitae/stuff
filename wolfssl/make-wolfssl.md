@@ -90,7 +90,7 @@ cd /app/src/
 curl -LO https://github.com/wolfSSL/wolfssl/releases/download/v5.6.6-stable/wolfssl-5.6.6.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./wolfssl-5.6.6.tar.gz
 ```
-### WolfSSL-5.6.6-MP-Math
+### WolfSSL-5.6.6-MP-Math-All
 ```sh
 cd /app/src/wolfssl-5.6.6
 make clean
