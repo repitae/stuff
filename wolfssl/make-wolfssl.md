@@ -13,8 +13,8 @@ curl -LO http://www.lua.org/ftp/lua-5.4.6.tar.gz
 cd lua-5.4.6
 make clean
 make -j $(nproc) all test
-sudo make install INSTALL_TOP=/app/lua-5.4.6
-sudo ln -sf /app/lua-5.4.6 /app/lua
+make install INSTALL_TOP=/app/lua-5.4.6
+ln -sf /app/lua-5.4.6 /app/lua
 ```
 
 ### LuaJIT-2.1
@@ -25,7 +25,7 @@ curl -LO https://github.com/LuaJIT/LuaJIT/archive/refs/tags/v2.1.ROLLING.tar.gz
 cd ./LuaJIT-2.1.ROLLING
 make clean
 make -j $(nproc) PREFIX=/app/LuaJIT-2.1
-sudo make install PREFIX=/app/LuaJIT-2.1 
+make install PREFIX=/app/LuaJIT-2.1 
 ln -sf /app/LuaJIT-2.1 /app/luajit
 ```
 
@@ -40,7 +40,7 @@ make clean
   --enable-utf \
   --enable-jit
 [[ $? -eq 0 ]] && make -j $(nproc)
-make check && sudo make install
+make check && make install
 ln -sf /app/pcre-8.45 /app/pcre
 ```
 
@@ -54,7 +54,7 @@ make clean
 ./configure --prefix=/app/pcre2-10.42 \
   --enable-jit
 [[ $? -eq 0 ]] && make -j $(nproc)
-make check && sudo make install
+make check && make install
 ln -sf /app/pcre2-10.42 /app/pcre2
 ```
 
@@ -65,9 +65,9 @@ curl -LO https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.4-quic
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4-quic1.tar.gz
 cd /app/src/openssl-openssl-3.1.4-quic1
 make clean
-./config --prefix=/app/openssl-3.1.4qc1 no-deprecated no-legacy no-ssl enable-quic
+./Configure --prefix=/app/openssl-3.1.4qc1 no-deprecated no-legacy no-ssl enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
-make test && sudo make install
+make test && make install
 ln -sf /app/openssl-3.1.4-quic1 /app/openssl
 ```
 
@@ -78,9 +78,10 @@ curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
 cd /app/src/openssl-3.2.0
 make clean
-./config --prefix=/app/openssl-3.2.0 no-deprecated no-legacy no-ssl enable-quic
+./Configure --prefix=/app/openssl-3.2.0qc no-deprecated no-legacy no-ssl enable-quic
+./Configure --prefix=/app/openssl-3.2.0qc no-legacy no-ssl no-des enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
-make test && sudo make install
+make test && make install
 ln -sf /app/openssl-3.2.0 /app/openssl
 ```
 
@@ -118,8 +119,8 @@ make clean
   --disable-oldtls
   
 [[ $? -eq 0 ]] && make -j $(nproc)
-make test && sudo make install
-/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark # mp
+make test && make install
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark # math-mp
 ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```
 
@@ -154,8 +155,8 @@ make clean
   --disable-oldtls
   
 [[ $? -eq 0 ]] && make -j $(nproc)
-make test && sudo make install
-/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark  # sp
+make test && make install
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark  # math-sp
 ln -sf /app/wolfssl-5.6.6-sp /app/wolfssl-sp
 ```
 
