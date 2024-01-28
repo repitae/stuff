@@ -65,7 +65,7 @@ curl -LO https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.4-quic
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4-quic1.tar.gz
 cd /app/src/openssl-openssl-3.1.4-quic1
 make clean
-./config --prefix=/app/openssl-3.1.4-quic1 no-deprecated no-legacy no-ssl enable-quic
+./config --prefix=/app/openssl-3.1.4qc1 no-deprecated no-legacy no-ssl enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 ln -sf /app/openssl-3.1.4-quic1 /app/openssl
