@@ -173,7 +173,7 @@ curl -LO https://www.haproxy.org/download/2.9/src/haproxy-2.9.1.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./haproxy-2.9.1.tar.gz
 ```
 
-### HaProxy-2.8.5-WolfSSL-5.6.6-MP-Math
+### HaProxy-2.8.5-WolfSSL-5.6.6-MP-Math-All
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
@@ -205,7 +205,7 @@ ln -sf /app/haproxy-2.8.5-mp /app/haproxy-mp
 [[ -d '/app/haproxy-mp/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-mp/{etc,log,run,ssl}
 ```
 
-### HaProxy-2.8.5-WolfSSL-5.6.6-SP-Math
+### HaProxy-2.8.5-WolfSSL-5.6.6-SP-Math-Restricted
 ```sh
 cd /app/src/haproxy-2.8.5
 make clean
