@@ -116,6 +116,7 @@ make clean
   --enable-tls13 \
   --enable-tlsx \
   --disable-oldtls
+  
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark # mp
@@ -129,8 +130,10 @@ make clean
 ./configure --prefix=/app/wolfssl-5.6.6-sp \
   --enable-aesni \
   --enable-alpn \
+  --enable-bigcache \
   --enable-earlydata \
   --enable-examples \
+  --enable-certext \
   --enable-crypttests \
   --enable-crypttests-libs \
   --enable-fallback-scsv \
@@ -138,15 +141,18 @@ make clean
   --enable-haproxy \
   --enable-hrrcookie \
   --enable-intelasm \
+  --enable-maxfragment \
   --enable-quic \
   --enable-sni \
   --enable-sp-asm \
   --enable-sp-math \
   --enable-secure-renegotiation \
   --enable-session-ticket \
+  --enable-supportedcurves \
   --enable-tls13 \
   --enable-tlsx \
   --disable-oldtls
+  
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
 /app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark  # sp
