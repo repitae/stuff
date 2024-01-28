@@ -68,6 +68,7 @@ make clean
 ./config --prefix=/app/openssl-3.1.4-quic1 no-deprecated no-legacy no-ssl
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
+ln -sf /app/openssl-3.1.4-quic1 /app/openssl
 ```
 
 ### OpenSSL-3.2.0
@@ -80,6 +81,7 @@ make clean
 ./config --prefix=/app/openssl-3.2.0 no-deprecated no-legacy no-ssl enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
+ln -sf /app/openssl-3.2.0 /app/openssl
 ```
 
 ### WolfSSL-5.6.6
@@ -103,17 +105,20 @@ make clean
   --enable-fpecc \
   --enable-haproxy \
   --enable-hrrcookie \
+  --enable-hugecache \
   --enable-intelasm \
   --enable-quic \
   --enable-sni \
   --enable-sp-asm \
   --enable-sp-math-all \
+  --enable-secure-renegotiation \
   --enable-session-ticket \
+  --enable-tls13 \
   --enable-tlsx \
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark # mp
 ln -sf /app/wolfssl-5.6.6-mp /app/wolfssl-mp
 ```
 
@@ -137,12 +142,14 @@ make clean
   --enable-sni \
   --enable-sp-asm \
   --enable-sp-math \
+  --enable-secure-renegotiation \
   --enable-session-ticket \
+  --enable-tls13 \
   --enable-tlsx \
   --disable-oldtls
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && sudo make install
-/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark 
+/app/src/wolfssl-5.6.6/wolfcrypt/benchmark/benchmark  # sp
 ln -sf /app/wolfssl-5.6.6-sp /app/wolfssl-sp
 ```
 
