@@ -65,10 +65,10 @@ curl -LO https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.4-quic
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.1.4-quic1.tar.gz
 cd /app/src/openssl-openssl-3.1.4-quic1
 make clean
-./Configure --prefix=/app/openssl-3.1.4qc1 no-deprecated no-legacy no-ssl no-des enable-quic
+./Configure --prefix=/app/openssl-3.1.4-qc1 no-legacy no-ssl no-des enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && make install
-ln -sf /app/openssl-3.1.4-quic1 /app/openssl
+ln -sf /app/openssl-3.1.4-qc1 /app/openssl
 ```
 
 ### OpenSSL-3.2.0
@@ -78,11 +78,10 @@ curl -LO https://www.openssl.org/source/openssl-3.2.0.tar.gz
 [[ $? -eq 0 ]] && tar zxf ./openssl-3.2.0.tar.gz
 cd /app/src/openssl-3.2.0
 make clean
-#./Configure --prefix=/app/openssl-3.2.0qc no-deprecated no-legacy no-ssl enable-quic
-./Configure --prefix=/app/openssl-3.2.0qc no-legacy no-ssl no-des enable-quic
+./Configure --prefix=/app/openssl-3.2.0-qc no-legacy no-ssl no-des enable-quic
 [[ $? -eq 0 ]] && make -j $(nproc)
 make test && make install
-ln -sf /app/openssl-3.2.0qc /app/openssl
+ln -sf /app/openssl-3.2.0-qc /app/openssl
 ```
 
 ### WolfSSL-5.6.6
@@ -259,15 +258,15 @@ make -j $(nproc) TARGET=linux-glibc \
   PCREDIR=/app/pcre \
   LUA_LIB=/app/lua/lib \
   LUA_INC=/app/lua/include \
-  SSL_LIB=/app/openssl-3.1.4-quic1/lib64 \
-  SSL_INC=/app/openssl-3.1.4-quic1/include \
-  ADDLIB="-Wl,-rpath=/app/openssl-3.1.4-quic1/lib64" \
-  LDFLAGS="-Wl,-V,-rpath,/app/openssl-3.1.4-quic1/lib"
-make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-quic1
-#make uninstall PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-quic1
-ldd /app/haproxy-2.8.5-openssl-3.1.4-quic1/sbin/haproxy
-/app/haproxy-2.8.5-openssl-3.1.4-quic1/sbin/haproxy -vv
-[[ -d '/app/haproxy-2.8.5-openssl-3.1.4-quic1/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.1.4-quic1/{etc,log,run,ssl}
+  SSL_LIB=/app/openssl-3.1.4-qc1/lib64 \
+  SSL_INC=/app/openssl-3.1.4-qc1/include \
+  ADDLIB="-Wl,-rpath=/app/openssl-3.1.4-qc1/lib64" \
+  LDFLAGS="-Wl,-V,-rpath,/app/openssl-3.1.4-qc1/lib64"
+make install PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-qc1
+#make uninstall PREFIX=/app/haproxy-2.8.5-openssl-3.1.4-qc1
+ldd /app/haproxy-2.8.5-openssl-3.1.4-qc1/sbin/haproxy
+/app/haproxy-2.8.5-openssl-3.1.4-qc1/sbin/haproxy -vv
+[[ -d '/app/haproxy-2.8.5-openssl-3.1.4-qc1/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-2.8.5-openssl-3.1.4-qc1/{etc,log,run,ssl}
 ```
 
 ### HaProxy-2.8.5-OpenSSL-3.2.0
