@@ -5,6 +5,7 @@ cat ha.crt ha.key > ha.pem
 ```
 
 ```
+cat <<EOF | tee /etc/systemd/system/haproxy.service
 [Unit]
 Description=haproxy.service
 After=network-online.target
@@ -26,9 +27,11 @@ Type=notify
 
 [Install]
 WantedBy=multi-user.target
+EOF
 ```
 
 ```
+cat <<EOF | tee /app/haproxy/etc/haproxy.cfg
 global
   maxconn 64000
   stats socket /app/haproxy/run/master.sock mode 666 level admin
@@ -72,4 +75,5 @@ backend back-8083
   mode http
   server s1 192.168.1.21:80
   server s2 192.168.1.22:80
+EOF
 ```
