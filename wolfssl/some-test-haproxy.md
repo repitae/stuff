@@ -7,18 +7,16 @@ cat ha.crt ha.key > ha.pem
 ```
 cat <<EOF | tee /etc/systemd/system/haproxy.service
 [Unit]
-Description=haproxy.service
+Description=haproxy.service      
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-#EnvironmentFile=-/app/haproxy/default
-#EnvironmentFile=-/app/haproxy/sysconfig
-#Environment="CONFIG=/app/haproxy/etc/haproxy.cfg" "PIDFILE=/app/haproxy/run/haproxy.pid" "EXTRAOPTS=-S /app/haproxy/run/master.sock"
+EnvironmentFile=-/app/haproxy/etc/defaults
 ExecStartPre=/app/haproxy/sbin/haproxy -f /app/haproxy/etc/haproxy.cfg -c -q
-ExecStart=/app/haproxy/sbin/haproxy -Ws -f /app/haproxy/etc/haproxy.cfg -p /app/haproxy/run/haproxy.pid -S /app/haproxy/run/master.sock
-ExecReload=/app/haproxy/sbin/haproxy -Ws -f /app/haproxy/etc/haproxy.cfg -c -q -S /app/haproxy/run/master.sock
-ExecReload=/bin/kill -USR2
+ExecStart=/app/haproxy/sbin/haproxy -Ws -f /app/haproxy/etc/haproxy.cfg -p /app/haproxy/run/haproxy.pid -S /app/haproxy/run/haproxy.sock
+ExecReload=/app/haproxy/sbin/haproxy -Ws -f /app/haproxy/etc/haproxy.cfg -c -q -S /app/haproxy/run/haproxy.sock
+ExecReload=/bin/kill -USR2 $MAINPID
 KillMode=mixed
 Restart=on-failure
 RestartSec=5s
