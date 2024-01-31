@@ -20,6 +20,44 @@ sudo make install
 wrk -t4 -c1000 -d30s http://192.168.1.175:8084/ # traefik l4 proxy
 wrk -t4 -c1000 -d30s http://192.168.1.175:8085/ # traefik l7 proxy
 ```
-watch 'echo "show stat" | socat stdio /app/haproxy/run/.sock | cut -d "," -f 1-2,5-10,34-36 | column -s, -t'
-echo "show sess" | socat /app/haproxy/run/haproxy.sock stdio
+```
+echo "show stat" | sudo socat stdio /app/haproxy/run/haproxy.sock
+watch 'echo "show stat" | sudo socat stdio /app/haproxy/run/haproxy.sock | cut -d "," -f 1-2,5-10,34-36 | column -s, -t'
+echo "show sess all" | sudo socat /app/haproxy/run/haproxy.sock stdio
+echo "show info;show stat" | sudo socat /app/haproxy/run/haproxy.sock stdio
+```
+```
+cd /app/src
+git clone https://github.com/tsenart/vegeta
+cd vegeta
+go get -u github.com/mailru/easyjson/...
+export GOPATH=~qwe/go
+export PATH=$GOPATH/bin:$PATH
+make vegeta
+mv vegeta /app/vegeta
+```
+```
+ulimit -n 100000
+ulimit -t 100000
+ulimit -c 100000
+```
+```
+echo "GET https://192.168.1.175:8083/" | /app/vegeta -cpus=4 attack -duration=10s -rate=10000 -workers=500 -insecure | tee rip.bin | /app/vegeta report
+echo "GET https://192.168.1.177:8083/" | /app/vegeta -cpus=4 attack -duration=10s -rate=10000 -workers=500 -insecure | tee rip.bin | /app/vegeta report
+echo "GET https://192.168.1.179:8083/" | /app/vegeta -cpus=4 attack -duration=10s -rate=10000 -workers=500 -insecure | tee rip.bin | /app/vegeta report
+```
+```
+curl -kvi https://192.168.1.175:8083/
+curl -kvi https://192.168.1.177:8083/
+curl -kvi https://192.168.1.179:8083/
+```
+```
+ab -t 10 -c 1000 -n 1000 https://192.168.1.175:8083/ # openssl-3.1.4
+ab -t 10 -c 1000 -n 1000 https://192.168.1.177:8083/ # openssl-3.2.0
+ab -t 10 -c 1000 -n 1000 https://192.168.1.179:8083/ # wolfssl-5.6.6
+```
+```
+wrk -c1000 -d10s https://192.168.1.175:8083/ # openssl-3.1.4
+wrk -c1000 -d10s https://192.168.1.177:8083/ # openssl-3.2.0
+wrk -c1000 -d10s https://192.168.1.179:8083/ # wolfssl-5.6.6
 ```
