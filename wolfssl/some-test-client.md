@@ -13,15 +13,16 @@ sudo make install
 /app/slowhttptest -c 1000 -X -r 1000 -w 100 -y 200 -n 50 -z 32 -u http://192.168.1.179:8083/ -p 50 -l 350
 ```
 ```
-./slowhttptest -X http://192.168.1.175:8083/
+/app/slowhttptest -X http://192.168.1.175:8083/
 ```
 ```
-wrk -t4 -c1000 -d30s http://192.168.1.175:8084/ # traefik l4 proxy
-wrk -t4 -c1000 -d30s http://192.168.1.175:8085/ # traefik l7 proxy
+wrk -c1000 http://192.168.1.175:8083/ # openssl-3.1.4
+wrk -c1000 http://192.168.1.175:8083/ # openssl-3.2.0
+wrk -c1000 http://192.168.1.177:8083/ # wolfssl-5.6.6
 ```
 ```
-echo "show stat" | sudo socat stdio /app/haproxy/run/haproxy.sock
 watch 'echo "show stat" | sudo socat stdio /app/haproxy/run/haproxy.sock | cut -d "," -f 1-2,5-10,34-36 | column -s, -t'
+echo "show stat" | sudo socat stdio /app/haproxy/run/haproxy.sock
 echo "show sess all" | sudo socat /app/haproxy/run/haproxy.sock stdio
 echo "show info;show stat" | sudo socat /app/haproxy/run/haproxy.sock stdio
 ```
