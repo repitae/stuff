@@ -35,8 +35,9 @@ global
   stats socket /app/haproxy/run/master.sock mode 666 level admin
   ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
   ssl-default-bind-ciphers ECDHE+AESGCM:EDH+AESGCM
-  #ssl-default-bind-ciphers EECDH+AESGCM:EDH+AESGCM:EECDH+AES:EDH+AES
-  ssl crt /app/haproxy/ssl/ha.pem
+  ssl-default-server-ciphers EECDH+AESGCM:EDH+AESGCM:EECDH+AES:EDH+AES
+  ssl-dh-param-file /app/haproxy/ssl/dhparams.pem
+  tune.ssl.default-dh-param 2048
 
 defaults defaults
   maxconn 64000
@@ -45,6 +46,7 @@ defaults defaults
   timeout server 10s
   timeout http-keep-alive 30s
   balance roundrobin
+  option dontlognull
 
 listen stats
   mode http
@@ -60,8 +62,11 @@ frontend front-8082
 
 frontend front-8083
   mode http
-  bind :8083
+  bind :8083 ssl crt /app/haproxy/ssl/ha.pem alpn h2,http/1.1
   http-request redirect scheme https unless { ssl_fc }
+  http-response set-header X-Frame-Options SAMEORIGIN
+  http-response set-header X-XSS-Protection 1;mode=block
+  http-response set-header X-Content-Type-Options nosniff
   default_backend back-8083
 
 backend back-8082
