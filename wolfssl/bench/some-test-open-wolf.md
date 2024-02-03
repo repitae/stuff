@@ -115,3 +115,24 @@ ldd /app/haproxy-2.8.5-qc1/sbin/haproxy
 ln -sf /app/haproxy-2.8.5-qc1 /app/haproxy-qc1
 [[ -d '/app/haproxy-qc1/{etc,log,run,ssl}' ]] ||  mkdir -p /app/haproxy-qc1/{etc,log,run,ssl}
 ```
+
+## haproxy-2.8.5 openssl-1.1.1
+```
+cd /app/src/haproxy-2.8.5
+make clean
+make -j $(nproc) TARGET=linux-glibc \
+  USE_CRYPT_H=1 \
+  USE_ENGINE=1 \
+  USE_LIBCRYPT=1 \
+  USE_NS=1 \
+  USE_OPENSSL=1 \
+  USE_SYSTEMD=1 \
+  USE_TFO=1 \
+  USE_THREAD=1
+make install PREFIX=/app/haproxy-2.8.5-ssl1
+ldd /app/haproxy-2.8.5-ssl1/sbin/haproxy
+/app/haproxy-2.8.5-ssl1/sbin/haproxy -vv
+sudo systemctl stop haproxy
+ln -sf /app/haproxy-2.8.5-ssl1 /app/haproxy
+sudo systemctl start haproxy
+```

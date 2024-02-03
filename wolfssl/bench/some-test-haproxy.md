@@ -31,7 +31,6 @@ EOF
 ```
 cat <<EOF | tee /app/haproxy/etc/haproxy.cfg
 global
-  maxconn 64000
   stats socket /app/haproxy/run/master.sock mode 666 level admin
   ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
   ssl-default-bind-ciphers ECDHE+AESGCM:EDH+AESGCM
@@ -40,7 +39,8 @@ global
   tune.ssl.default-dh-param 2048
 
 defaults defaults
-  maxconn 64000
+  maxconn 128000
+  fullconn 64000
   timeout connect 5s
   timeout client 10s
   timeout server 10s
