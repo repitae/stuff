@@ -31,7 +31,7 @@ add action=change-hop-limit chain=postrouting new-hop-limit=set:65 passthrough=y
 ```
 ```
 /interface lte monitor lte1
-/interface lte cell-monitor lte1
+/interface lte cell-monitor lte1
 ```
 ```
 /file print
