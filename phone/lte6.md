@@ -3,18 +3,14 @@
 /interface lte firmware-upgrade lte1
 /interface lte firmware-upgrade lte1 upgrade=yes
 /interface lte firmware-upgrade lte1 upgrade=yes firmware-file=image
-#status: done
 /interface enable lte1
 /interface lte firmware-upgrade lte1
 /interface lte at-chat lte1 input="AT+CHECKATUPGRADE"
 ```
 ```
-#IP nat rule:
 /ip firewall nat add action=masquerade chain=srcnat out-interface=lte1
-#IPv4 mangle rule:
 /ip firewall mangle
 add action=change-ttl chain=postrouting new-ttl=set:65 out-interface=lte1 passthrough=yes
-#IPv6 mangle rule:
 /ipv6 firewall mangle
 add action=change-hop-limit chain=postrouting new-hop-limit=set:65 passthrough=yes
 ```
@@ -35,8 +31,8 @@ add action=change-hop-limit chain=postrouting new-hop-limit=set:65 passthrough=y
 ```
 ```
 /file print
-/system package print
 /log print without-paging
+/system package print
 /system reboot
 ```
 ```
