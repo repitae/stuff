@@ -9,6 +9,7 @@ add action=change-hop-limit chain=postrouting new-hop-limit=set:65 passthrough=y
 ```
 
 ```
+/interface lte at-chat [find running] input="AT+ICCID" 
 /interface lte at-chat lte1 input="at+qcfg=?" wait=yes
 /interface disable lte1
 /interface enable lte1
@@ -21,6 +22,9 @@ add action=change-hop-limit chain=postrouting new-hop-limit=set:65 passthrough=y
 /interface lte at-chat lte1 input="AT+CHECKATUPGRADE"
 /interface lte monitor lte1
 /interface lte cell-monitor lte1  
+:put  ([/interface lte monitor [find running] once as-value]->"uicc")
+:put  ([/interface lte monitor [find running] once as-value]->"reset")
+:put  ([/interface lte monitor [find running] once as-value]->"rstset")
 ```
 
 ```
