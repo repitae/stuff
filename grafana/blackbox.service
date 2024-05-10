@@ -1,0 +1,23 @@
+```
+cat << EOF | sudo tee /etc/systemd/system/blackbox.service
+[Unit]
+Description=Blackbox Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=mon
+Group=mon
+Type=simple
+RestartSec=5
+Restart=on-failure
+AmbientCapabilities=CAP_NET_RAW
+ExecStart=/opt/blackbox/blackbox_exporter \
+  --config.file=/opt/blackbox/blackbox.yml \
+  --web.listen-address="127.0.0.1:9115"
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
