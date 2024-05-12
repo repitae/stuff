@@ -1,0 +1,112 @@
+vi /opt/monitoring/docker-compose.yaml
+```
+services:
+  grafana:
+    image: grafana/grafana
+    hostname: grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/opt/monitoring/grafana
+    environment:
+      - TZ=${SYSTEM_TIMEZONE:-Europe/Moscow}
+    networks:
+      - default
+
+  prometheus:
+    image: prom/prometheus
+    hostname: prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/opt/monitoring/prometheus
+    command:
+      - '--config.file=/opt/monitoring/prometheus.yml'
+    environment:
+      - TZ=${SYSTEM_TIMEZONE:-Europe/Moscow}
+    networks:
+      - default
+
+  node-exporter:
+    image: prom/node-exporter
+    hostname: exporter
+    container_name: exporter
+    ports:
+      - 9100:9100
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - --path.rootfs=/host
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --collector.filesystem.ignored-mount-points
+      - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
+    environment:
+      - TZ=${SYSTEM_TIMEZONE:-Europe/Moscow}
+    networks:
+      - default
+
+  blackbox:
+    image: prom/blackbox-exporter
+    hostname: blackbox
+    container_name: blackbox
+    restart: unless-stopped
+    ports:
+      - 9115:9115
+    volumes:
+      - ./blackbox:/opt/monitoring/blackbox
+    environment:
+      - TZ=${SYSTEM_TIMEZONE:-Europe/Moscow}
+    command:
+      - '--config.file=/opt/monitoring/blackbox/blackbox.yml'
+    networks:
+      - default
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    hostname: alertmanager
+    restart: unless-stopped
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/:/opt/monitoring/alertmanager/
+    environment:
+      - TZ=${SYSTEM_TIMEZONE:-Europe/Moscow}
+    command:
+      - '--config.file=/opt/monitoring/alertmanager/config.yml'
+      - '--storage.path=/opt/monitoring/alertmanager/data'
+    networks:
+      - default
+
+networks:
+  default:
+#    external: true
+```
+
+```
+vi /opt/monitoring/prometheus/prometheus.yml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 5s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+rule_files:
+  - /opt/monitoring/prometheus/rules.d/*.rules.yml
+
+
+
+docker-compose up -d
+

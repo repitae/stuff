@@ -1,0 +1,71 @@
+modules:
+  http_tls_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: []
+      method: GET
+      preferred_ip_protocol: "ip4"
+      fail_if_ssl: false
+      fail_if_not_ssl: true
+      tls_config:
+        insecure_skip_verify: true
+  http_get_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      method: GET
+      preferred_ip_protocol: "ip4"
+  http_post_2xx:
+    prober: http
+    http:
+      method: POST
+      preferred_ip_protocol: "ip4"
+  tcp_connect:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      preferred_ip_protocol: "ip4"
+  icmp:
+    prober: icmp
+    timeout: 5s
+    icmp:
+      ip_protocol_fallback: false
+      preferred_ip_protocol: "ip4"
+  online.vtb.ru:
+    prober: dns
+    timeout: 5s
+    dns:
+      query_name: "online.vtb.ru"
+      query_type: "A"
+      preferred_ip_protocol: "ip4"
+      valid_rcodes:
+        - NOERROR
+  mb.vtb.ru:
+    prober: dns
+    timeout: 5s
+    dns:
+      query_name: "mb.vtb.ru"
+      query_type: "A"
+      preferred_ip_protocol: "ip4"
+      valid_rcodes:
+        - NOERROR
+  google.com:
+    prober: dns
+    timeout: 5s
+    dns:
+      query_name: "google.com"
+      query_type: "A"
+      preferred_ip_protocol: "ip4"
+  yandex.ru:
+    prober: dns
+    timeout: 5s
+    dns:
+      query_name: "yandex.ru"
+      query_type: "A"
+      preferred_ip_protocol: "ip4"
+      valid_rcodes:
+        - NOERROR
+
+
+

@@ -1,0 +1,24 @@
+global:
+
+route:
+
+inhibit_rules:
+- source_matchers:
+    - severity="critical"
+  target_matchers:
+    - severity="warning"
+  equal: ['alertname']
+
+
+receivers:
+  - name: slack
+    slack_configs:
+      - channel: "#monitoring"
+        send_resolved: true
+        api_url: "https://hooks.slack.com/services/XXXXX"
+        title: Alert
+        text: >-
+          *Alert:*  - ``
+          *Description:* 
+          *Details:*
+             • *:* ``

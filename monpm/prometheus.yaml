@@ -1,0 +1,60 @@
+scrape_configs:
+  - job_name: "prometheus"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "blackbox"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["localhost:9115"]
+
+- job_name: "blackbox-dns"
+  metrics_path: /probe
+    relabel_configs:
+  - source_labels: [__address__]
+    regex: (.*):.*$
+    replacement: $1
+    target_label: domain
+  - source_labels: [__address__]
+    regex: .*:(.*)$
+    replacement: $1
+    target_label: instance
+  - source_labels: [domain]
+    target_label: __param_module
+  - source_labels: [instance]
+    target_label: __param_target
+  - target_label: __address__
+    replacement: 127.0.0.1:9115
+  static_configs:
+  - targets:
+    - online:1.1.1.1
+    - online:8.8.8.8
+    - online:9.9.9.9
+    - mb:1.1.1.1
+    - mb:8.8.8.8
+    - mb:9.9.9.9
+    - google:1.1.1.1
+    - google:8.8.8.8
+    - google:9.9.9.9
+    - yandex:1.1.1.1
+    - yandex:8.8.8.8
+    - yandex:9.9.9.9
+
+- job_name: "blackbox-http"
+  metrics_path: /probe
+  params:
+    module: [http_tls_2xx]
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: localhost:9115
+  static_configs:
+    - targets:
+      - https://online.vtb.ru
+      - https://mb.vtb.ru
+      - https://google.com
+      - https://yandex.ru

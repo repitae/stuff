@@ -1,0 +1,37 @@
+sudo apt update && sudo apt upgrade -y
+sudo apt install atop deborphan ethtool git htop unzip sysstat tcpdump tmux tree zip -y
+
+
+sudo apt --purge remove autoconf bison libtool m4
+sudo apt --purge remove clang clang-11 clang-15
+sudo apt --purge remove gcc-8-multilib gcc-multilib 
+#sudo apt install autoconf bison libtool m4 clang clang-11 clang-15
+sudo apt --purge remove libident libssl1.0.2
+
+alias tmm="tmux new-session "atop" \; \split-window -v 'htop' \; \split-window -h 'watch -n "ss -s"' \; \select-pane -t 0 \; \split-window -h"
+
+tmux new-session -s foo 'bash --rcfile <(echo ". ~/.bashrc; echo intmux")'
+
+tmux new-session "atop" \; split-window -h "htop" \; split-window -v "watch -n1 'ss -s'" \; select-pane -t 0 \; \split-window -v "echo 'cmdknV' | nmon" \;
+tmux new-session 'atop' \; split-window -h 'htop' \; split-window -v 'echo "cmdknV" | nmon' \; select-pane -t 0 \; \split-window -v 'watch -n1 "ss -s"' \;
+
+echo 'cmdknV' | nmon
+cmdknjtv.
+c – CPU;
+m – MEM;
+d – DISK;
+k – KERNEL;
+n – NET;
+N – NFS;
+j – JF;
+t – TOP;
+V – VMEM;
+. – ACTIVE;
+v – VERBOSE
+
+
+atop -OGDN
+-O  — top-3 CPU
+-G  — top-3 RAM
+-D  — top-3 DISK
+-N  - top-3 NET
