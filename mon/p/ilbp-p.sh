@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-NS=185.179.144.1
+NS=195.242.83.1
 
 while :
 do
-  for var in mb.vtb.ru online.vtb.ru sso-app.vtb.ru
+  for var in www.vtb.ru www.vtb.com esmdtpep.vtb.ru
     do
       echo
       echo `date '+%F %T'`
