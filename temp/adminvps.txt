@@ -1,0 +1,19 @@
+Result	Type	Description
+AS211642	ASN	AdminVPS OOORussian Federation
+AS211183	ASN	AdminVPS OOORussian Federation
+94.154.11.0/24	Route	AdminVPS OOORussian Federation
+93.188.206.0/24	Route	AdminVPS OOORussian Federation
+91.200.84.0/24	Route	AdminVPS OOORussian Federation
+89.191.225.0/24	Route	AdminVPS OOORussian Federation
+45.129.186.0/24	Route	AdminVPS OOORussian Federation
+37.140.241.0/24	Route	AdminVPS OOORussian Federation
+195.93.252.0/24	Route	AdminVPS OOORussian Federation
+193.187.96.0/24	Route	AdminVPS OOORussian Federation
+185.251.38.0/24	Route	AdminVPS OOORussian Federation
+185.240.103.0/24	Route	AdminVPS OOORussian Federation
+185.240.102.0/24	Route	AdminVPS OOORussian Federation
+185.219.43.0/24	Route	AdminVPS OOORussian Federation
+185.219.42.0/24	Route	AdminVPS OOORussian Federation
+185.219.41.0/24	Route	AdminVPS OOORussian Federation
+185.219.40.0/24	Route	AdminVPS OOORussian Federation
+185.198.152.0/24	Route	AdminVPS OOORussian Federation
