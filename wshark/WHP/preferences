@@ -15,6 +15,7 @@
 # Restore current display filter after following a stream?
 # true or false (case-insensitive)
 #gui.restore_filter_after_following_stream: FALSE
+gui.restore_filter_after_following_stream: TRUE
 
 # Where to start the File Open dialog box
 # One of: LAST_OPENED, SPECIFIED, CWD
@@ -31,7 +32,8 @@
 
 # Directory to start in when opening File Open dialog.
 # A path to a directory
-#gui.fileopen.dir: C:\Users\llc\Documents
+#gui.fileopen.dir: 
+gui.fileopen.dir:
 
 # The preview timeout in the File Open dialog
 # A decimal number
@@ -73,6 +75,7 @@
 # Check for updates (Windows and macOS only)
 # true or false (case-insensitive)
 #gui.update.enabled: TRUE
+gui.update.enabled: FALSE
 
 # The type of update to fetch. You should probably leave this set to STABLE.
 # One of: DEVELOPMENT, STABLE
@@ -82,6 +85,7 @@
 # How often to check for software updates in seconds
 # A decimal number
 #gui.update.interval: 86400
+gui.update.interval: 0
 
 # How long to wait (in milliseconds) before processing computationally intensive user input. If you type quickly, consider lowering the value for a 'snappier' experience. If you type slowly, consider increasing the value to avoid performance issues. This is currently used to delay searches in View -> Internals -> Supported Protocols and Preferences -> Advanced menu.
 # A decimal number
@@ -129,11 +133,13 @@
 # This will enable or disable the 'Open' list on the welcome page.
 # true or false (case-insensitive)
 #gui.welcome_page.show_recent: TRUE
+gui.welcome_page.show_recent: FALSE
 
 # The position of "..." (ellipsis) in packet list text.
 # One of: LEFT, RIGHT, MIDDLE, NONE
 # (case-insensitive).
 #gui.packet_list_elide_mode: RIGHT
+gui.packet_list_elide_mode: MIDDLE
 
 # Sets the count of decimal places for values of type 1.Type 1 values are defined by authors.Value can be in range 2 to 10.
 # A decimal number
@@ -166,10 +172,12 @@
 # Show all interfaces, including interfaces marked as hidden
 # true or false (case-insensitive)
 #gui.interfaces_show_hidden: FALSE
+gui.interfaces_show_hidden: FALSE
 
 # Show remote interfaces in the interface selection
 # true or false (case-insensitive)
 #gui.interfaces_remote_display: TRUE
+gui.interfaces_remote_display: FALSE
 
 # Hide the given interface types in the startup list.
 # A comma-separated string of interface type values (e.g. 5,9).
@@ -184,7 +192,7 @@
 # 8 = External Capture,
 # 9 = Virtual
 # A string
-gui.interfaces_hidden_types: 4,8,9
+gui.interfaces_hidden_types: 1,2,3,4,6,7,8,9
 
 # Enables automatic updates for IO Graph
 # true or false (case-insensitive)
@@ -376,10 +384,12 @@ gui.packet_list_separator.enabled: TRUE
 # Show selected packet in the Status Bar
 # true or false (case-insensitive)
 #gui.show_selected_packet.enabled: FALSE
+gui.show_selected_packet.enabled: TRUE
 
 # Show file load time in the Status Bar
 # true or false (case-insensitive)
 #gui.show_file_load_time.enabled: FALSE
+gui.show_file_load_time.enabled: TRUE
 
 # Packet Dialog layout
 # One of: Vertical (Stacked), Horizontal (Side-by-side)

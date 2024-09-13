@@ -95,11 +95,11 @@ gui.show_bytes_show: ASCII
 
 # Main window upper (or leftmost) pane size.
 # Decimal number.
-gui.geometry_main_upper_pane: 238
+gui.geometry_main_upper_pane: 634
 
 # Main window middle pane size.
 # Decimal number.
-gui.geometry_main_lower_pane: 317
+gui.geometry_main_lower_pane: 1277
 
 # Main window master splitter state.
 # Hex byte string.
@@ -109,6 +109,10 @@ gui.geometry_main_master_split: 000000ff00000001000000020000027b0000027b00ffffff
 # Hex byte string.
 gui.geometry_main_extra_split: 000000ff0000000100000002000004fd000004fe00ffffffff010000000100
 
+# Splitter state of PacketDialog window.
+# Qt Splitter state (hex byte string).
+gui.geom.PacketDialog.splitter: 000000ff0000000100000002000000c0000000de01ffffffff010000000200
+
 # Splitter state of PreferencesDialog window.
 # Qt Splitter state (hex byte string).
 gui.geom.PreferencesDialog.splitter: 000000ff0000000100000002000000820000022901ffffffff010000000100
@@ -116,56 +120,56 @@ gui.geom.PreferencesDialog.splitter: 000000ff0000000100000002000000820000022901f
 # Packet list column pixel widths.
 # Each pair of strings consists of a column format and its pixel width.
 column.width:
-        %m, -1,
-        %At, -1,
-        %Gt, -1,
-        %p, -1,
-        %s, -1,
-        %d, -1,
-        "%Cus:tcp.srcport or udp.srcport", -1,
-        "%Cus:tcp.dstport or udp.dstport", -1,
-        %L, -1,
-        "%Cus:tcp.len", -1,
-        "%Cus:data.len", -1,
-        %B, -1,
-        "%Cus:vlan.id", -1,
-        "%Cus:ip.ttl", -1,
-        "%Cus:dns.a or dns.qry.name or dns.resp.name", -1,
-        "%Cus:ip.flags.df", -1,
-        "%Cus:ip.flags.mf", -1,
-        "%Cus:ip.dsfield.dscp", -1,
-        "%Cus:tcp.stream or udp.stream", -1,
-        "%Cus:tcp.options.mss_val", -1,
-        "%Cus:tcp.seq", -1,
-        "%Cus:tcp.nxtseq", -1,
-        "%Cus:tcp.ack", -1,
-        "%Cus:tcp.analysis.acks_frame", -1,
-        "%Cus:tcp.window_size", -1,
-        "%Cus:icmp.type", -1,
-        "%Cus:icmp.code", -1,
-        "%Cus:tcp.time_delta", -1,
-        "%Cus:tcp.analysis.bytes_in_flight", -1,
-        "%Cus:tcp.analysis.push_bytes_sent", -1,
-        "%Cus:tls.handshake.version", -1,
-        "%Cus:tls.handshake.extensions_server_name", -1,
-        "%Cus:tls.handshake.extensions_alpn_str", -1,
-        "%Cus:tls.handshake.ja3", -1,
-        "%Cus:tls.handshake.ja3_full", -1,
-        "%Cus:tls.handshake.ja4", -1,
-        "%Cus:tls.handshake.ja4_r", -1,
-        "%Cus:bgp.open.myas", -1,
-        "%Cus:bgp.open.identifier", -1,
-        "%Cus:bgp.update.path_attribute.local_pref", -1,
-        "%Cus:bgp.update.nlri", -1,
-        "%Cus:bgp.update.path_attribute.as_path_segment.as2", -1,
-        "%Cus:tcp.completeness", -1,
-        "%Cus:tcp.flags.str", -1,
-        "%Cus:ip.geoip.country_iso", -1,
-        "%Cus:ip.geoip.asnum", -1,
-        "%Cus:ip.geoip.src_org", -1,
-        "%Cus:ip.geoip.src_summary", -1,
-        "%Cus:frame.comment", -1,
-        %i, -1
+        %m, 82,
+        %At, 130,
+        %Gt, 72,
+        %p, 58,
+        %s, 122,
+        %d, 122,
+        "%Cus:tcp.srcport or udp.srcport", 56,
+        "%Cus:tcp.dstport or udp.dstport", 58,
+        %L, 0,
+        "%Cus:tcp.len", 47,
+        "%Cus:data.len", 51,
+        %B, 0,
+        "%Cus:vlan.id", 0,
+        "%Cus:ip.ttl", 38,
+        "%Cus:dns.a or dns.qry.name or dns.resp.name", 0,
+        "%Cus:ip.flags.df", 64,
+        "%Cus:ip.flags.mf", 64,
+        "%Cus:ip.dsfield.dscp", 0,
+        "%Cus:tcp.stream or udp.stream", 38,
+        "%Cus:tcp.options.mss_val", 51,
+        "%Cus:tcp.seq", 46,
+        "%Cus:tcp.nxtseq", 46,
+        "%Cus:tcp.ack", 46,
+        "%Cus:tcp.analysis.acks_frame", 38,
+        "%Cus:tcp.window_size", 48,
+        "%Cus:icmp.type", 51,
+        "%Cus:icmp.code", 53,
+        "%Cus:tcp.time_delta", 97,
+        "%Cus:tcp.analysis.bytes_in_flight", 42,
+        "%Cus:tcp.analysis.push_bytes_sent", 47,
+        "%Cus:tls.handshake.version", 0,
+        "%Cus:tls.handshake.extensions_server_name", 0,
+        "%Cus:tls.handshake.extensions_alpn_str", 0,
+        "%Cus:tls.handshake.ja3", 0,
+        "%Cus:tls.handshake.ja3_full", 0,
+        "%Cus:tls.handshake.ja4", 0,
+        "%Cus:tls.handshake.ja4_r", 0,
+        "%Cus:bgp.open.myas", 0,
+        "%Cus:bgp.open.identifier", 0,
+        "%Cus:bgp.update.path_attribute.local_pref", 0,
+        "%Cus:bgp.update.nlri", 0,
+        "%Cus:bgp.update.path_attribute.as_path_segment.as2", 0,
+        "%Cus:tcp.completeness", 130,
+        "%Cus:tcp.flags.str", 105,
+        "%Cus:ip.geoip.country_iso", 0,
+        "%Cus:ip.geoip.asnum", 0,
+        "%Cus:ip.geoip.src_org", 0,
+        "%Cus:ip.geoip.src_summary", 435,
+        "%Cus:frame.comment", 0,
+        %i, 418
 
 # Open conversation dialog tabs.
 # List of conversation names, e.g. "TCP", "IPv6".
