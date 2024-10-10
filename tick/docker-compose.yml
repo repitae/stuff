@@ -1,0 +1,73 @@
+---
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb:rw
+    ports:
+      - 8086:8086
+    networks:
+      - default
+
+  telegraf:
+    image: telegraf:latest
+    hostname: telegraf
+    container_name: telegraf
+    restart: on-failure
+    user: telegraf:998
+    env_file:
+      - .env
+    volumes:
+      - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /:/hostfs:ro
+    ports:
+      - 6514:6514
+    depends_on:
+      - influxdb
+    networks:
+      - default
+
+  kapacitor:
+    image: kapacitor:latest
+    hostname: kapacitor
+    container_name: kapacitor
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - ./kapacitor/data:/var/lib/kapacitor:rw
+      - ./config/kapacitor.conf:/etc/kapacitor/kapacitor.conf:ro
+    ports:
+      - 9092:9092
+    depends_on:
+      - influxdb
+      - telegraf
+    networks:
+      - default
+
+  chronograf:
+    image: chronograf:latest
+    hostname: chronograf
+    container_name: chronograf
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - 8888:8888
+    volumes:
+      - ./chronograf/data:/var/lib/chronograf
+    depends_on:
+      - influxdb
+      - telegraf
+      - kapacitor
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
