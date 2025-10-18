@@ -13,7 +13,8 @@ if [%GWI%]==[] ( goto :Disconnected )
 route add 10.128.0.0 mask 255.128.0.0 %GWI% metric 5 if %IFI% > NUL
 route delete 0.0.0.0/1
 route delete 128.0.0.0/1
-rem pause
+
+rem netsh interface ip set dns "LAN" dhcp
 exit /b
 
 :Disconnected

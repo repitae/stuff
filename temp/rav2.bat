@@ -22,7 +22,7 @@ if [%OCT%]==[] ( goto :Disconnected ) else (
 route add 10.%OCT%.0.0 mask 255.255.0.0 %GWI% metric 5 if %IFI% > NUL
 )
 
-rem pause
+rem netsh interface ip set dns "LAN" dhcp
 exit /b
 
 :Disconnected
