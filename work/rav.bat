@@ -10,17 +10,17 @@ SET dns3=195.208.4.1
 
 CALL :RTE-Mod
 IF ERRORLEVEL 0 CALL :DNS-Mod
-IF ERRORLEVEL 0 CALL :PCheck
+IF ERRORLEVEL 0 CALL :Post-CH
 GOTO :Exit
 
 :RTE-Mod
-REM Get the INdex and gateway for 0/1
+REM Get the index and gateway for 0/1
 FOR /f "tokens=5,6" %%a IN ('netsh interface ipv4 show route ^| findstr "0.0.0.0/1"') DO (
   SET IF_001=%%a
   SET GW_001=%%b
 )
 
-REM Get the INdex and gateway for 128/1
+REM Get the index and gateway for 128/1
 FOR /f "tokens=5,6" %%c IN ('netsh interface ipv4 show route ^| findstr "128.0.0.0/1"') DO (
   SET IF_128=%%c
   SET GW_128=%%d
@@ -68,7 +68,7 @@ IF [%IF010_NM%]==[] ( GOTO :Offline ) ELSE (
   rem netsh interface ip set dns %IF010_NM% dhcp
 )
 
-:PCheck
+:Post-CH
 REM Check the route table for 0/0
 FOR /f "tokens=5,6" %%i IN ('netsh interface ipv4 show route ^| findstr "0.0.0.0/0"') DO (
   SET IF_00=%%i
@@ -81,7 +81,7 @@ FOR /f "tokens=5,6" %%k IN ('netsh interface ipv4 show route ^| findstr "10.128.
   SET GW_10=%%l
 )
 
-REM Make sure the routes are not overlappINg
+REM Make sure the routes are not overlapping
 IF [%IF_00%]==[%IF_10%] ( GOTO :Fail ) ELSE ( 
   IF [%GW_00%]==[%GW_10%] ( GOTO :Fail ) ELSE (
     GOTO :End
