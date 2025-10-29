@@ -1,7 +1,7 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 
-HOST=217.14.62.112
-CARGS='-A Zabbix -k -s'
+HOST=$1
+CARGS='-A ZBX -k -s'
 GREPA='Access\|Forbidden\|Transaction\|Reason\|Blocked\|blocked'
 GREPP='grep -q'
 RFQDN=ya.ru
@@ -394,3 +394,42 @@ fi
 ### 
 }
 DVWA_BADREDIR
+
+DVWA_LRB () {
+echo "LRB"
+for i in {1..30} ; do \
+curl $CARGS https://$HOST/.git/HEAD \
+-H 'Origin: https://www.example.ru' \
+-H' Host: www.example.ru'; done
+###
+}
+
+DVWA_E1 () {
+echo "Enumeration Test 1"
+for i in {1..30} ; do \
+curl $CARGS https://$HOST/DVWA/login.php \
+-H 'Origin: https://www.example.ru' \
+-H 'Host: www.example.ru'; done
+### 
+}
+
+DVWA_E2 () {
+echo "Enumeration Test 2"
+for i in {1..30} ; do \
+curl $CARGS https://$HOST/DVWA/login.php \
+-H 'Origin: http://www.example.ru' \
+-H 'Host: www.example.ru' \
+-d '{"login" :  "admin", "password" :  "test2"}'; done
+### 
+}
+
+DVWA_E3 () {
+echo "Enumeration Test 3"
+for i in {1..30} ; do \
+curl $CARGS https://$HOST/DVWA/login.php \
+-H 'Origin: http://www.example.ru' \
+-H 'Host: www.example.ru' \
+-d '{login:%i;password:test3}'; done
+###
+}
+

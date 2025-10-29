@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 HOST=$1
 RFQDN=example.com
