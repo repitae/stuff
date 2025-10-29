@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 HOST=$1
-CARGS='-A Zabbix -k -s'
+CARGS='-A ZXA -k -s'
 GREPA='Access\|Forbidden\|Transaction\|Reason\|Blocked\|blocked'
 GREPP='grep -q'
 RFQDN=www.example.com
