@@ -1,0 +1,6 @@
+Halnziye HY-P17
+	Bulk Thermal Conductivity λ 17.3
+	Thermal Conductivity (W/m·K) 6.8
+Snowman MTG5 / MTG10
+	Bulk Thermal Conductivity λ 14.3
+	Thermal Conductivity (W/m·K) 3.6
