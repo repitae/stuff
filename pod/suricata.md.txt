@@ -11,19 +11,25 @@
 ```
 ```
 # env
-mkdir -p ~/oisf/ && cd ~/oisf/
+mkdir -p ~/oisf/
+cd ~/oisf/
 ```
 ```
-# ndpi
-wget https://github.com/ntop/nDPI/archive/refs/tags/6.0.zip
-wget https://github.com/ntop/nDPI/archive/refs/tags/4.14.tar.gz
-unzip ./6.0.zip -d ./ndpi6
-tar xzvf ./4.14.tar.gz
-cd ./nDPI-4.14
+# ndpi6 - not nessesery, does not work with suricata
+wget https://github.com/ntop/nDPI/archive/refs/tags/6.0.tar.gz
+tar xzvf ./6.0.tar.gz
+cd ./nDPI-6.0
 ./autogen.sh
-./configure --prefix=/opt/oisf/ndpi4 --with-only-libndpi
+./configure --prefix=/opt/oisf/ndpi6 --with-pcre2 --with-maxminddb
 make -j$(nproc)
 sudo make install
+cd ../
+
+```
+```
+# ndpi4
+wget https://github.com/ntop/nDPI/archive/refs/tags/4.14.tar.gz
+tar xzvf ./4.14.tar.gz
 cd ../
 ```
 ```
@@ -76,7 +82,7 @@ sudo apt -y install \
   --enable-ndpi \
   --enable-hwloc \
   --enable-pie \
-  --with-ndpi=/opt/oisf/ndpi4
+  --with-ndpi=/home/qwe/oisf/nDPI-4.14/
 ```
 ```
 # mk
