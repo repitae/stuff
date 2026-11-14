@@ -1,0 +1,85 @@
+```
+# refs xdp
+# https://eduardvasile.ro/blog/af-xdp-vs-dpdk
+# https://stackoverflow.com/questions/61666624/testing-xdp-vs-dpdk
+# https://www.huge-networks.com/en/blog/conectividade/xdp-vs-dpdk-how-to-overcome-the-traffic-speed-challenge
+# refs hwloc
+# https://www.open-mpi.org/projects/hwloc/
+# https://www-lb.open-mpi.org/projects/hwloc/tutorials/20160606-PATC-hwloc-tutorial.pdf
+# ref ndpi
+# https://github.com/ntop/nDPI/issues/3072
+```
+```
+# env
+mkdir -p ~/oisf/ && cd ~/oisf/
+```
+```
+# ndpi
+wget https://github.com/ntop/nDPI/archive/refs/tags/6.0.zip
+wget https://github.com/ntop/nDPI/archive/refs/tags/4.14.tar.gz
+unzip ./6.0.zip -d ./ndpi6
+tar xzvf ./4.14.tar.gz
+cd ./nDPI-4.14
+./autogen.sh
+./configure --prefix=/opt/oisf/ndpi4 --with-only-libndpi
+make -j$(nproc)
+sudo make install
+cd ../
+```
+```
+# suricata
+wget https://www.openinfosecfoundation.org/download/suricata-8.0.8.tar.gz
+tar xzvf suricata-8.0.8.tar.gz
+cd ./suricata-8.0.8
+```
+```
+# base
+sudo apt -y install \
+  linux-headers-$(uname .r) \
+  autoconf \
+  automake \
+  binutils \
+  build-essential \
+  gcc \
+  libtool \
+  make \
+  pkg-config
+```
+```
+# deps
+sudo apt -y install \
+  cargo \
+  hwloc \
+  libbpf-dev \
+  libcap-ng-dev \
+  libcap-ng-dev \
+  libelf-dev \
+  libhwloc-dev \
+  libjansson-dev \
+  liblz4-dev \
+  libmagic-dev \
+  libmaxminddb-dev \
+  libpcap-dev \
+  libpcre2-dev \
+  libunwind-dev \
+  libxdp-dev \
+  libyaml-dev \
+  zlib1g-dev \
+  rustc
+```
+```
+# cfg
+./configure --prefix=/opt/suricata \
+  --enable-ebpf \
+  --enable-gccmarch-native \
+  --enable-geoip \
+  --enable-ndpi \
+  --enable-hwloc \
+  --enable-pie \
+  --with-ndpi=/opt/oisf/ndpi4
+```
+```
+# mk
+make -j$(nproc)
+make install-full
+```
