@@ -1,0 +1,93 @@
+Suricata Configuration:
+  AF_PACKET support:                       yes
+  AF_XDP support:                          yes
+  DPDK support:                            no
+  eBPF support:                            yes
+  XDP support:                             yes
+  PF_RING support:                         no
+  NFQueue support:                         no
+  NFLOG support:                           no
+  IPFW support:                            no
+  Netmap support:                          no
+  DAG enabled:                             no
+  Napatech enabled:                        no
+  WinDivert enabled:                       no
+  Npcap support:
+
+  Unix socket enabled:                     yes
+  Detection enabled:                       yes
+
+  Libmagic support:                        yes
+  libjansson support:                      yes
+  hiredis support:                         no
+  hiredis async with libevent:             no
+  PCRE jit:                                yes
+  GeoIP2 support:                          yes
+  JA3 support:                             yes
+  JA4 support:                             yes
+  Hyperscan support:                       no
+  Hwloc support:                           yes
+  Libnet support:                          no
+  liblz4 support:                          yes
+  Landlock support:                        yes
+  Systemd support:                         yes
+
+  Rust strict mode:                        no
+  Rust compiler path:                      /usr/bin/rustc
+  Rust compiler version:                   rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)
+  Cargo path:                              /usr/bin/cargo
+  Cargo version:                           cargo 1.93.1 (083ac5135 2025-12-15) (built from a source tarball)
+
+  Python support:                          yes
+  Python path:                             /usr/bin/python3
+  Install suricatactl:                     yes
+  Install suricatasc:                      yes
+  Install suricata-update:                 yes
+
+  Profiling enabled:                       no
+  Profiling locks enabled:                 no
+  Profiling rules enabled:                 no
+
+  Plugin support (experimental):           yes
+  DPDK Bond PMD:                           no
+
+Plugins:
+  nDPI:                                    yes
+
+Development settings:
+  Coccinelle / spatch:                     no
+  Unit tests enabled:                      no
+  Debug output enabled:                    no
+  Debug validation enabled:                no
+  QA-simulation enabled:                   no
+  Fuzz targets enabled:                    no
+
+Generic build parameters:
+  Installation prefix:                     /opt
+  Configuration directory:                 /opt/etc/suricata/
+  Log directory:                           /opt/var/log/suricata/
+
+  --prefix                                 /opt
+  --sysconfdir                             /opt/etc
+  --localstatedir                          /opt/var
+  --datarootdir                            /opt/share
+
+  Host:                                    x86_64-pc-linux-gnu
+  Compiler:                                gcc (exec name) / g++ (real)
+  GCC Protect enabled:                     no
+  GCC march native enabled:                yes
+  GCC Profile enabled:                     no
+  Position Independent Executable enabled: yes
+  CFLAGS                                   -g -O2 -fPIC -DOS_LINUX -std=c11  -march=native
+  PCAP_CFLAGS                              -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/libnl3
+  SECCFLAGS
+
+To build and install run 'make' and 'make install'.
+
+You can run 'make install-conf' if you want to install initial configuration
+files to /opt/etc/suricata/. Running 'make install-full' will install configuration
+and rules and provide you a ready-to-run suricata.
+
+To install Suricata into /usr/bin/suricata, have the config in
+/etc/suricata and use /var/log/suricata as log dir, use:
+./configure --prefix=/usr/ --sysconfdir=/etc/ --localstatedir=/var/

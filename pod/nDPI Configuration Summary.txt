@@ -1,0 +1,61 @@
+nDPI Configuration Summary
+========================================================================
+
+Package Information:
+  Version:                 6.0.0 (6.0.0)
+  API Version:             18214
+  Git Date:                2026-08-28 12:57:03.000000000 +0300
+
+Installation Paths:
+  Prefix:                  /usr
+  Exec prefix:             ${prefix}
+  Library path:            ${exec_prefix}/lib
+  Include path:            ${prefix}/include
+  Binary path:             ${exec_prefix}/bin
+
+Build Configuration:
+  Host system:             x86_64-pc-linux-gnu
+  C Compiler:              gcc
+  C++ Compiler:            g++
+  Debug build:             disabled
+  Sanitizers:              none
+  Code coverage:           disabled
+  LTO + Gold linker:       disabled
+  Shared library:          enabled
+  Static library:          enabled
+  DPDK support:            disabled
+  gperftools profiling:    disabled
+
+Core Features:
+  PCRE2:                   disabled
+  nBPF:                    disabled
+  Crypto library:          built-in gcrypt-light
+  Global context:          enabled (with pthread)
+  Plugins:                 enabled
+  CRoaring version:        v4 (C11 atomics)
+  Custom protocols:        no
+  USDT probes:             disabled
+
+Optional Dependencies:
+  MaxMindDB (GeoIP):       no
+  JSON-C:                  no
+  RRDtool:                 no
+  libnuma:                 yes
+
+Build Targets:
+  Library only:            no
+  Application examples:    yes
+  Unit tests:              no
+  Fuzz targets:            no
+
+Compiler Flags:
+  CFLAGS:                  -g -O2
+  NDPI_CFLAGS:             -W -Wall -Wextra -Wno-address-of-packed-member -D_DEFAULT_SOURCE=1 -D_GNU_SOURCE=1 -DUSE_GLOBAL_CONTEXT
+  LDFLAGS:
+  NDPI_LDFLAGS:
+  Additional libs:          -lm -ldl
+  PCAP_INC:
+  PCAP_LIB:                -lpcap
+
+========================================================================
+Configuration complete. Now run 'make' to build nDPI.
