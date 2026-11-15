@@ -87,5 +87,5 @@ sudo apt -y install \
 ```
 # mk
 make -j$(nproc)
-make install-full
+sudo make install-full
 ```
