@@ -34,9 +34,10 @@ cd ../
 ```
 ```
 # suricata
+#wget https://github.com/OISF/suricata/archive/refs/tags/suricata-8.0.8.tar.gz # git
 wget https://www.openinfosecfoundation.org/download/suricata-8.0.8.tar.gz
 tar xzvf suricata-8.0.8.tar.gz
-cd ./suricata-8.0.8
+cd ./suricata-suricata-8.0.8
 ```
 ```
 # base
@@ -75,6 +76,7 @@ sudo apt -y install \
 ```
 ```
 # cfg
+./autogen.sh
 ./configure --prefix=/opt/suricata \
   --enable-ebpf \
   --enable-gccmarch-native \
