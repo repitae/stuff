@@ -98,7 +98,7 @@ cd ./suricata-8.0.8
   --enable-hwloc \
   --enable-pie
 [ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
-[ $? -eq 0 ] && sudo make install || echo "make failed"
+[ $? -eq 0 ] && sudo make install-full || echo "make failed"
 cd ../
 ```
 
