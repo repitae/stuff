@@ -1,4 +1,8 @@
 ```
+USER=`whoami`
+PREF=/opt/oisf
+```
+```
 # refs xdp
 # https://eduardvasile.ro/blog/af-xdp-vs-dpdk
 # https://stackoverflow.com/questions/61666624/testing-xdp-vs-dpdk
@@ -8,6 +12,43 @@
 # https://www-lb.open-mpi.org/projects/hwloc/tutorials/20160606-PATC-hwloc-tutorial.pdf
 # ref ndpi
 # https://github.com/ntop/nDPI/issues/3072
+```
+```
+# sys
+echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/disable_ipv6.conf
+echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/disable_ipv6.conf
+sudo sysctl -p /etc/sysctl.d/disable_ipv6.conf
+```
+```
+# base
+sudo apt install linux-headers-$(uname .r) \
+autoconf \
+automake \
+binutils \
+build-essential \
+coreutils \
+gcc \
+libtool \
+make \
+pkg-config
+```
+```
+# deps
+sudo apt -y install cargo rustc hwloc \
+libbpf-dev \
+libcap-ng-dev \
+libelf-dev \
+libhwloc-dev \
+libjansson-dev \
+liblz4-dev \
+libmagic-dev \
+libmaxminddb-dev \
+libpcap-dev \
+libpcre2-dev \
+libunwind-dev \
+libxdp-dev \
+libyaml-dev \
+zlib1g-dev
 ```
 ```
 # env
@@ -20,11 +61,10 @@ wget https://github.com/ntop/nDPI/archive/refs/tags/6.0.tar.gz
 tar xzvf ./6.0.tar.gz
 cd ./nDPI-6.0
 ./autogen.sh
-./configure --prefix=/opt/oisf/ndpi6 --with-pcre2 --with-maxminddb
+./configure --prefix=$PREF/ndpi6 --with-pcre2 --with-maxminddb
 make -j$(nproc)
 sudo make install
 cd ../
-
 ```
 ```
 # ndpi4
@@ -40,41 +80,6 @@ tar xzvf suricata-8.0.8.tar.gz
 cd ./suricata-8.0.8
 ```
 ```
-# base
-sudo apt -y install \
-  linux-headers-$(uname .r) \
-  autoconf \
-  automake \
-  binutils \
-  build-essential \
-  gcc \
-  libtool \
-  make \
-  pkg-config
-```
-```
-# deps
-sudo apt -y install \
-  cargo \
-  hwloc \
-  libbpf-dev \
-  libcap-ng-dev \
-  libcap-ng-dev \
-  libelf-dev \
-  libhwloc-dev \
-  libjansson-dev \
-  liblz4-dev \
-  libmagic-dev \
-  libmaxminddb-dev \
-  libpcap-dev \
-  libpcre2-dev \
-  libunwind-dev \
-  libxdp-dev \
-  libyaml-dev \
-  zlib1g-dev \
-  rustc
-```
-```
 # cfg
 ./autogen.sh
 ./configure --prefix=/opt/suricata \
@@ -84,7 +89,7 @@ sudo apt -y install \
   --enable-ndpi \
   --enable-hwloc \
   --enable-pie \
-  --with-ndpi=/home/qwe/oisf/nDPI-4.14/
+  --with-ndpi=/home/user/nDPI-4.14
 ```
 ```
 # mk
