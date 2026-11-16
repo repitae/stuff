@@ -1,6 +1,7 @@
 ```
-USER=`whoami`
-PREF=/opt/oisf
+USR=`whoami`
+PRF=/opt/oisf
+$WDR=/home/$USR/oisf
 ```
 ```
 # refs xdp
@@ -17,7 +18,11 @@ PREF=/opt/oisf
 # sys
 echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/disable_ipv6.conf
 echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/disable_ipv6.conf
-sudo sysctl -p /etc/sysctl.d/disable_ipv6.conf
+cat /etc/sysctl.d/disable_ipv6.conf | sudo sysctl -p /etc/sysctl.d/disable_ipv6.conf
+```
+```
+# env
+[ -e  $WDR ] || mkdir -p $WDR && cd $WDR
 ```
 ```
 # base
@@ -34,7 +39,8 @@ pkg-config
 ```
 ```
 # deps
-sudo apt -y install cargo rustc hwloc \
+sudo apt -y install cargo rustc hwloc
+sudo apt -y install \
 libbpf-dev \
 libcap-ng-dev \
 libelf-dev \
@@ -51,50 +57,45 @@ libyaml-dev \
 zlib1g-dev
 ```
 ```
-# env
-mkdir -p ~/oisf/
-cd ~/oisf/
-```
-```
-# ndpi6 - not nessesery, does not work with suricata
+# ndpi6 - api does not work with suricata
 wget https://github.com/ntop/nDPI/archive/refs/tags/6.0.tar.gz
 tar xzvf ./6.0.tar.gz
 cd ./nDPI-6.0
 ./autogen.sh
-./configure --prefix=$PREF/ndpi6 --with-pcre2 --with-maxminddb
-make -j$(nproc)
-sudo make install
+./configure --prefix=$PRF/ndpi6 --with-pcre2 --with-maxminddb
+[ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
+[ $? -eq 0 ] && sudo make install || echo "make failed"
+fi
 cd ../
 ```
 ```
 # ndpi4
 wget https://github.com/ntop/nDPI/archive/refs/tags/4.14.tar.gz
 tar xzvf ./4.14.tar.gz
+cd ./nDPI-4.14/
+./autogen.sh
+./configure --prefix=$PRF/ndpi4 --with-pcre2 --with-maxminddb
+[ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
+[ $? -eq 0 ] && sudo make install || echo "make failed"
 cd ../
 ```
 ```
 # suricata
-#wget https://github.com/OISF/suricata/archive/refs/tags/suricata-8.0.8.tar.gz # git
+# wget https://github.com/OISF/suricata/archive/refs/tags/suricata-8.0.8.tar.gz ## git not work on astra
 wget https://www.openinfosecfoundation.org/download/suricata-8.0.8.tar.gz
 tar xzvf suricata-8.0.8.tar.gz
 cd ./suricata-8.0.8
-```
-```
-# cfg
-./autogen.sh
-./configure --prefix=/opt/suricata \
+# ./autogen.sh # for git version only
+./configure --prefix=$PRF/suricata --with-ndpi=$WDR/nDPI-4.14 \
   --enable-ebpf \
   --enable-gccmarch-native \
   --enable-geoip \
   --enable-ndpi \
   --enable-hwloc \
-  --enable-pie \
-  --with-ndpi=/home/user/nDPI-4.14
-```
-```
-# mk
-make -j$(nproc)
-sudo make install-full
+  --enable-pie
+[ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
+[ $? -eq 0 ] && sudo make install || echo "make failed"
+cd ../
 ```
 
 ```
