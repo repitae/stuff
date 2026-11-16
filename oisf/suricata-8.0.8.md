@@ -1,18 +1,23 @@
 ```
-USR=`whoami`
-PRF=/opt/oisf
-$WDR=/home/$USR/oisf
-```
-```
-# refs xdp
+# Deep Packet Inspection Software Toolkit
+# https://github.com/ntop/nDPI
+# Address Family Express Data Path (AF_XDP)
+# https://docs.ebpf.io/linux/concepts/af_xdp/
 # https://eduardvasile.ro/blog/af-xdp-vs-dpdk
 # https://stackoverflow.com/questions/61666624/testing-xdp-vs-dpdk
 # https://www.huge-networks.com/en/blog/conectividade/xdp-vs-dpdk-how-to-overcome-the-traffic-speed-challenge
-# refs hwloc
+# Portable Hardware Locality (hwloc)
 # https://www.open-mpi.org/projects/hwloc/
 # https://www-lb.open-mpi.org/projects/hwloc/tutorials/20160606-PATC-hwloc-tutorial.pdf
-# ref ndpi
+# Configuration issue between Suricata 8 and NDPI 5 #3072
 # https://github.com/ntop/nDPI/issues/3072
+# BashFAQ/031
+# https://mywiki.wooledge.org/BashFAQ/031
+```
+```
+USR=`whoami`
+PRF=/opt/oisf
+$WDR=/home/$USR/oisf
 ```
 ```
 # sys
