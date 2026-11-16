@@ -13,11 +13,21 @@
 # https://github.com/ntop/nDPI/issues/3072
 # BashFAQ/031
 # https://mywiki.wooledge.org/BashFAQ/031
+# Packet Capture Methods
+# https://deepwiki.com/OISF/suricata/3.1-packet-capture-methods
+# Proofpoint Emerging Threats Rules
+# https://rules.emergingthreats.net/open/suricata-8.0.8/
+# JA4 Fingerprinting with Suricata 8.0
+# https://forum.suricata.io/t/ja4-fingerprinting-with-suricata-8-0/5918
+```
+```
+groupadd -r suricata
+useradd -r -M -g suricata -s /bin/nologin suricata
 ```
 ```
 USR=`whoami`
 PRF=/opt/oisf
-$WDR=/home/$USR/oisf
+WDR=/home/$USR/oisf
 ```
 ```
 # sys
@@ -91,34 +101,63 @@ tar xzvf suricata-8.0.8.tar.gz
 cd ./suricata-8.0.8
 # ./autogen.sh # for git version only
 ./configure --prefix=$PRF/suricata --with-ndpi=$WDR/nDPI-4.14 \
-  --enable-ebpf \
-  --enable-gccmarch-native \
-  --enable-geoip \
-  --enable-ndpi \
-  --enable-hwloc \
-  --enable-pie
+--enable-ebpf \
+--enable-gccmarch-native \
+--enable-geoip \
+--enable-lua \
+--enable-ndpi \
+--enable-hwloc \
+--enable-pie
 [ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
 [ $? -eq 0 ] && sudo make install-full || echo "make failed"
-cd ../
+sudo sed -i.back 's/eth0/ens18/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+$PRF/suricata/bin/suricata --build-info
 ```
 
 ```
-# Sample Suricata systemd unit file.
+# /etc/systemd/system/suricata.service
 [Unit]
 Description=Suricata Intrusion Detection Service
-After=syslog.target network-online.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
-# Environment file to pick up $OPTIONS. On Fedora/EL this would be
-# /etc/sysconfig/suricata, or on Debian/Ubuntu, /etc/default/suricata.
-#EnvironmentFile=-/etc/sysconfig/suricata
-#EnvironmentFile=-/etc/default/suricata
-ExecStartPre=/bin/rm -f @e_rundir@suricata.pid
-ExecStart=/sbin/suricata -c @e_sysconfdir@suricata.yaml --pidfile @e_rundir@suricata.pid $OPTIONS
+Type=notify
+NotifyAccess=main
+WatchdogSec=30s
+Restart=on-failure
+RestartSec=5s
+StartLimitBurst=5
+StartLimitIntervalSec=120
+#User=suricata
+#Group=suricata
+ExecStart=/opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/run/suricata/suricata.pid --af-packet
 ExecReload=/bin/kill -USR2 $MAINPID
+
+# Resource limits
+CPUQuota=800%
+MemoryMax=8G
+TasksMax=4096
+LimitNOFILE=65536
+LimitMEMLOCK=infinity
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/oisf/suricata/var/log/suricata /opt/oisf/suricata/var/lib/suricata /opt/oisf/suricata/run/suricata
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN CAP_SYS_NICE CAP_BPF
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN CAP_SYS_NICE CAP_BPF
 
 [Install]
 WantedBy=multi-user.target
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl enable --now suricata
+sudo systemd-analyze verify /etc/systemd/system/suricata.service
+sudo journalctl -u suricata -f | grep -i watchdog
 ```
 ```
 # Sample /etc/logrotate.d/suricata configuration file.
