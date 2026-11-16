@@ -70,7 +70,6 @@ cd ./nDPI-6.0
 ./configure --prefix=$PRF/ndpi6 --with-pcre2 --with-maxminddb
 [ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
 [ $? -eq 0 ] && sudo make install || echo "make failed"
-fi
 cd ../
 ```
 ```
