@@ -56,7 +56,7 @@ wget
 ```
 ```
 # deps
-sudo apt -y install cargo rustc hwloc
+sudo apt -y install cargo rustc hwloc jq
 sudo apt -y install \
 libbpf-dev \
 libcap-ng-dev \
@@ -186,21 +186,23 @@ sudo journalctl -u suricata -f | grep -i watchdog
 ```
 ```
 sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
-
-basedir=/opt/oisf/suricata/var/log/
-/var/log/suricata/*.log
-/var/log/suricata/*.json
+/opt/oisf/suricata/var/log/suricata/*.log
+/opt/oisf/suricata/var/log/suricata/*.json
 {
-    daily
+    size 100M
     rotate 7
-    missingok
     compress
-    delaycompress
+    missingok
+    notifempty
     sharedscripts
     postrotate
-            /bin/kill -HUP `cat /opt/oisf/suricata/var/run/suricata/suricata.pid 2>/dev/null` 2>/dev/null || true
+        if [ -f /opt/oisf/suricata/var/run/suricata/suricata.pid ]; then
+            kill -HUP $(/opt/oisf/suricata/var/run/suricata/suricata.pid) 2>/dev/null || true
+        else
+            systemctl restart suricata
+        fi
     endscript
 }
 EOF
-logrotate -d -f /etc/logrotate.d/suricata
+sudo logrotate -dvf /etc/logrotate.d/suricata
 ```
