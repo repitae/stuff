@@ -51,7 +51,8 @@ coreutils \
 gcc \
 libtool \
 make \
-pkg-config
+pkg-config \
+wget
 ```
 ```
 # deps
@@ -111,8 +112,29 @@ cd ./suricata-8.0.8
 --enable-pie
 [ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
 [ $? -eq 0 ] && sudo make install-full || echo "make failed"
-sudo sed -i.back 's/eth0/ens18/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
 $PRF/suricata/bin/suricata --build-info
+sudo sed -i.back 's/interface: eth0/interface: ens18/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo /opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
+```
+```
+sudo sed -i 's/- mdns:/#- mdns:/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- smtp:/#- smtp:/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- smb:/#- smb:/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- ftp/#- ftp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- rdp/#- rdp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- nfs/#- nfs/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- tftp/#- tftp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- ike/#- ike/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- dcerpc/#- dcerpc/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- krb5/#- krb5/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- bittorrent-dht/#- bittorrent-dht/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- snmp/#- snmp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- rfb/#- rfb/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- sip/#- sip/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- ldap/#- ldap/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo /opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
 ```
 
 ```
