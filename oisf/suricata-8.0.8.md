@@ -138,9 +138,9 @@ sudo /opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata
 ```
 
 ```
-# /etc/systemd/system/suricata.service
+sudo tee /etc/systemd/system/suricata.service > /dev/null << 'EOF'
 [Unit]
-Description=Suricata Intrusion Detection Service
+Description=Suricata Unit Service
 After=network-online.target
 Wants=network-online.target
 
@@ -151,11 +151,11 @@ WatchdogSec=30s
 Restart=on-failure
 RestartSec=5s
 StartLimitBurst=5
-StartLimitIntervalSec=120
 #User=suricata
 #Group=suricata
-ExecStart=/opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/run/suricata/suricata.pid --af-packet
-ExecReload=/bin/kill -USR2 $MAINPID
+ExecStart=/opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill $MAINPID
 
 # Resource limits
 CPUQuota=800%
@@ -169,12 +169,14 @@ NoNewPrivileges=true
 ProtectSystem=strict
 ProtectHome=true
 PrivateTmp=true
-ReadWritePaths=/opt/oisf/suricata/var/log/suricata /opt/oisf/suricata/var/lib/suricata /opt/oisf/suricata/run/suricata
+ReadWritePaths=/opt/oisf/suricata/
 CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN CAP_SYS_NICE CAP_BPF
 AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN CAP_SYS_NICE CAP_BPF
 
 [Install]
 WantedBy=multi-user.target
+EOF
+
 ```
 ```
 sudo systemctl daemon-reload
@@ -183,17 +185,22 @@ sudo systemd-analyze verify /etc/systemd/system/suricata.service
 sudo journalctl -u suricata -f | grep -i watchdog
 ```
 ```
-# Sample /etc/logrotate.d/suricata configuration file.
-@e_logdir@*.log @e_logdir@*.json {
+sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
+
+basedir=/opt/oisf/suricata/var/log/
+/var/log/suricata/*.log
+/var/log/suricata/*.json
+{
     daily
+    rotate 7
     missingok
-    rotate 5
     compress
     delaycompress
-    minsize 500k
     sharedscripts
     postrotate
-        /bin/kill -HUP `cat @e_rundir@suricata.pid 2> /dev/null` 2> /dev/null || true
+            /bin/kill -HUP `cat /opt/oisf/suricata/var/run/suricata/suricata.pid 2>/dev/null` 2>/dev/null || true
     endscript
 }
+EOF
+logrotate -d -f /etc/logrotate.d/suricata
 ```
