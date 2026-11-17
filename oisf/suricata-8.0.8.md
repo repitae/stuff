@@ -21,6 +21,12 @@
 # https://forum.suricata.io/t/ja4-fingerprinting-with-suricata-8-0/5918
 ```
 ```
+# sys
+echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/90-disable-ipv6.conf
+echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/90-disable-ipv6.conf
+cat /etc/sysctl.d/90-disable-ipv6.conf | sudo sysctl -p /etc/sysctl.d/90-disable-ipv6.conf
+```
+```
 groupadd -r suricata
 useradd -r -M -g suricata -s /bin/nologin suricata
 ```
@@ -30,18 +36,13 @@ PRF=/opt/oisf
 WDR=/home/$USR/oisf
 ```
 ```
-# sys
-echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/disable_ipv6.conf
-echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/disable_ipv6.conf
-cat /etc/sysctl.d/disable_ipv6.conf | sudo sysctl -p /etc/sysctl.d/disable_ipv6.conf
-```
-```
 # env
 [ -e  $WDR ] || mkdir -p $WDR && cd $WDR
 ```
 ```
 # base
 sudo apt install linux-headers-$(uname .r) \
+sudo apt install \
 autoconf \
 automake \
 binutils \
