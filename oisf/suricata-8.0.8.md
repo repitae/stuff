@@ -74,8 +74,8 @@ libyaml-dev \
 zlib1g-dev
 ```
 ```
-# ndpi6 - api does not work with suricata
-wget https://github.com/ntop/nDPI/archive/refs/tags/6.0.tar.gz
+# ndpi6
+wget https://github.com/ntop/nDPI/archive/refs/tags/6.0.tar.gz # api does not work with suricata
 tar xzvf ./6.0.tar.gz
 cd ./nDPI-6.0
 ./autogen.sh
@@ -97,7 +97,7 @@ cd ../
 ```
 ```
 # suricata
-# wget https://github.com/OISF/suricata/archive/refs/tags/suricata-8.0.8.tar.gz ## git not work on astra
+# wget https://github.com/OISF/suricata/archive/refs/tags/suricata-8.0.8.tar.gz # git version not work on astra
 wget https://www.openinfosecfoundation.org/download/suricata-8.0.8.tar.gz
 tar xzvf suricata-8.0.8.tar.gz
 cd ./suricata-8.0.8
@@ -134,6 +134,8 @@ sudo sed -i 's/- sip/#- sip/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
 sudo sed -i 's/- ldap/#- ldap/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
 sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
 sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+```
+```
 sudo /opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
 ```
 
@@ -181,12 +183,10 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable --now suricata
 sudo systemd-analyze verify /etc/systemd/system/suricata.service
-sudo journalctl -u suricata -f | grep -i watchdog
-```
+``
 ```
 sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
 /opt/oisf/suricata/var/log/suricata/*.log
-/opt/oisf/suricata/var/log/suricata/*.json
 {
     size 100M
     rotate 7
