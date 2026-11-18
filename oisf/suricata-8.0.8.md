@@ -136,13 +136,19 @@ sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
 sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
 ```
 ```
-sudo /opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
+sudo /opt/oisf/suricata/bin/suricata -T -v \
+-c /opt/oisf/suricata/etc/suricata/suricata.yaml \
+--pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid
+
+sudo /opt/oisf/suricata/bin/suricata \
+-c /opt/oisf/suricata/etc/suricata/suricata.yaml \
+--pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
 ```
 
 ```
 sudo tee /etc/systemd/system/suricata.service > /dev/null << 'EOF'
 [Unit]
-Description=Suricata Unit Service
+Description=Suricata service
 After=network-online.target
 Wants=network-online.target
 
@@ -155,8 +161,8 @@ StartLimitBurst=5
 #User=suricata
 #Group=suricata
 ExecStart=/opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
-ExecReload=/bin/kill -HUP $MAINPID
-ExecStop=/bin/kill $MAINPID
+ExecReload=kill -HUP $MAINPID
+ExecStop=kill $MAINPID
 
 # Resource limits
 CPUQuota=800%
@@ -177,12 +183,12 @@ AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN CAP_SYS_NICE CAP_BPF
 [Install]
 WantedBy=multi-user.target
 EOF
-
 ```
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable --now suricata
 sudo systemd-analyze verify /etc/systemd/system/suricata.service
+sudo journalctl -u suricata --no-pager
 ``
 ```
 sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
