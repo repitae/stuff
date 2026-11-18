@@ -147,7 +147,6 @@ Wants=network-online.target
 [Service]
 Type=notify
 NotifyAccess=main
-WatchdogSec=30s
 Restart=on-failure
 RestartSec=5s
 StartLimitBurst=5
