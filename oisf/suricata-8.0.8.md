@@ -189,7 +189,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now suricata
 sudo systemd-analyze verify /etc/systemd/system/suricata.service
 sudo journalctl -u suricata --no-pager
-``
+```
 ```
 sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
 /opt/oisf/suricata/var/log/suricata/*.log
