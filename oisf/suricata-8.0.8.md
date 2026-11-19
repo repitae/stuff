@@ -61,6 +61,7 @@ sudo apt -y install \
 libbpf-dev \
 libcap-ng-dev \
 libelf-dev \
+libhiredis-dev \
 libhyperscan-dev \
 libhwloc-dev \
 libjansson-dev \
@@ -103,15 +104,21 @@ wget https://www.openinfosecfoundation.org/download/suricata-8.0.8.tar.gz
 tar xzvf suricata-8.0.8.tar.gz
 cd ./suricata-8.0.8
 # ./autogen.sh # for git version only
-./configure --prefix=$PRF/suricata --with-ndpi=$WDR/nDPI-4.14 \
+./configure --prefix=$PRF/suri \
+--with-ndpi=$WDR/nDPI-4.14 \
+--enable-dependency-tracking \
 --enable-ebpf \
 --enable-gccmarch-native \
 --enable-geoip \
+--enable-hiredis \
+--enable-hwloc \
+--enable-hyperscan \
 --enable-lua \
 --enable-ndpi \
---enable-hwloc \
 --enable-pie
-[ $? -eq 0 ] && make -j$(nproc) || echo "config failed"
+```
+```
+[ $? -eq 0 ] && make -j$(nproc) all || echo "config failed"
 [ $? -eq 0 ] && sudo make install-full || echo "make failed"
 $PRF/suricata/bin/suricata --build-info
 sudo sed -i.back 's/interface: eth0/interface: ens18/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
