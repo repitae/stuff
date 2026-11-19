@@ -211,3 +211,10 @@ sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
 EOF
 sudo logrotate -dvf /etc/logrotate.d/suricata
 ```
+```
+/opt/oisf/suricata/bin/suricata-update update-sources
+/opt/oisf/suricata/bin/suricata-update list-sources --free
+/opt/oisf/suricata/bin/suricata-update list-enabled-sources
+/opt/oisf/suricata/bin/suricata-update list-sources --free | grep Name | awk '{print $2 }'
+/opt/oisf/suricata/bin/suricata-update enable-source abuse.ch/sslbl-ja3
+```
