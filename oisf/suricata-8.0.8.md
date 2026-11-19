@@ -61,6 +61,7 @@ sudo apt -y install \
 libbpf-dev \
 libcap-ng-dev \
 libelf-dev \
+libhyperscan-dev \
 libhwloc-dev \
 libjansson-dev \
 liblz4-dev \
