@@ -27,8 +27,8 @@ echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/90-dis
 cat /etc/sysctl.d/90-disable-ipv6.conf | sudo sysctl -p /etc/sysctl.d/90-disable-ipv6.conf
 ```
 ```
-groupadd -r suricata
-useradd -r -M -g suricata -s /bin/nologin suricata
+groupadd -r suri
+useradd -r -M -g suri -s /bin/nologin suri
 ```
 ```
 USR=`whoami`
@@ -210,11 +210,4 @@ sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
 }
 EOF
 sudo logrotate -dvf /etc/logrotate.d/suricata
-```
-```
-/opt/oisf/suricata/bin/suricata-update update-sources
-/opt/oisf/suricata/bin/suricata-update list-sources --free
-/opt/oisf/suricata/bin/suricata-update list-enabled-sources
-/opt/oisf/suricata/bin/suricata-update list-sources --free | grep Name | awk '{print $2 }'
-/opt/oisf/suricata/bin/suricata-update enable-source abuse.ch/sslbl-ja3
 ```
