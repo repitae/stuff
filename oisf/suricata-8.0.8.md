@@ -27,8 +27,8 @@ echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/90-dis
 cat /etc/sysctl.d/90-disable-ipv6.conf | sudo sysctl -p /etc/sysctl.d/90-disable-ipv6.conf
 ```
 ```
-groupadd -r suricata
-useradd -r -M -g suricata -s /bin/nologin suricata
+groupadd -r suri
+useradd -r -M -g suri -s /bin/nologin suri
 ```
 ```
 USR=`whoami`
