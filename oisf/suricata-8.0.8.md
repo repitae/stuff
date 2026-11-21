@@ -41,7 +41,7 @@ WDR=/home/$USR/oisf
 ```
 ```
 # base
-sudo apt install linux-headers-$(uname .r) \
+sudo apt install linux-headers-$(uname .r)
 sudo apt install \
 autoconf \
 automake \
@@ -56,7 +56,7 @@ wget
 ```
 ```
 # deps
-sudo apt -y install cargo rustc hwloc jq
+sudo apt -y install cargo dpdk rustc hwloc jq
 sudo apt -y install \
 libbpf-dev \
 libcap-ng-dev \
@@ -74,6 +74,7 @@ libunwind-dev \
 libxdp-dev \
 libyaml-dev \
 zlib1g-dev
+
 ```
 ```
 # ndpi6
@@ -107,13 +108,12 @@ cd ./suricata-8.0.8
 ./configure --prefix=$PRF/suri \
 --with-ndpi=$WDR/nDPI-4.14 \
 --enable-dependency-tracking \
+--enable-dpdk \
 --enable-ebpf \
 --enable-gccmarch-native \
 --enable-geoip \
 --enable-hiredis \
 --enable-hwloc \
---enable-hyperscan \
---enable-lua \
 --enable-ndpi \
 --enable-pie
 ```
