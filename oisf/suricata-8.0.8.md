@@ -14,7 +14,7 @@
 # BashFAQ/031
 # https://mywiki.wooledge.org/BashFAQ/031
 # Packet Capture Methods
-# https://deepwiki.com/OISF/suricata/3.1-packet-capture-methods
+# https://deepwiki.com/oisf/suri/3.1-packet-capture-methods
 # Proofpoint Emerging Threats Rules
 # https://rules.emergingthreats.net/open/suricata-8.0.8/
 # JA4 Fingerprinting with Suricata 8.0
@@ -100,7 +100,7 @@ cd ../
 ```
 ```
 # suricata
-# wget https://github.com/OISF/suricata/archive/refs/tags/suricata-8.0.8.tar.gz # git version not work on astra
+# wget https://github.com/oisf/suri/archive/refs/tags/suricata-8.0.8.tar.gz # git version not work on astra
 wget https://www.openinfosecfoundation.org/download/suricata-8.0.8.tar.gz
 tar xzvf suricata-8.0.8.tar.gz
 cd ./suricata-8.0.8
@@ -121,41 +121,41 @@ cd ./suricata-8.0.8
 [ $? -eq 0 ] && make -j$(nproc) all || echo "config failed"
 [ $? -eq 0 ] && sudo make install-full || echo "make failed"
 $PRF/suricata/bin/suricata --build-info
-sudo sed -i.back 's/interface: eth0/interface: ens18/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo /opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
+sudo sed -i.back 's/interface: eth0/interface: ens18/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo /opt/oisf/suri/bin/suricata -c /opt/oisf/suri/etc/suricata/suricata.yaml --pidfile /opt/oisf/suri/var/run/suricata/suricata.pid --af-packet
 ```
 ```
-sudo sed -i 's/- mdns:/#- mdns:/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- smtp:/#- smtp:/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- smb:/#- smb:/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- ftp/#- ftp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- rdp/#- rdp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- nfs/#- nfs/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- tftp/#- tftp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- ike/#- ike/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- dcerpc/#- dcerpc/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- krb5/#- krb5/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- bittorrent-dht/#- bittorrent-dht/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- snmp/#- snmp/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- rfb/#- rfb/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- sip/#- sip/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- ldap/#- ldap/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
-sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suricata/etc/suricata/suricata.yaml
+sudo sed -i 's/- mdns:/#- mdns:/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- smtp:/#- smtp:/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- smb:/#- smb:/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- ftp/#- ftp/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- rdp/#- rdp/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- nfs/#- nfs/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- tftp/#- tftp/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- ike/#- ike/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- dcerpc/#- dcerpc/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- krb5/#- krb5/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- bittorrent-dht/#- bittorrent-dht/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- snmp/#- snmp/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- rfb/#- rfb/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- sip/#- sip/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- ldap/#- ldap/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suri/etc/suricata/suricata.yaml
+sudo sed -i 's/- pop3/#- pop3/g' /opt/oisf/suri/etc/suricata/suricata.yaml
 ```
 ```
-sudo /opt/oisf/suricata/bin/suricata -T -v \
--c /opt/oisf/suricata/etc/suricata/suricata.yaml \
---pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid
+sudo /opt/oisf/suri/bin/suricata -T -v \
+-c /opt/oisf/suri/etc/suricata/suricata.yaml \
+--pidfile /opt/oisf/suri/var/run/suricata/suricata.pid
 
-sudo /opt/oisf/suricata/bin/suricata \
--c /opt/oisf/suricata/etc/suricata/suricata.yaml \
---pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
+sudo /opt/oisf/suri/bin/suricata \
+-c /opt/oisf/suri/etc/suricata/suricata.yaml \
+--pidfile /opt/oisf/suri/var/run/suricata/suricata.pid --af-packet
 ```
 ```
-sudo tee /etc/systemd/system/suricata.service > /dev/null << 'EOF'
+sudo tee /etc/systemd/system/suri.service > /dev/null << 'EOF'
 [Unit]
-Description=Suricata unit service
+Description=Suricata Service
 After=network-online.target
 Wants=network-online.target
 
@@ -167,8 +167,8 @@ RestartSec=5s
 StartLimitBurst=5
 #User=suricata
 #Group=suricata
-ExecStartPre=/bin/rm -f /opt/oisf/suricata/var/run/suricata/suricata.pid
-ExecStart=/opt/oisf/suricata/bin/suricata -c /opt/oisf/suricata/etc/suricata/suricata.yaml --pidfile /opt/oisf/suricata/var/run/suricata/suricata.pid --af-packet
+ExecStartPre=/bin/rm -f /opt/oisf/suri/var/run/suricata/suricata.pid
+ExecStart=/opt/oisf/suri/bin/suricata -c /opt/oisf/suri/etc/suricata/suricata.yaml --pidfile /opt/oisf/suri/var/run/suricata/suricata.pid --af-packet
 ExecReload=/bin/kill -USR2 $MAINPID
 ExecStop=/bin/kill $MAINPID
 
@@ -184,7 +184,7 @@ NoNewPrivileges=true
 ProtectSystem=strict
 ProtectHome=true
 PrivateTmp=true
-ReadWritePaths=/opt/oisf/suricata/
+ReadWritePaths=/opt/oisf/suri/
 CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN CAP_SYS_NICE CAP_BPF
 AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN CAP_SYS_NICE CAP_BPF
 
@@ -194,13 +194,13 @@ EOF
 ```
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable --now suricata
-sudo systemd-analyze verify /etc/systemd/system/suricata.service
-sudo journalctl -u suricata --no-pager
+sudo systemctl enable --now suri
+sudo systemd-analyze verify /etc/systemd/system/suri.service
+sudo journalctl -u suri --no-pager
 ```
 ```
-sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
-/opt/oisf/suricata/var/log/suricata/*.log
+sudo tee /etc/logrotate.d/suri > /dev/null << 'EOF'
+/opt/oisf/suri/var/log/suricata/*.log
 {
     size 100M
     rotate 7
@@ -209,20 +209,19 @@ sudo tee /etc/logrotate.d/suricata > /dev/null << 'EOF'
     notifempty
     sharedscripts
     postrotate
-        if [ -f /opt/oisf/suricata/var/run/suricata/suricata.pid ]; then
-            kill -HUP $(/opt/oisf/suricata/var/run/suricata/suricata.pid) 2>/dev/null || true
+        if [ -f /opt/oisf/suri/var/run/suricata/suricata.pid ]; then
+            kill -HUP $(/opt/oisf/suri/var/run/suricata/suricata.pid) 2>/dev/null || true
         else
-            systemctl restart suricata
+            systemctl restart suri
         fi
     endscript
 }
 EOF
-sudo logrotate -dvf /etc/logrotate.d/suricata
+sudo logrotate -dvf /etc/logrotate.d/suri
 ```
 ```
-/opt/oisf/suricata/bin/suricata-update update-sources
-/opt/oisf/suricata/bin/suricata-update list-sources --free
-/opt/oisf/suricata/bin/suricata-update list-enabled-sources
-/opt/oisf/suricata/bin/suricata-update list-sources --free | grep Name | awk '{print $2 }'
-/opt/oisf/suricata/bin/suricata-update enable-source abuse.ch/sslbl-ja3
+/opt/oisf/suri/bin/suricata-update update-sources
+/opt/oisf/suri/bin/suricata-update list-enabled-sources
+/opt/oisf/suri/bin/suricata-update list-sources --free | grep Name | awk '{print $2 }'
+/opt/oisf/suri/bin/suricata-update enable-source abuse.ch/sslbl-ja3
 ```
