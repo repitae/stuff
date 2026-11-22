@@ -1,18 +1,17 @@
-```
-- [Address Family Express Data Path](https://docs.ebpf.io/linux/concepts/af_xdp/)
-- [AF_XDP vs DPDK in 2026](https://eduardvasile.ro/blog/af-xdp-vs-dpdk)
-- [BashFAQ/031](https://mywiki.wooledge.org/BashFAQ/031)
-- [Configuration issue between Suricata 8 and NDPI 5](https://github.com/ntop/nDPI/issues/3072)
-- [Deep Packet Inspection Software Toolkit](https://github.com/ntop/nDPI)
-- [JA4 Fingerprinting with Suricata 8.0](https://forum.suricata.io/t/ja4-fingerprinting-with-suricata-8-0/)
-- [Packet Capture Methods](https://deepwiki.com/oisf/suri/3.1-packet-capture-methods)
-- [PATC hwloc tutorial](https://www-lb.open-mpi.org/projects/hwloc/tutorials/20160606-PATC-hwloc-tutorial.pdf)
-- [Portable Hardware Locality](https://www.open-mpi.org/projects/hwloc/)
-- [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/open/suricata-8.0.8/)
-- [Symmetrical RSS](http://www.ndsl.kaist.edu/~kyoungsoo/papers/TR-symRSS.pdf)
-- [Testing XDP vs DPDK](https://stackoverflow.com/questions/61666624/testing-xdp-vs-dpdk)
-- [XDP vs DPDK speed challenge](https://www.huge-networks.com/en/blog/conectividade/xdp-vs-dpdk-how-to-overcome-the-traffic-speed-challenge)
-```
+	- [Address Family Express Data Path](https://docs.ebpf.io/linux/concepts/af_xdp/)
+	- [AF_XDP vs DPDK in 2026](https://eduardvasile.ro/blog/af-xdp-vs-dpdk)
+	- [BashFAQ/031](https://mywiki.wooledge.org/BashFAQ/031)
+	- [Configuration issue between Suricata 8 and NDPI 5](https://github.com/ntop/nDPI/issues/3072)
+	- [Deep Packet Inspection Software Toolkit](https://github.com/ntop/nDPI)
+	- [JA4 Fingerprinting with Suricata 8.0](https://forum.suricata.io/t/ja4-fingerprinting-with-suricata-8-0/)
+	- [Packet Capture Methods](https://deepwiki.com/oisf/suri/3.1-packet-capture-methods)
+	- [PATC hwloc tutorial](https://www-lb.open-mpi.org/projects/hwloc/tutorials/20160606-PATC-hwloc-tutorial.pdf)
+	- [Portable Hardware Locality](https://www.open-mpi.org/projects/hwloc/)
+	- [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/open/suricata-8.0.8/)
+	- [Symmetrical RSS](http://www.ndsl.kaist.edu/~kyoungsoo/papers/TR-symRSS.pdf)
+	- [Testing XDP vs DPDK](https://stackoverflow.com/questions/61666624/testing-xdp-vs-dpdk)
+	- [XDP vs DPDK speed challenge](https://www.huge-networks.com/en/blog/conectividade/xdp-vs-dpdk-how-to-overcome-the-traffic-speed-challenge)
+
 ```
 # sys
 echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/90-disable-ipv6.conf
