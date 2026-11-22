@@ -27,13 +27,13 @@ echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/90-dis
 cat /etc/sysctl.d/90-disable-ipv6.conf | sudo sysctl -p /etc/sysctl.d/90-disable-ipv6.conf
 ```
 ```
-groupadd -r suri
-useradd -r -M -g suri -s /bin/nologin suri
-```
-```
 USR=`whoami`
 PRF=/opt/oisf
 WDR=/home/$USR/oisf
+```
+```
+groupadd -r suri
+useradd -r -M -g suri -s /bin/nologin suri -d $PRF/suri
 ```
 ```
 # env
