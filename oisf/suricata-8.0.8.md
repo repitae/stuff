@@ -1,3 +1,4 @@
+```
 - [Address Family Express Data Path](https://docs.ebpf.io/linux/concepts/af_xdp/)
 - [AF_XDP vs DPDK in 2026](https://eduardvasile.ro/blog/af-xdp-vs-dpdk)
 - [BashFAQ/031](https://mywiki.wooledge.org/BashFAQ/031)
@@ -11,7 +12,7 @@
 - [Symmetrical RSS](http://www.ndsl.kaist.edu/~kyoungsoo/papers/TR-symRSS.pdf)
 - [Testing XDP vs DPDK](https://stackoverflow.com/questions/61666624/testing-xdp-vs-dpdk)
 - [XDP vs DPDK speed challenge](https://www.huge-networks.com/en/blog/conectividade/xdp-vs-dpdk-how-to-overcome-the-traffic-speed-challenge)
-
+```
 ```
 # sys
 echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.d/90-disable-ipv6.conf
