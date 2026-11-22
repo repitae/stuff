@@ -5,8 +5,11 @@
 # https://github.com/ntop/nDPI
 ## Address Family Express Data Path (AF_XDP)
 # https://docs.ebpf.io/linux/concepts/af_xdp/
+## AF_XDP vs DPDK in 2026
 # https://eduardvasile.ro/blog/af-xdp-vs-dpdk
+## Testing XDP vs DPDK
 # https://stackoverflow.com/questions/61666624/testing-xdp-vs-dpdk
+## XDP vs DPDK: how to overcome the traffic speed challenge
 # https://www.huge-networks.com/en/blog/conectividade/xdp-vs-dpdk-how-to-overcome-the-traffic-speed-challenge
 ## Portable Hardware Locality (hwloc)
 # https://www.open-mpi.org/projects/hwloc/
