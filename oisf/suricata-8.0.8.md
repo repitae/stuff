@@ -1,8 +1,5 @@
-[Symmetrical RSS]
-(http://www.ndsl.kaist.edu/~kyoungsoo/papers/TR-symRSS.pdf)
-
-[Deep Packet Inspection Software Toolkit]
-(https://github.com/ntop/nDPI)
+[Symmetrical RSS](http://www.ndsl.kaist.edu/~kyoungsoo/papers/TR-symRSS.pdf)
+[Deep Packet Inspection Software Toolkit](https://github.com/ntop/nDPI)
 
 [Address Family Express Data Path]
 (https://docs.ebpf.io/linux/concepts/af_xdp/)
